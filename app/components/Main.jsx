@@ -7,7 +7,6 @@ var Main = ({children}) => {
 			<div>
 				<Nav/>
 				<div>
-					<p>Main.jsx Rendered</p>
 					{children}
 				</div>
 			</div>
