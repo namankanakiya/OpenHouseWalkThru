@@ -7,7 +7,7 @@ var Dashboard = React.createClass({
 			<div>
 				<h1 className="page-title">Dashboard</h1>
 				<p>Map goes here</p>
-				<Score/>
+				<Score score={5}/>
 			</div>
 		);
 	}
