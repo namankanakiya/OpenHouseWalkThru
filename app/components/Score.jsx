@@ -2,16 +2,20 @@ var React = require('react');
 
 var Score = React.createClass({
 	getDefaultProps : function() {
-		score : 0
+		return {
+			score : -1
+		};
 	},
 	propTypes : {
-		score : React.PropTypes.number
+		score : React.PropTypes.number.isRequired
 	},
 	render : function() {
 		var {score} = this.props; 
 		var renderScore = () => {
-			if (score != 0) {
+			if (score >= 0) {
 				return <p>{score}</p>
+			} else {
+				return <p>Not Rated yet</p>
 			}
 		};
 		return (

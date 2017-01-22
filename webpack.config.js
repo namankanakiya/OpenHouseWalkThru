@@ -28,7 +28,8 @@ module.exports = {
 			Nav : 'app/components/Nav.jsx',
 			UserProfile : 'app/components/UserProfile.jsx',
 			Dashboard : 'app/components/Dashboard.jsx',
-			Score : 'app/components/Score.jsx'
+			Score : 'app/components/Score.jsx',
+			HouseSummary : 'app/components/HouseSummary.jsx'
 		},
 		extensions : ['', '.js', '.jsx']
 	},
