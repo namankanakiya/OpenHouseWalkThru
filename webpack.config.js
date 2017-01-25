@@ -29,7 +29,9 @@ module.exports = {
 			UserProfile : 'app/components/UserProfile.jsx',
 			Dashboard : 'app/components/Dashboard.jsx',
 			Score : 'app/components/Score.jsx',
-			HouseSummary : 'app/components/HouseSummary.jsx'
+			HouseSummary : 'app/components/HouseSummary.jsx',
+			HouseProfile : 'app/components/HouseProfile.jsx',
+			AverageDistance : 'app/components/AverageDistance.jsx'
 		},
 		extensions : ['', '.js', '.jsx']
 	},

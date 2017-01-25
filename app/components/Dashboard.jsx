@@ -42,7 +42,7 @@ var Dashboard = React.createClass({
 					{this.state.houses.map((house) => {
 						{var houseJSON = JSON.parse(house);}
 						{var {id, address, score, imageURL} = houseJSON;}
-						return <HouseSummary key={id} address={address} score={score} imageURL={imageURL}/>
+						return <HouseSummary a href="/#/houseprofile" key={id} address={address} score={score} imageURL={imageURL}/>
 					})}
 				</div>
 			</div>
