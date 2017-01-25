@@ -25,10 +25,11 @@ var HouseProfile = React.createClass({
 		return (
 			  <div className="column">
 			    <div className="card callout secondary">
-			      <img src={imageURL} alt="No Image"/>
+			      <img src='http://thejetlife.com/wp-content/uploads/2013/03/3-Kapalua-Place-maui-beach-house-9.jpg' alt="No Image"/>
 			      <div className="card-section">
-			        <h4>{streetAddress}, {city}, {state}</h4>
-			        <div>Score: <Score score={score}/></div>
+			        <h4>Score: 89</h4>
+			        <h4>267, 26th St, NYC</h4>
+			        <h4>Average Distance: 9.3 miles</h4>
 			      </div>
 			    </div>
 			  </div>
