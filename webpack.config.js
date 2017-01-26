@@ -33,7 +33,8 @@ module.exports = {
             HouseProfile : 'app/components/HouseProfile.jsx',
             AverageDistance : 'app/components/AverageDistance.jsx',
             Settings : 'app/components/Settings.jsx',
-            Logout : 'app/components/Logout.jsx'
+            Logout : 'app/components/Logout.jsx',
+            AddHouse : 'app/components/AddHouse.jsx'
         },
         extensions : ['', '.js', '.jsx']
     },

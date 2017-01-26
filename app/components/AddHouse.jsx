@@ -15,7 +15,7 @@ var AddHouse = React.createClass({
 	            <input type="text" name="zipcode" /><br/>
 	            Description:<br/>
 	            <input type="text" name="description" /><br/><br/>
-	            <input type="submit" value="Add House"/>
+	            <p><a href="/#/dashboard">Add House</a></p>
 	            <input type="button" value="Upload Pictures"/>
 	        </form>
     	</div>       
