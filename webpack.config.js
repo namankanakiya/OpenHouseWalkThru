@@ -34,7 +34,8 @@ module.exports = {
             AverageDistance : 'app/components/AverageDistance.jsx',
             Settings : 'app/components/Settings.jsx',
             Logout : 'app/components/Logout.jsx',
-            AddHouse : 'app/components/AddHouse.jsx'
+            AddHouse : 'app/components/AddHouse.jsx',
+            Checklist : 'app/components/Checklist.jsx'
         },
         extensions : ['', '.js', '.jsx']
     },

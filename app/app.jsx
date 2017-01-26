@@ -11,6 +11,7 @@ var AverageDistance = require('AverageDistance');
 var Settings = require('Settings');
 var Logout = require('Logout');
 var AddHouse = require('AddHouse');
+var Checklist = require('Checklist');
 
 // Load Foundation
 $(document).foundation();
@@ -30,6 +31,7 @@ ReactDOM.render(
             <Route path='/settings' component={Settings}></Route>
             <Route path='/logout' component={Logout}></Route>
             <Route path='/addhouse' component={AddHouse}></Route>
+            <Route path='/checklist' component={Checklist}></Route>
         </Route>
     </Router>,
     document.getElementById('app'));
