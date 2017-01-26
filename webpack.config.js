@@ -31,7 +31,9 @@ module.exports = {
             Score : 'app/components/Score.jsx',
             HouseSummary : 'app/components/HouseSummary.jsx',
             HouseProfile : 'app/components/HouseProfile.jsx',
-            AverageDistance : 'app/components/AverageDistance.jsx'
+            AverageDistance : 'app/components/AverageDistance.jsx',
+            Settings : 'app/components/Settings.jsx',
+            Logout : 'app/components/Logout.jsx'
         },
         extensions : ['', '.js', '.jsx']
     },

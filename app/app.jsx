@@ -8,6 +8,8 @@ var HouseSummary = require('HouseSummary');
 var Score = require('Score');
 var HouseProfile = require('HouseProfile');
 var AverageDistance = require('AverageDistance');
+var Settings = require('Settings');
+var Logout = require('Logout');
 
 // Load Foundation
 $(document).foundation();
@@ -24,6 +26,8 @@ ReactDOM.render(
             <Route path='/score' component={Score}></Route>
             <Route path='/houseprofile' component={HouseProfile}></Route>
             <Route path='/averagedistance' component={AverageDistance}></Route>
+            <Route path='/settings' component={Settings}></Route>
+            <Route path='/logout' component={Logout}></Route>
         </Route>
     </Router>,
     document.getElementById('app'));

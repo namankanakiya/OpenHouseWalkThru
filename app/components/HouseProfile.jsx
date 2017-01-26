@@ -27,10 +27,20 @@ var HouseProfile = React.createClass({
                 <div className="card callout secondary">
                   <img src='https://s-media-cache-ak0.pinimg.com/originals/15/21/65/152165c63cb91cd3a0181b387203aee9.jpg' alt="No Image"/>
                   <div className="card-section">
-                    <h4>Score: 89</h4>
+                    <h4>Address: 267, 26th St, New York, NY</h4>
+                    <h4>Description: One of the classiest penthouses in the city of glamor!</h4>
+                    <h4>Score: 89 (derived value)</h4>
+                    <p>MAP GOES HERE (coming soon)...</p>
                     <h4>Average Distance: 9.3 miles</h4>
-                    <h4>267, 26th St, New York, NY</h4>
-                    <h4>One of the classiest penthouses in the city of glamor!</h4>
+                    <h4>Checklist:</h4>
+                    <ul>
+                        <li>Feature 1</li>
+                        <li>Feature 2</li>
+                        <li>Feature 3</li>
+                        <li>...</li>
+                    </ul>
+                    <h4>Pictures:</h4>
+                    <p>PICTURES SLIDESHOW GOES HERE (coming soon)...</p>
                   </div>
                 </div>
               </div>
