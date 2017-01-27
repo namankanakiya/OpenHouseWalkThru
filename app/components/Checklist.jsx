@@ -8,6 +8,10 @@ var Checklist = React.createClass({
 		};
 	},
 
+	addFeature : function() {
+		console.log("It Works: " + this.refs.newFeature.value);
+	},
+
 	render : function() {
 		return (
 			<div>
@@ -16,6 +20,9 @@ var Checklist = React.createClass({
 						return <li>{feature}</li>
 					})}
 				</ul>
+				<br/>
+				<input type="text" ref="newFeature" placeholder ="Enter a feature for tracking"/>
+				<button onClick={this.addFeature}> Add Feature </button>
 			</div>
 		);
 	}
