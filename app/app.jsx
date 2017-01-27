@@ -23,7 +23,6 @@ ReactDOM.render(
     <Router history={hashHistory}>
         <Route path="/" component={Main}>
             <Route path='/userprofile' component={UserProfile}></Route>
-            <Route path='/dashboard' component={Dashboard}></Route>
             <Route path='/housesummary' component={HouseSummary}></Route>
             <Route path='/score' component={Score}></Route>
             <Route path='/houseprofile' component={HouseProfile}></Route>
@@ -32,6 +31,7 @@ ReactDOM.render(
             <Route path='/logout' component={Logout}></Route>
             <Route path='/addhouse' component={AddHouse}></Route>
             <Route path='/checklist' component={Checklist}></Route>
+            <IndexRoute component={Dashboard}/>
         </Route>
     </Router>,
     document.getElementById('app'));

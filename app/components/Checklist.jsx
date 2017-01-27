@@ -29,7 +29,7 @@ var Checklist = React.createClass({
 				<br/>
 				<form onSubmit={this.addFeature}>
 					<input type="text" ref="newFeature" placeholder ="Enter a feature for tracking"/>
-					<button> Add Feature </button>
+					<button className="button primary"> Add Feature </button>
 				</form>
 			</div>
 		);
