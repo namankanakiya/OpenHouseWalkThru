@@ -8,7 +8,8 @@ var Checklist = React.createClass({
 		};
 	},
 
-	addFeature : function() {
+	addFeature : function(e) {
+		e.preventDefault();
 		var newFeature = this.refs.newFeature.value;
 		if (newFeature.length > 0) {
 			this.refs.newFeature.value = '';
