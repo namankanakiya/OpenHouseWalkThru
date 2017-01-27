@@ -10,16 +10,20 @@ var Checklist = React.createClass({
 
 	addFeature : function() {
 		var newFeature = this.refs.newFeature.value;
-		console.log("It Works: " + newFeature);
-		this.setState({features : this.state.features.concat([newFeature])});
+		if (newFeature.length > 0) {
+			this.refs.newFeature.value = '';
+			this.setState(
+				{features : this.state.features.concat([newFeature])});
+		}
 	},
 
 	render : function() {
+		var key = 0;
 		return (
 			<div>
 				<ul>
 					{this.state.features.map((feature) => {
-						return <li>{feature}</li>
+						return <li key={key++}>{feature}</li>
 					})}
 				</ul>
 				<br/>
