@@ -9,7 +9,7 @@ var Checklist = React.createClass({
 	},
 
 	addFeature : function(e) {
-		e.preventDefault();
+		e.preventDefault();	
 		var newFeature = this.refs.newFeature.value;
 		if (newFeature.length > 0) {
 			this.refs.newFeature.value = '';
@@ -21,17 +21,20 @@ var Checklist = React.createClass({
 	render : function() {
 		var key = 0;
 		return (
-			<div>
+			<div className="checklist-main">
 				<ul>
 					{this.state.features.map((feature) => {
 						return <li key={key++}>{feature}</li>
 					})}
 				</ul>
 				<br/>
-				<form onSubmit={this.addFeature}>
-					<input type="text" ref="newFeature" placeholder ="Enter a feature for tracking"/>
-					<button className="button primary"> Add Feature </button>
-				</form>
+				<div>
+					<form onSubmit={this.addFeature} className="sameLine">
+						<input type="text" ref="newFeature" placeholder ="Enter a feature for tracking"/>
+						<button className="button primary"> Add Feature </button>
+					</form>
+					<a href="/#/houseprofile"><button className="back button secondary">Go back</button></a>
+				</div>
 			</div>
 		);
 	}
