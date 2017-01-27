@@ -32,7 +32,7 @@ var HouseProfile = React.createClass({
                     <h4>Score: 89 (derived value)</h4>
                     <p>MAP GOES HERE (coming soon)...</p>
                     <h4>Average Distance: 9.3 miles</h4>
-                    <h4>Checklist:</h4>
+                    <h4><a href="/#/checklist">Checklist:</a></h4>
                     <ul>
                         <li>Feature 1</li>
                         <li>Feature 2</li>

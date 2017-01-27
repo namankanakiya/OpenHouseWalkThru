@@ -9,7 +9,9 @@ var Checklist = React.createClass({
 	},
 
 	addFeature : function() {
-		console.log("It Works: " + this.refs.newFeature.value);
+		var newFeature = this.refs.newFeature.value;
+		console.log("It Works: " + newFeature);
+		this.setState({features : this.state.features.concat([newFeature])});
 	},
 
 	render : function() {
