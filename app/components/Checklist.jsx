@@ -13,7 +13,7 @@ var Checklist = React.createClass({
 		if (newFeature.length > 0) {
 			this.refs.newFeature.value = '';
 			this.setState(
-				{features : this.state.features.concat([newFeature])});
+				{features : [...this.state.features, newFeature]});
 		}
 	},
 
@@ -27,8 +27,10 @@ var Checklist = React.createClass({
 					})}
 				</ul>
 				<br/>
-				<input type="text" ref="newFeature" placeholder ="Enter a feature for tracking"/>
-				<button onClick={this.addFeature}> Add Feature </button>
+				<form onSubmit={this.addFeature}>
+					<input type="text" ref="newFeature" placeholder ="Enter a feature for tracking"/>
+					<button> Add Feature </button>
+				</form>
 			</div>
 		);
 	}
