@@ -37,7 +37,9 @@ var Dashboard = React.createClass({
         return (
             <div>
                 <h1 className="page-title">Dashboard</h1>
-                <p>Map goes here</p>
+                <div className="card-map">
+                    <p>MAP GOES HERE (coming soon)...</p>
+                </div>
                 <p><a href="/#/addhouse">Add House</a></p>
                 <div className="row small-up-2 medium-up-3">
                     {this.state.houses.map((house) => {
