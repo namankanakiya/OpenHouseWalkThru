@@ -9,7 +9,7 @@ var Login = React.createClass({
             Login
           </div>
         </h1>
-        <form id="login-form" data-abide noValidate>
+        <form id="login-form" data-abide noValidate action="/#/">
           <div className="row align-center">
             <div className="small-6 columns">
               <div data-abide-error role="alert" className="alert callout" style={{display: 'none'}}>
