@@ -22,21 +22,15 @@ module.exports = {
     },
     resolve : {
         root : __dirname,
+        modulesDirectories : [
+            'node_modules',
+            './app/components',
+            './app/api'
+        ],
         alias : {
             Main : 'app/components/Main.jsx',
             applicationStyles : 'app/styles/app.scss',
-            Nav : 'app/components/Nav.jsx',
-            UserProfile : 'app/components/UserProfile.jsx',
-            Dashboard : 'app/components/Dashboard.jsx',
-            Score : 'app/components/Score.jsx',
-            HouseInfo : 'app/components/HouseInfo.jsx',
-            HouseSummary : 'app/components/HouseSummary.jsx',
-            HouseProfile : 'app/components/HouseProfile.jsx',
-            AverageDistance : 'app/components/AverageDistance.jsx',
-            Settings : 'app/components/Settings.jsx',
-            Logout : 'app/components/Logout.jsx',
-            AddHouse : 'app/components/AddHouse.jsx',
-            Checklist : 'app/components/Checklist.jsx'
+            actions : 'app/actions/actions.jsx'
         },
         extensions : ['', '.js', '.jsx']
     },
