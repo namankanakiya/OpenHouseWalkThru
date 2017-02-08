@@ -13,9 +13,7 @@ var Logout = require('Logout');
 var AddHouse = require('AddHouse');
 var Checklist = require('Checklist');
 var Login = require('Login');
-<<<<<<< HEAD
 var Registration = require('Registration');
-=======
 
 //Redux
 var actions = require('actions');
@@ -32,7 +30,6 @@ store.dispatch(actions.addChecklistItem('Big Garage'));
 store.dispatch(actions.addChecklistItem('Great Lighting'));
 store.dispatch(actions.addChecklistItem('Wooden Floors'));
 store.dispatch(actions.addChecklistItem('Good Insulation'));
->>>>>>> afff4294bbecc9a77a0cd048e7d2774b0350e76f
 
 // Load Foundation
 $(document).foundation();
@@ -41,24 +38,6 @@ $(document).foundation();
 require('style!css!sass!applicationStyles');
 
 ReactDOM.render(
-<<<<<<< HEAD
-    <Router history={hashHistory}>
-        <Route path="/" component={Main}>
-            <Route path='/userprofile' component={UserProfile}></Route>
-            <Route path='/housesummary' component={HouseSummary}></Route>
-            <Route path='/score' component={Score}></Route>
-            <Route path='/houseprofile' component={HouseProfile}></Route>
-            <Route path='/averagedistance' component={AverageDistance}></Route>
-            <Route path='/settings' component={Settings}></Route>
-            <Route path='/logout' component={Logout}></Route>
-            <Route path='/addhouse' component={AddHouse}></Route>
-            <Route path='/checklist' component={Checklist}></Route>
-            <Route path='/login' component={Login}></Route>
-            <Route path='/registration' component={Registration}></Route>
-            <IndexRoute component={Dashboard}/>
-        </Route>
-    </Router>,
-=======
     <Provider store={store}>
         <Router history={hashHistory}>
             <Route path="/" component={Main}>
@@ -72,9 +51,9 @@ ReactDOM.render(
                 <Route path='/addhouse' component={AddHouse}></Route>
                 <Route path='/checklist' component={Checklist}></Route>
                 <Route path='/login' component={Login}></Route>
+                <Route path='/registration' component={Registration}></Route>
                 <IndexRoute component={Dashboard}/>
             </Route>
         </Router>
     </Provider>,
->>>>>>> afff4294bbecc9a77a0cd048e7d2774b0350e76f
     document.getElementById('app'));
