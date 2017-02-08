@@ -12,6 +12,7 @@ var Settings = require('Settings');
 var Logout = require('Logout');
 var AddHouse = require('AddHouse');
 var Checklist = require('Checklist');
+var Login = require('Login');
 
 //Redux
 var actions = require('actions');
@@ -43,6 +44,7 @@ ReactDOM.render(
             <Route path='/logout' component={Logout}></Route>
             <Route path='/addhouse' component={AddHouse}></Route>
             <Route path='/checklist' component={Checklist}></Route>
+            <Route path='/login' component={Login}></Route>
             <IndexRoute component={Dashboard}/>
         </Route>
     </Router>,
