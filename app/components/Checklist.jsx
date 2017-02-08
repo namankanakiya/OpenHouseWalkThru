@@ -1,29 +1,27 @@
 var React = require('react');
+var {connect} = require('react-redux');
+var actions = require('actions');
 
 var Checklist = React.createClass({
-    getInitialState : function() {
-        return {
-            features : ["Bedroom", "Driveway", "Kitchen"]
-        };
-    },
 
     addFeature : function(e) {
         e.preventDefault(); 
         var newFeature = this.refs.newFeature.value;
         if (newFeature.length > 0) {
             this.refs.newFeature.value = '';
-            this.setState(
-                {features : [...this.state.features, newFeature]});
+            var {dispatch} = this.props;
+            dispatch(actions.addChecklistItem(newFeature));
         }
     },
 
     render : function() {
         var key = 0;
+        var {checklist} = this.props;
         return (
             <div className="checklist-main">
                 <ul>
-                    {this.state.features.map((feature) => {
-                        return <li key={key++}>{feature}</li>
+                    {checklist.map((feature) => {
+                        return <li key={feature.id}>{feature.feature}</li>
                     })}
                 </ul>
                 <br/>
@@ -39,4 +37,10 @@ var Checklist = React.createClass({
     }
 })
 
-module.exports = Checklist;
+module.exports = connect(
+    (state) => {
+        return {
+            checklist : state.checklist
+        }
+    }
+)(Checklist);
