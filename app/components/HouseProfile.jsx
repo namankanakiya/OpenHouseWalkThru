@@ -4,6 +4,9 @@ var HouseInfo = require('HouseInfo');
 var Score = require('Score');
 var AverageDistance = require('AverageDistance');
 
+//Redux
+var {connect} = require('react-redux');
+
 var HouseProfile = React.createClass({
     getDefaultProps : function() {
         return {
@@ -16,7 +19,7 @@ var HouseProfile = React.createClass({
         avgDist : React.PropTypes.number,
     },
     render : function() {
-        var {score, avgDist} = this.props;
+        var {score, avgDist, checklist} = this.props;
         var pictureDummy = Faker.image.image();
         var addressDummy = new Object();
         addressDummy.streetAddress= Faker.address.streetAddress();
@@ -37,10 +40,9 @@ var HouseProfile = React.createClass({
                         <h4>Average Distance: 9.3 miles</h4>
                         <h4><a href="/#/checklist">Checklist:</a></h4>
                         <ul>
-                            <li>Feature 1</li>
-                            <li>Feature 2</li>
-                            <li>Feature 3</li>
-                            <li>...</li>
+                            {checklist.map((feature) => {
+                                return <li key={feature.id}>{feature.feature}</li>
+                            })}
                         </ul>
                         <h4>Pictures:</h4>
                         <div className="card-slideshow">
@@ -53,4 +55,10 @@ var HouseProfile = React.createClass({
     }
 });
 
-module.exports = HouseProfile;
+module.exports = connect(
+    (state) => {
+        return {
+            checklist : state.checklist
+        }
+    }
+)(HouseProfile);

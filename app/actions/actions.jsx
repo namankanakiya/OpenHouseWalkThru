@@ -1,6 +1,6 @@
-export var setChecklistItems = (checklistItems) => {
+export var addChecklistItem = (feature) => {
 	return {
-		type : 'SET_CHECKLIST_ITEMS',
-		checklistItems
+		type : 'ADD_CHECKLIST_ITEM',
+		feature	
 	}
 };

@@ -1,7 +1,15 @@
+var uuid = require('node-uuid');
+
 export var setChecklistReducer = (state = [], action) => {
 	switch (action.type) {
-		case 'SET_CHECKLIST_ITEMS':
-			return action.checklistItems;
+		case 'ADD_CHECKLIST_ITEM':
+			return [
+				...state,
+				{
+					id : uuid(),
+					feature : action.feature
+				}
+			]
 		default:
 			return state;
 	};
