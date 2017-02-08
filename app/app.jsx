@@ -13,18 +13,7 @@ var Logout = require('Logout');
 var AddHouse = require('AddHouse');
 var Checklist = require('Checklist');
 var Login = require('Login');
-
-//Redux
-var actions = require('actions');
-var store = require('configureStore').configure();
-
-console.log(store);
-
-store.subscribe(() => {
-    console.log('New State', store.getState());
-});
-
-store.dispatch(actions.setChecklistItems(['new item', 'other item']));
+var Registration = require('Registration');
 
 // Load Foundation
 $(document).foundation();
@@ -45,6 +34,7 @@ ReactDOM.render(
             <Route path='/addhouse' component={AddHouse}></Route>
             <Route path='/checklist' component={Checklist}></Route>
             <Route path='/login' component={Login}></Route>
+            <Route path='/registration' component={Registration}></Route>
             <IndexRoute component={Dashboard}/>
         </Route>
     </Router>,
