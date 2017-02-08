@@ -13,6 +13,18 @@ var Logout = require('Logout');
 var AddHouse = require('AddHouse');
 var Checklist = require('Checklist');
 
+//Redux
+var actions = require('actions');
+var store = require('configureStore').configure();
+
+console.log(store);
+
+store.subscribe(() => {
+    console.log('New State', store.getState());
+});
+
+store.dispatch(actions.setChecklistItems(['new item', 'other item']));
+
 // Load Foundation
 $(document).foundation();
 
