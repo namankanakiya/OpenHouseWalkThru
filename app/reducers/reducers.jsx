@@ -10,6 +10,8 @@ export var setChecklistReducer = (state = [], action) => {
 					feature : action.feature
 				}
 			]
+		case 'DELETE_CHECKLIST_ITEM':
+			return state.filter(feature => feature.id != action.id);
 		default:
 			return state;
 	};

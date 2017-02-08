@@ -16,14 +16,23 @@ var Checklist = React.createClass({
 
     render : function() {
         var key = 0;
-        var {checklist} = this.props;
+        var {checklist, dispatch} = this.props;
         return (
             <div className="checklist-main">
-                <ul>
+                <div align="left">
                     {checklist.map((feature) => {
-                        return <li key={feature.id}>{feature.feature}</li>
+                        return (
+                            <div key={feature.id} className="row">
+                                <div className="small-2 columns">
+                                    {feature.feature}
+                                </div>
+                                <div className="columns">
+                                    <button className="alert button"onClick={() => {dispatch(actions.deleteFeature(feature.id))}}>Delete</button>
+                                </div>
+                            </div>
+                        )
                     })}
-                </ul>
+                </div>
                 <br/>
                 <div>
                     <form onSubmit={this.addFeature} className="sameLine">
