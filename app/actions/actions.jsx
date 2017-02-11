@@ -11,4 +11,18 @@ export var deleteFeature = (id) => {
 		type : 'DELETE_CHECKLIST_ITEM',
 		id
 	}
-}
+};
+
+export var addHouse = (house) => {
+	return {
+		type : 'ADD_HOUSE',
+		house
+	}
+};
+
+export var deleteHouse = (id) => {
+	return {
+		type : 'DELETE_HOUSE',
+		id
+	}
+};

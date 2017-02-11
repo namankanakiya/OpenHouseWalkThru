@@ -1,9 +1,12 @@
 var redux = require('redux');
-var {setChecklistReducer} = require('reducers');
+var {checklistReducer, housesReducer} = require('reducers');
+import { reducer as formReducer } from 'redux-form'
 
 export var configure = () => {
 	var reducer = redux.combineReducers({
-		checklist : setChecklistReducer
+		checklist : checklistReducer,
+		form : formReducer,
+		houses : housesReducer
 	});
 
 	var store = redux.createStore(reducer, redux.compose(
