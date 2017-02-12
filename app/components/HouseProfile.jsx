@@ -2,7 +2,6 @@ var React = require('react');
 var HouseInfo = require('HouseInfo');
 var Score = require('Score');
 var AverageDistance = require('AverageDistance');
-var ohwtAPI = require('ohwtAPI')
 var {Link} = require('react-router');
 
 //Redux
@@ -20,9 +19,8 @@ var HouseProfile = React.createClass({
         avgDist : React.PropTypes.number,
     },
     render : function() {
-        var {score, avgDist, houses} = this.props;
+        var {score, avgDist, house} = this.props;
         var id = this.props.params.id;
-        var house = ohwtAPI.findHouseById(houses, id);
         var addressDummy = new Object();
         addressDummy.streetAddress= house.address;
         addressDummy.city = house.city;
@@ -63,7 +61,7 @@ var HouseProfile = React.createClass({
 module.exports = connect(
     (state) => {
         return {
-            houses : state.houses
+            house : state.house
         }
     }
 )(HouseProfile);

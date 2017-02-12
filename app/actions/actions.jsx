@@ -28,3 +28,10 @@ export var deleteHouse = (id) => {
 		id
 	}
 };
+
+export var addCurHouse = (house) => {
+	return {
+		type : 'ADD_CUR_HOUSE',
+		house
+	}
+}

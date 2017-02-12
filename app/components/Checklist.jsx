@@ -18,17 +18,11 @@ var Checklist = React.createClass({
             this.refs.newFeature.focus();
         }
     },
-    notFound : function() {
-        this.props.router.push('/notfound');
-    },
     render : function() {
         var key = 0;
         var {houses, dispatch} = this.props;
         var id = this.props.params.id;
         var house = ohwtAPI.findHouseById(houses, id);
-        if (house === null) {
-            this.notFound();
-        }
         const HOUSE_URL = "/houseprofile/" + id;
         var checklist = house.checklist;
         return (

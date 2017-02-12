@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 var uuid = require('node-uuid');
 var Faker = require('faker');
+var $ = require('jquery');
 
 //Components
 var Main = require('Main');
@@ -20,6 +21,7 @@ var Login = require('Login');
 var Registration = require('Registration');
 var RatingComment = require('RatingComment');
 var NotFound = require('NotFound');
+var ohwtAPI = require('ohwtAPI');
 
 //Redux
 var actions = require('actions');
@@ -70,6 +72,41 @@ $(document).foundation();
 //SCSS
 require('style!css!sass!applicationStyles');
 
+const checkHouse = (store) => {
+    return (nextState, replace) => {
+        var nextLoc = nextState.location.pathname;
+        var splitArray = nextLoc.split('/');
+        var id = splitArray.slice(-1)[0];
+        var otherLoc = splitArray.slice(-2)[0];
+        console.log(otherLoc);
+        var houses = store.getState().houses;
+        if ($.isArray(houses)) {
+            if (houses.length > 0) {
+                var house = ohwtAPI.findHouseById(houses, id);
+                if (house === null) {
+                    replace({
+                        pathname : '/notfound',
+                        state : {notFound : otherLoc}
+                    });
+                } else {
+                    store.dispatch(actions.addCurHouse(house));
+                }
+            }
+            else {
+                replace({
+                    pathname : '/notfound',
+                    state : {notFound : otherLoc}
+                });
+            }
+        } else {
+            replace({
+                pathname : '/notfound',
+                state : {notFound : otherLoc}
+            });
+        }
+    }
+}
+
 ReactDOM.render(
     <Provider store={store}>
         <Router history={hashHistory}>
@@ -77,12 +114,12 @@ ReactDOM.render(
                 <Route path='/userprofile' component={UserProfile}></Route>
                 <Route path='/housesummary' component={HouseSummary}></Route>
                 <Route path='/score' component={Score}></Route>
-                <Route path='/houseprofile/:id' component={HouseProfile}></Route>
+                <Route path='/houseprofile/:id' component={HouseProfile} onEnter={checkHouse(store)}></Route>
                 <Route path='/averagedistance' component={AverageDistance}></Route>
                 <Route path='/settings' component={Settings}></Route>
                 <Route path='/logout' component={Logout}></Route>
                 <Route path='/addhouse' component={AddHouse}></Route>
-                <Route path='/checklist/:id' component={Checklist}></Route>
+                <Route path='/checklist/:id' component={Checklist} onEnter={checkHouse(store)}></Route>
                 <Route path='/login' component={Login}></Route>
                 <Route path='/registration' component={Registration}></Route>
                 <Route path='/ratingcomment' component={RatingComment}></Route>

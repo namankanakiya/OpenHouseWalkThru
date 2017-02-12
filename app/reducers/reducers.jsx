@@ -1,6 +1,15 @@
 var uuid = require('node-uuid');
 var ohwtAPI = require('ohwtAPI');
 
+export var curHouseReducer = (state = {}, action) => {
+	switch (action.type) {
+		case 'ADD_CUR_HOUSE':
+			return action.house;
+		default:
+			return state;
+	}
+}
+
 export var housesReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'ADD_HOUSE':
