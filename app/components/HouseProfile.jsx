@@ -20,7 +20,7 @@ var HouseProfile = React.createClass({
         avgDist : React.PropTypes.number,
     },
     render : function() {
-        var {score, avgDist, checklist, houses} = this.props;
+        var {score, avgDist, houses} = this.props;
         var id = this.props.params.id;
         var house = ohwtAPI.findHouseById(houses, id);
         var addressDummy = new Object();
@@ -63,7 +63,6 @@ var HouseProfile = React.createClass({
 module.exports = connect(
     (state) => {
         return {
-            checklist : state.checklist,
             houses : state.houses
         }
     }
