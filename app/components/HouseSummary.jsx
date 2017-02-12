@@ -10,20 +10,24 @@ var HouseSummary = React.createClass({
         };
     },
     propTypes : {
-        address : React.PropTypes.object.isRequired,
+        address : React.PropTypes.string.isRequired,
+        city : React.PropTypes.string.isRequired,
+        state : React.PropTypes.string.isRequired,
+        zipcode : React.PropTypes.number.isRequired,
         score : React.PropTypes.number,
-        imageURL : React.PropTypes.string
+        imageurl : React.PropTypes.string
     },
     render : function() {
-        var {address, score, imageURL} = this.props;
-        var {streetAddress, city, state} = address;
+        var {id, address, city, state, zipcode, score, imageurl} = this.props;
+        const IMAGE_NOT_FOUND = "https://cdn.browshot.com/static/images/not-found.png";
+        const HOUSE_URL = "/houseprofile/" + id;
         return (
             <div className="column">
-                <div className="card callout secondary">
-                    <Link to="/houseprofile" activeClassName="active-link">
-                        <img src={imageURL} alt="No Image"/>
+                <div className="card callout secondary small">
+                    <Link to={HOUSE_URL} activeClassName="active-link">
+                        <img src={imageurl} alt="No Image" style={{width:640, height:240}} onError={(e) => {e.target.src=IMAGE_NOT_FOUND}}/>
                         <div className="card-section">
-                            <h4>{streetAddress}, {city}, {state}</h4>
+                            <h4>{address}, {city}, {state} {zipcode}</h4>
                             <div>
                                 Score: <Score score={score}/>
                             </div>

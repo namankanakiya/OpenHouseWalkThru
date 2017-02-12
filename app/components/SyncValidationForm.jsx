@@ -71,8 +71,9 @@ const SyncValidationForm = (props) => {
       <Field name="description" type="text" component={renderField} label="Description" labelHelp="DescriptionHelp"/>
       <Field name="imageurl" type="text" component={renderField} label="Image URL" labelHelp="ImageURLHelp"/>
       <div>
-        <button type="submit" className="button primary" disabled={submitting}>Submit</button>
+        <a href="/#/"><button type="submit" className="button primary" disabled={submitting}>Submit</button></a>
         <button type="button" className="button secondary" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
+        <a href="/#/"><button type="button" className="button secondary">Back</button></a>
       </div>
     </form>
   )

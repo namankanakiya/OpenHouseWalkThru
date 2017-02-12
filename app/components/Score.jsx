@@ -15,7 +15,7 @@ var Score = React.createClass({
             if (score >= 0) {
                 return <p>{score}</p>
             } else {
-                return <p>Not Rated yet</p>
+                return <p>Not Yet Rated</p>
             }
         };
         return (

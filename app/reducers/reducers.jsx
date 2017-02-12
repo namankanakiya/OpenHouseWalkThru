@@ -1,4 +1,5 @@
 var uuid = require('node-uuid');
+var ohwtAPI = require('ohwtAPI');
 
 export var checklistReducer = (state = [], action) => {
 	switch (action.type) {
@@ -26,6 +27,23 @@ export var housesReducer = (state = [], action) => {
 			];
 		case 'DELETE_HOUSE':
 			return state.filter(house => house.id != action.id);
+		case 'ADD_CHECKLIST_ITEM':
+			return state.map((house) => {
+				if (house.id === action.id) {
+					house.checklist = [...house.checklist, {
+						id : uuid(),
+						feature : action.feature
+					}]
+				}
+				return house;
+			});
+		case 'DELETE_CHECKLIST_ITEM':
+			return state.map((house) => {
+				if (house.id === action.id) {
+					house.checklist = house.checklist.filter(feature => feature.id != action.featureId);
+				}
+				return house;
+			});
 		default:
 			return state;
 	};

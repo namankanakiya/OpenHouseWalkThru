@@ -13,9 +13,10 @@ var AddHouse = React.createClass({
             address : address,
             city : city,
             state : state,
-            zipcode : zipcode,
+            zipcode : Number(zipcode),
             description : description,
             imageurl : imageurl,
+            score : -1,
             checklist : [{
                     id : uuid(),
                     feature : 'Big Garage'
@@ -31,6 +32,7 @@ var AddHouse = React.createClass({
                 }]
         }
         dispatch(actions.addHouse(house));
+        this.props.router.push('/');
     },
     render: function() {
         var oldBody = (<div>
@@ -59,8 +61,8 @@ var AddHouse = React.createClass({
                         Image URL:
                         <input type="text" name="imageurl" ref="imageurl"/>
                     </label>
-                    <button type="submit" className="button primary">Add House</button>
-                    <button type="button" className="button warning">Generate Data</button>
+                    <a href="/#/">
+                        <button type="submit" className="button primary">Add House</button></a>
                     {/*<button className="button primary" type="button">Upload Photos</button>*/}
                 </form>
                 <a href="/#/"><button className="button secondary">Back</button></a>

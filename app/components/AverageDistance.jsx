@@ -13,7 +13,7 @@ var AverageDistance = React.createClass({
         var {avgDistance} = this.props; 
         var renderDistance = () => {
             if (avgDistance >= 0) {
-                return <p>{avgDistance}</p>
+                return <p>{avgDistance} Miles</p>
             } else {
                 return <p>Distance Not Known</p>
             }

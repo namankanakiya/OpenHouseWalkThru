@@ -1,15 +1,17 @@
 
-export var addChecklistItem = (feature) => {
+export var addChecklistItem = (id, feature) => {
 	return {
 		type : 'ADD_CHECKLIST_ITEM',
-		feature	
+		feature,
+		id
 	}
 };
 
-export var deleteFeature = (id) => {
+export var deleteFeature = (id, featureId) => {
 	return {
 		type : 'DELETE_CHECKLIST_ITEM',
-		id
+		id,
+		featureId
 	}
 };
 
