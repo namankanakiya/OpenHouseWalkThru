@@ -1,6 +1,7 @@
 var React = require('react');
 var HouseSummary = require('HouseSummary');
 var {connect} = require('react-redux');
+var {Link} = require('react-router');
 
 var Dashboard = React.createClass({
     render : function() {
@@ -11,7 +12,7 @@ var Dashboard = React.createClass({
                 <div className="card-map">
                     <p>MAP GOES HERE (coming soon)...</p>
                 </div>
-                <p><a href="/#/addhouse">Add House</a></p>
+                <p><Link to="/addhouse">Add House</Link></p>
                 <div className="row small-up-2 medium-up-3">
                     {houses.map((house) => {
                         {var {id, address, city, state, zipcode, score, imageurl} = house;}

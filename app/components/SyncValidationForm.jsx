@@ -1,5 +1,6 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+var {Link} = require('react-router');
 
 const validate = values => {
   const errors = {}
@@ -34,10 +35,10 @@ const warn = values => {
 
 const renderInputError = (input, label, type, touched, error, warning, labelHelp) => {
   var errorShadow = {
-    "box-shadow" : "0 0 10px #CC0000"
+    "boxShadow" : "0 0 10px #CC0000"
   }
   var successShadow = {
-    "box-shadow" : "0 0 8px #5cb85c"
+    "boxShadow" : "0 0 8px #5cb85c"
   }
   if (touched && (error || warning)) {
     var toReturn = (<input style={errorShadow} {...input} placeholder={label} type={type} aria-describedby={labelHelp}/>)
@@ -73,7 +74,7 @@ const SyncValidationForm = (props) => {
       <div>
         <a href="/#/"><button type="submit" className="button primary" disabled={submitting}>Submit</button></a>
         <button type="button" className="button secondary" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
-        <a href="/#/"><button type="button" className="button secondary">Back</button></a>
+        <Link to="/"><button type="button" className="button secondary">Back</button></Link>
       </div>
     </form>
   )

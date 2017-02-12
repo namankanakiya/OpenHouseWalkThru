@@ -3,6 +3,7 @@ import SyncValidationForm from './SyncValidationForm';
 var uuid = require('node-uuid');
 var {connect} = require('react-redux');
 var actions = require('actions');
+var {Link} = require('react-router');
 
 var AddHouse = React.createClass({
     addHouse : function(e) {
@@ -61,11 +62,10 @@ var AddHouse = React.createClass({
                         Image URL:
                         <input type="text" name="imageurl" ref="imageurl"/>
                     </label>
-                    <a href="/#/">
-                        <button type="submit" className="button primary">Add House</button></a>
+                    <button type="submit" className="button primary">Add House</button>
                     {/*<button className="button primary" type="button">Upload Photos</button>*/}
                 </form>
-                <a href="/#/"><button className="button secondary">Back</button></a>
+                <Link to="/"><button className="button secondary">Back</button></Link>
             </div>);
         return (
             <SyncValidationForm onSubmit={this.addHouse}/>
