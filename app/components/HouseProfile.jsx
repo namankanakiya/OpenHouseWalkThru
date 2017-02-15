@@ -26,8 +26,12 @@ var HouseProfile = React.createClass({
         addressDummy.city = house.city;
         addressDummy.state = house.state;
         const CHECKLIST_URL = "/checklist/" + id;
+        const WALKTHRU_URL = "/walkthru/" + id;
         return (
             <div className="column">
+                <Link to={WALKTHRU_URL} activeClassName="active-link">
+                    <h4>Begin Walkthru</h4>
+                </Link>
                 <div className="card callout secondary">
                     <div className="card-section">
                         <HouseInfo

@@ -34,4 +34,13 @@ export var addCurHouse = (house) => {
 		type : 'ADD_CUR_HOUSE',
 		house
 	}
-}
+};
+
+export var updateRating = (houseId, checklistId, rating) => {
+	return {
+		type : 'UPDATE_RATING',
+		houseId,
+		checklistId,
+		rating
+	}
+};

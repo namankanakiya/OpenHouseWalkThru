@@ -19,7 +19,7 @@ var AddHouse = require('AddHouse');
 var Checklist = require('Checklist');
 var Login = require('Login');
 var Registration = require('Registration');
-var RatingComment = require('RatingComment');
+var Walkthru = require('Walkthru');
 var NotFound = require('NotFound');
 var ohwtAPI = require('ohwtAPI');
 
@@ -40,28 +40,20 @@ var randomIntFromInterval = function(min, max) {
 // Generate Initial Houses
 var num = randomIntFromInterval(5, 10)
 for (var x = 0; x < num; x++) {
+    var checklistArray = ohwtAPI.addChecklistItem([],'Big Garage');
+    checklistArray = ohwtAPI.addChecklistItem(checklistArray, 'Great Lighting');
+    checklistArray = ohwtAPI.addChecklistItem(checklistArray, 'Wooden Floors');
+    checklistArray = ohwtAPI.addChecklistItem(checklistArray, 'Basement');
     var house = {
         id : uuid(),
         address :  Faker.address.streetAddress(),
         city : Faker.address.city(),
         state : Faker.address.state(),
-        zipcode : Number(Faker.address.zipCode()),
+        zipcode : Faker.address.zipCode(),
         description : Faker.lorem.sentences(),
         imageurl : Faker.image.image(),
         score : randomIntFromInterval(60, 100),
-        checklist : [{
-                id : uuid(),
-                feature : 'Big Garage'
-            },{
-                id : uuid(),
-                feature : 'Great Lighting'
-            },{
-                id : uuid(),
-                feature : 'Wooden Floors'
-            },{
-                id : uuid(),
-                feature : 'Basement'
-            }]
+        checklist : checklistArray
     }
     store.dispatch(actions.addHouse(house));    
 }
@@ -122,7 +114,7 @@ ReactDOM.render(
                 <Route path='/checklist/:id' component={Checklist} onEnter={checkHouse(store)}></Route>
                 <Route path='/login' component={Login}></Route>
                 <Route path='/registration' component={Registration}></Route>
-                <Route path='/ratingcomment' component={RatingComment}></Route>
+                <Route path='/walkthru/:id' component={Walkthru} onEnter={checkHouse(store)}></Route>
                 <Route path="*" component={NotFound}/>
                 <IndexRoute component={Dashboard}/>
             </Route>

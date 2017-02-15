@@ -19,8 +19,8 @@ const validate = values => {
   }
   if (!values.zipcode) {
     errors.zipcode = 'Required'
-  } else if (isNaN(Number(values.zipcode))) {
-    errors.zipcode = 'Must be a number'
+  } else if (!/^\d{5}(?:[-]\d{4})?$/i.test(values.zipcode)) {
+    errors.zipcode = 'Must be a valid zipcode (##### or #####-####)'
   }
   return errors
 }
@@ -68,7 +68,7 @@ const SyncValidationForm = (props) => {
       <Field name="address" type="text" component={renderField} label="Address" labelHelp="AddressHelp"/>
       <Field name="city" type="text" component={renderField} label="City" labelHelp="CityHelp"/>
       <Field name="state" type="text" component={renderField} label="State" labelHelp="StateHelp"/>
-      <Field name="zipcode" type="number" component={renderField} label="Zipcode" labelHelp="ZipcodeHelp"/>
+      <Field name="zipcode" type="text" component={renderField} label="Zipcode" labelHelp="ZipcodeHelp"/>
       <Field name="description" type="text" component={renderField} label="Description" labelHelp="DescriptionHelp"/>
       <Field name="imageurl" type="text" component={renderField} label="Image URL" labelHelp="ImageURLHelp"/>
       <div>
