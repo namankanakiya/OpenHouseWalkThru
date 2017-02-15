@@ -64,19 +64,32 @@ const renderField = ({ input, label, type, labelHelp, meta: { touched, error, wa
 const SyncValidationForm = (props) => {
   const { handleSubmit, pristine, reset, submitting } = props
   return (
-    <form onSubmit={handleSubmit}>
-      <Field name="address" type="text" component={renderField} label="Address" labelHelp="AddressHelp"/>
-      <Field name="city" type="text" component={renderField} label="City" labelHelp="CityHelp"/>
-      <Field name="state" type="text" component={renderField} label="State" labelHelp="StateHelp"/>
-      <Field name="zipcode" type="number" component={renderField} label="Zipcode" labelHelp="ZipcodeHelp"/>
-      <Field name="description" type="text" component={renderField} label="Description" labelHelp="DescriptionHelp"/>
-      <Field name="imageurl" type="text" component={renderField} label="Image URL" labelHelp="ImageURLHelp"/>
-      <div>
-        <a href="/#/"><button type="submit" className="button primary" disabled={submitting}>Submit</button></a>
-        <button type="button" className="button secondary" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
-        <Link to="/"><button type="button" className="button secondary">Back</button></Link>
-      </div>
-    </form>
+    <div>
+        <h3 className="row align-center">
+          <div className="small-7 columns">
+            Add House Form
+          </div>
+        </h3>
+        <form onSubmit={handleSubmit}>
+            <div className="row align-center">
+              <div className="small-7 columns ">
+                <Field name="address" type="text" component={renderField} label="Address" labelHelp="AddressHelp"/>
+                <Field name="city" type="text" component={renderField} label="City" labelHelp="CityHelp"/>
+                <Field name="state" type="text" component={renderField} label="State" labelHelp="StateHelp"/>
+                <Field name="zipcode" type="text" component={renderField} label="Zipcode" labelHelp="ZipcodeHelp"/>
+                <Field name="description" type="text" component={renderField} label="Description" labelHelp="DescriptionHelp"/>
+                <Field name="imageurl" type="text" component={renderField} label="Image URL" labelHelp="ImageURLHelp"/>
+            </div>
+              </div>
+            <div className="row align-center">
+              <div className="small-7 columns ">
+                <a href="/#/"><button type="submit" className="button primary" disabled={submitting}>Submit</button></a>
+                <button type="button" className="button secondary" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
+                <Link to="/"><button type="button" className="button secondary">Back</button></Link>
+            </div>
+              </div>
+        </form>
+    </div>
   )
 }
 
