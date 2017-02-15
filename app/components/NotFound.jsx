@@ -6,7 +6,7 @@ var NotFound = React.createClass({
     		var locationState = this.props.location.state;
     		if (locationState) {
     			var prevLoc = locationState.notFound;
-    			if (prevLoc === 'houseprofile') {
+    			if (prevLoc === 'houseprofile' || prevLoc ==='walkthru') {
     				return <p>The requested House was not found</p>
     			} else if (prevLoc === 'checklist') {
     				return <p>The requested Checklist was not found</p>

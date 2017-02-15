@@ -19,8 +19,8 @@ const validate = values => {
   }
   if (!values.zipcode) {
     errors.zipcode = 'Required'
-  } else if (isNaN(Number(values.zipcode))) {
-    errors.zipcode = 'Must be a number'
+  } else if (!/^\d{5}(?:[-]\d{4})?$/i.test(values.zipcode)) {
+    errors.zipcode = 'Must be a valid zipcode (##### or #####-####)'
   }
   return errors
 }
@@ -64,6 +64,21 @@ const renderField = ({ input, label, type, labelHelp, meta: { touched, error, wa
 const SyncValidationForm = (props) => {
   const { handleSubmit, pristine, reset, submitting } = props
   return (
+/*<<<<<<< HEAD
+    <form onSubmit={handleSubmit}>
+      <Field name="address" type="text" component={renderField} label="Address" labelHelp="AddressHelp"/>
+      <Field name="city" type="text" component={renderField} label="City" labelHelp="CityHelp"/>
+      <Field name="state" type="text" component={renderField} label="State" labelHelp="StateHelp"/>
+      <Field name="zipcode" type="text" component={renderField} label="Zipcode" labelHelp="ZipcodeHelp"/>
+      <Field name="description" type="text" component={renderField} label="Description" labelHelp="DescriptionHelp"/>
+      <Field name="imageurl" type="text" component={renderField} label="Image URL" labelHelp="ImageURLHelp"/>
+      <div>
+        <a href="/#/"><button type="submit" className="button primary" disabled={submitting}>Submit</button></a>
+        <button type="button" className="button secondary" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
+        <Link to="/"><button type="button" className="button secondary">Back</button></Link>
+      </div>
+    </form>
+=======*/
     <div>
         <h3 className="row align-center">
           <div className="small-7 columns">
@@ -90,6 +105,7 @@ const SyncValidationForm = (props) => {
               </div>
         </form>
     </div>
+/*>>>>>>> eb222eb773fa2dd8eb905fda07f88ef56cb442a4*/
   )
 }
 

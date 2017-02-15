@@ -24,7 +24,11 @@ export var housesReducer = (state = [], action) => {
 				if (house.id === action.id) {
 					house.checklist = [...house.checklist, {
 						id : uuid(),
-						feature : action.feature
+						feature : action.feature,
+						rating : -1,
+						comments : '',
+						picture : '',
+						priority : -1
 					}]
 				}
 				return house;
@@ -36,6 +40,21 @@ export var housesReducer = (state = [], action) => {
 				}
 				return house;
 			});
+
+		case 'UPDATE_RATING':
+			return state.map((house) => {
+				if (house.id === action.houseId) {
+					house.checklist = house.checklist.map(feature => {
+						if (feature.id === action.checklistId) {
+							console.log(feature.feature);
+							feature.rating = Number(action.rating);
+						}
+						return feature;
+					});
+				}
+				return house;
+			});
+
 		default:
 			return state;
 	};

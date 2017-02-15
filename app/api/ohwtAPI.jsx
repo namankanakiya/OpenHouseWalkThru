@@ -1,4 +1,5 @@
 var $ = require('jquery');
+var uuid = require('node-uuid');
 
 module.exports = {
 	setChecklists : function(checklists) {
@@ -27,6 +28,22 @@ module.exports = {
 			return null;
 		} else {
 			return null;
+		}
+	},
+	addChecklistItem : function(checklistArray, checklistString) {
+		if ($.isArray(checklistArray)) {
+			var checklistObject = {
+				id : uuid(),
+				feature : checklistString,
+				rating : -1,
+				comments : '',
+				picture : '',
+				priority : -1
+			}
+			checklistArray.push(checklistObject);
+			return checklistArray;
+		} else {
+			return [];
 		}
 	}
 }

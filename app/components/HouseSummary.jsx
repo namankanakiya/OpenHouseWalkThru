@@ -13,7 +13,7 @@ var HouseSummary = React.createClass({
         address : React.PropTypes.string.isRequired,
         city : React.PropTypes.string.isRequired,
         state : React.PropTypes.string.isRequired,
-        zipcode : React.PropTypes.number.isRequired,
+        zipcode : React.PropTypes.string.isRequired,
         score : React.PropTypes.number,
         imageurl : React.PropTypes.string
     },
