@@ -63,31 +63,34 @@ const renderField = ({ input, label, type, labelHelp, meta: { touched, error, wa
 
 const SyncValidationForm = (props) => {
   const { handleSubmit, pristine, reset, submitting } = props
+
+var mainContainer = {
+    backgroundImage: "url(http://cdn.home-designing.com/wp-content/uploads/2009/11/luxury-house-at-sunset.jpg)",
+    backgroundSize: "100% 100%",
+    opacity: 1.2
+    }
+var box = {
+    backgroundColor: "white",
+    marginTop: "5%",
+    marginLeft: "29%",
+    width: 600,
+    border: "1px solid black",
+    opacity: 0.9
+};
+var fields = {
+    marginLeft: "20%"
+}  
   return (
-/*<<<<<<< HEAD
-    <form onSubmit={handleSubmit}>
-      <Field name="address" type="text" component={renderField} label="Address" labelHelp="AddressHelp"/>
-      <Field name="city" type="text" component={renderField} label="City" labelHelp="CityHelp"/>
-      <Field name="state" type="text" component={renderField} label="State" labelHelp="StateHelp"/>
-      <Field name="zipcode" type="text" component={renderField} label="Zipcode" labelHelp="ZipcodeHelp"/>
-      <Field name="description" type="text" component={renderField} label="Description" labelHelp="DescriptionHelp"/>
-      <Field name="imageurl" type="text" component={renderField} label="Image URL" labelHelp="ImageURLHelp"/>
-      <div>
-        <a href="/#/"><button type="submit" className="button primary" disabled={submitting}>Submit</button></a>
-        <button type="button" className="button secondary" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
-        <Link to="/"><button type="button" className="button secondary">Back</button></Link>
-      </div>
-    </form>
-=======*/
-    <div>
+    <div style={mainContainer}>
+      <div style={box}>
         <h3 className="row align-center">
-          <div className="small-7 columns">
+          <div className="small-7 columns" style={fields}>
             Add House Form
           </div>
         </h3>
         <form onSubmit={handleSubmit}>
             <div className="row align-center">
-              <div className="small-7 columns ">
+              <div className="small-7 columns" style={fields}>
                 <Field name="address" type="text" component={renderField} label="Address" labelHelp="AddressHelp"/>
                 <Field name="city" type="text" component={renderField} label="City" labelHelp="CityHelp"/>
                 <Field name="state" type="text" component={renderField} label="State" labelHelp="StateHelp"/>
@@ -97,15 +100,15 @@ const SyncValidationForm = (props) => {
             </div>
               </div>
             <div className="row align-center">
-              <div className="small-7 columns ">
+              <div className="small-7 columns" style={fields}>
                 <a href="/#/"><button type="submit" className="button primary" disabled={submitting}>Submit</button></a>
                 <button type="button" className="button secondary" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
                 <Link to="/"><button type="button" className="button secondary">Back</button></Link>
             </div>
               </div>
         </form>
+       </div> 
     </div>
-/*>>>>>>> eb222eb773fa2dd8eb905fda07f88ef56cb442a4*/
   )
 }
 
