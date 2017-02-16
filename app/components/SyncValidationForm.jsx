@@ -68,13 +68,13 @@ const SyncValidationForm = (props) => {
     <div className="add-house-div">
       <div className="box">
         <h3 className="row align-center">
-          <div className="small-9 large-7 columns" style={{marginLeft : "15%"}}>
-            Add House Form
+          <div className="small-8 columns" style={{marginLeft : "20%"}}>
+            <h3>Add a House</h3>
           </div>
         </h3>
         <form onSubmit={handleSubmit}>
             <div className="row align-center">
-              <div className="small-9 large-7 columns" style={{marginLeft : "15%"}}>
+              <div className="small-8 columns" style={{marginLeft : "20%"}}>
                 <Field name="address" type="text" component={renderField} label="Address" labelHelp="AddressHelp"/>
                 <Field name="city" type="text" component={renderField} label="City" labelHelp="CityHelp"/>
                 <Field name="state" type="text" component={renderField} label="State" labelHelp="StateHelp"/>
@@ -84,7 +84,7 @@ const SyncValidationForm = (props) => {
             </div>
               </div>
             <div className="row align-center">
-              <div className="small-9 large-7 columns" style={{marginLeft : "15%"}}>
+              <div className="small-8 medium-12 columns" style={{marginLeft : "20%"}}>
                 <a href="/#/"><button type="submit" className="button primary" disabled={submitting}>Submit</button></a>
                 <button type="button" className="button secondary" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
                 <Link to="/"><button type="button" className="button secondary">Back</button></Link>

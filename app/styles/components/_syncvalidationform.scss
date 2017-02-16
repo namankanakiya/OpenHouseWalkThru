@@ -2,15 +2,26 @@
 	background-image: url(https://wallpaperscraft.com/image/pond_house_sunset_ducks_village_48037_3840x1200.jpg); // http://cdn.home-designing.com/wp-content/uploads/2009/11/luxury-house-at-sunset.jpg
     background-size: 100% 100%; //100% 100%
     opacity: 1.2;
+
+    h3 {
+    font-weight: normal;
+    margin: 0;
+    padding: 0.5rem 0 0.5rem 0;
+    text-align: center;
+    @media only screen and (max-width: 64em) {
+      padding-top: 1rem;
+    }
+  }
 }
 
 .box {
 	background-color: white;
     margin : 0 auto;
-    width: 480px;
-    @media screen and (min-width : 800px) {
-		width: 600px;
+    width: 600px;
+    @media screen and (max-width : 810px) {
+		width: 450px;
     }
     border: 1px solid black;
     opacity: 0.9;
 }
+
