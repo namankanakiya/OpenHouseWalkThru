@@ -1,5 +1,5 @@
 var $ = require('jquery');
-var uuid = require('node-uuid');
+var uuid = require('human-readable-ids').hri;
 
 module.exports = {
 	setChecklists : function(checklists) {
@@ -33,7 +33,7 @@ module.exports = {
 	addChecklistItem : function(checklistArray, checklistString) {
 		if ($.isArray(checklistArray)) {
 			var checklistObject = {
-				id : uuid(),
+				id : uuid.random(),
 				feature : checklistString,
 				rating : -1,
 				comments : '',

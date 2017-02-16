@@ -1,4 +1,4 @@
-var uuid = require('node-uuid');
+var uuid = require('human-readable-ids').hri;
 var ohwtAPI = require('ohwtAPI');
 
 export var curHouseReducer = (state = {}, action) => {
@@ -23,7 +23,7 @@ export var housesReducer = (state = [], action) => {
 			return state.map((house) => {
 				if (house.id === action.id) {
 					house.checklist = [...house.checklist, {
-						id : uuid(),
+						id : uuid.random(),
 						feature : action.feature,
 						rating : -1,
 						comments : '',
