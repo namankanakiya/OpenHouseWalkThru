@@ -1,0 +1,16 @@
+.add-house-div {
+	background-image: url(https://wallpaperscraft.com/image/pond_house_sunset_ducks_village_48037_3840x1200.jpg); // http://cdn.home-designing.com/wp-content/uploads/2009/11/luxury-house-at-sunset.jpg
+    background-size: 100% 100%; //100% 100%
+    opacity: 1.2;
+}
+
+.box {
+	background-color: white;
+    margin : 0 auto;
+    width: 480px;
+    @media screen and (min-width : 800px) {
+		width: 600px;
+    }
+    border: 1px solid black;
+    opacity: 0.9;
+}

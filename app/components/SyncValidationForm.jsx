@@ -64,33 +64,17 @@ const renderField = ({ input, label, type, labelHelp, meta: { touched, error, wa
 const SyncValidationForm = (props) => {
   const { handleSubmit, pristine, reset, submitting } = props
 
-var mainContainer = {
-    backgroundImage: "url(http://cdn.home-designing.com/wp-content/uploads/2009/11/luxury-house-at-sunset.jpg)",
-    backgroundSize: "100% 100%",
-    opacity: 1.2
-    }
-var box = {
-    backgroundColor: "white",
-    marginTop: "5%",
-    marginLeft: "29%",
-    width: 600,
-    border: "1px solid black",
-    opacity: 0.9
-};
-var fields = {
-    marginLeft: "20%"
-}  
   return (
-    <div style={mainContainer}>
-      <div style={box}>
+    <div className="add-house-div">
+      <div className="box">
         <h3 className="row align-center">
-          <div className="small-7 columns" style={fields}>
+          <div className="small-9 large-7 columns" style={{marginLeft : "15%"}}>
             Add House Form
           </div>
         </h3>
         <form onSubmit={handleSubmit}>
             <div className="row align-center">
-              <div className="small-7 columns" style={fields}>
+              <div className="small-9 large-7 columns" style={{marginLeft : "15%"}}>
                 <Field name="address" type="text" component={renderField} label="Address" labelHelp="AddressHelp"/>
                 <Field name="city" type="text" component={renderField} label="City" labelHelp="CityHelp"/>
                 <Field name="state" type="text" component={renderField} label="State" labelHelp="StateHelp"/>
@@ -100,7 +84,7 @@ var fields = {
             </div>
               </div>
             <div className="row align-center">
-              <div className="small-7 columns" style={fields}>
+              <div className="small-9 large-7 columns" style={{marginLeft : "15%"}}>
                 <a href="/#/"><button type="submit" className="button primary" disabled={submitting}>Submit</button></a>
                 <button type="button" className="button secondary" disabled={pristine || submitting} onClick={reset}>Clear Values</button>
                 <Link to="/"><button type="button" className="button secondary">Back</button></Link>
