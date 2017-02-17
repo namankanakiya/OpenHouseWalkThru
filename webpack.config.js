@@ -9,6 +9,11 @@ module.exports = {
         'script!foundation-sites/js/foundation.util.keyboard.js',
         'script!foundation-sites/js/foundation.util.box.js',
         'script!foundation-sites/js/foundation.util.nest.js',
+        'script!foundation-sites/js/foundation.orbit.js',
+        'script!foundation-sites/js/foundation.core.js',
+        'script!foundation-sites/js/foundation.util.motion.js',
+        'script!foundation-sites/js/foundation.util.timerAndImageLoader.js',
+        'script!foundation-sites/js/foundation.util.touch.js',
         './app/app.jsx'
     ],
     externals : {
