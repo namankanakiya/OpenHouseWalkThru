@@ -1,5 +1,6 @@
 var React = require('react');
 var {Link} = require('react-router');
+var $ = require('jquery');
 
 {/*var NavMenu = React.createClass({
     getDefaultProps : function() {
@@ -38,7 +39,7 @@ var NavMenuButton = React.createClass({
         this.setState({isOpen: !this.state.isOpen});
     },
 
-    componentDidMount : function() {},
+    componentDidMount : function() {$(document).foundation();},
 
     componentWillUnmount : function() {},
 

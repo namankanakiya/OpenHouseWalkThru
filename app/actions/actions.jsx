@@ -44,3 +44,12 @@ export var updateRating = (houseId, checklistId, rating) => {
 		rating
 	}
 };
+
+export var updateComments = (houseId, checklistId, comments) => {
+	return {
+		type : 'UPDATE_COMMENTS',
+		houseId,
+		checklistId,
+		comments
+	}
+};
