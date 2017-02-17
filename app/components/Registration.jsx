@@ -19,16 +19,16 @@ var Registration = React.createClass({
     };
 
     var regHeader = {
-      marginLeft: "18%"
+      marginLeft: "17%"
     };
 
     var regImage = {
-      marginLeft: "25%",
+      marginLeft: "23%",
       marginBottom: 10
     };
 
     var formFields = {
-      marginLeft: "18%"
+      marginLeft: "16%"
     }
 
     var formInputs = {
@@ -36,7 +36,7 @@ var Registration = React.createClass({
     }
 
     var regButton = {
-      marginLeft: "50%"
+      marginLeft: "60%"
     }
 
     return (

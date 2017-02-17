@@ -18,16 +18,16 @@ var Login = React.createClass({
     };
 
     var logHeader = {
-      marginLeft: "33%"
+      marginLeft: "32%"
     };
 
     var logImage = {
-      marginLeft: "25%",
+      marginLeft: "23%",
       marginBottom: 10
     };
 
     var formFields = {
-      marginLeft: "18%"
+      marginLeft: "16%"
     }
 
     var formInputs = {
@@ -35,7 +35,7 @@ var Login = React.createClass({
     }
 
     var logButton = {
-      marginLeft: "50%"
+      marginLeft: "65%"
     }
 
     return (
