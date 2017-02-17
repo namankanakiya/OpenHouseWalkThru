@@ -26,31 +26,58 @@ var Checklist = React.createClass({
         const HOUSE_URL = "/houseprofile/" + id;
         var checklist = house.checklist;
         return (
-            <div className="checklist-main">
-                <div>
-                    {checklist.map((feature) => {
-                        return (
-                            <div key={feature.id} className="row">
-                                <div className="small-2 columns">
-                                    {feature.feature}
-                                </div>
-                                <div className="columns">
-                                    <button className="alert button"onClick={() => {dispatch(actions.deleteFeature(id, feature.id))}}>Delete</button>
-                                </div>
-                            </div>
-                        )
-                    })}
+            <div className="checklist-main row">
+            	<div className="small-1 large-2 columns">t</div>
+                <div className="small-10 large-8 columns">
+                	<div className="checklist-container card">
+		                    {checklist.map((feature) => {
+		                        return (
+		                            <div key={feature.id} className="row">
+		                                <div className="small-2 columns">
+		                                    {feature.feature}
+		                                </div>
+
+		                                <div className="priority row">
+											<div className="small-9 small-centered columns">
+											    <ul className="button-group round toggle" data-toggle="buttons-radio">
+											      <li>
+											        <input type="radio" id="r1" name="r-group" data-toggle="button"/>
+											        <label className="button" for="r1">Low</label>
+											      </li>
+											      <li>
+											        <input type="radio" id="r2" name="r-group" data-toggle="button"/>
+											        <label className="button" for="r2">Medium</label>
+											      </li>
+											      <li>
+											        <input type="radio" id="r3" name="r-group" data-toggle="button"/>
+											        <label className="button" for="r3">High</label>
+											      </li>
+											    </ul>
+										 	</div>
+										</div>
+
+		                                <div className="small-4 columns">
+		                                    <button className="alert button"onClick={() => {dispatch(actions.deleteFeature(id, feature.id))}}>Delete</button>
+		                                </div>
+		                            </div>
+		                        )
+		                    })}
+		                
+		                
+
+		                <br/>
+		                <div>
+		                    <form onSubmit={this.addFeature} className="sameLine">
+		                        <input type="text" ref="newFeature" placeholder ="Enter a feature for tracking"/>
+		                        <button className="button primary"> Add Feature </button>
+		                    </form>
+		                     <Link to={HOUSE_URL} activeClassName="active-link">
+		                        <button className="back button secondary">Go back</button>
+		                     </Link>
+		                </div>
+	                </div>
                 </div>
-                <br/>
-                <div>
-                    <form onSubmit={this.addFeature} className="sameLine">
-                        <input type="text" ref="newFeature" placeholder ="Enter a feature for tracking"/>
-                        <button className="button primary"> Add Feature </button>
-                    </form>
-                     <Link to={HOUSE_URL} activeClassName="active-link">
-                        <button className="back button secondary">Go back</button>
-                     </Link>
-                </div>
+                <div className="small-1 large-2 columns">t</div>
             </div>
         );
     }
