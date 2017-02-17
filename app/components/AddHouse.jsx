@@ -30,9 +30,7 @@ var AddHouse = React.createClass({
     },
     render: function() {
         return (
-          
             <SyncValidationForm onSubmit={this.addHouse}/>
-            
         )
     }
 });
