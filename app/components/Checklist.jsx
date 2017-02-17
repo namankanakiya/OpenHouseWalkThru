@@ -27,42 +27,44 @@ var Checklist = React.createClass({
         var checklist = house.checklist;
         return (
             <div className="checklist-main row">
-            	<div className="small-1 large-2 columns">t</div>
-                <div className="small-10 large-8 columns">
+                <div className="small-8 large-8 small-centered large-centered columns">
                 	<div className="checklist-container card">
+                			<table>
 		                    {checklist.map((feature) => {
 		                        return (
-		                            <div key={feature.id} className="row">
-		                                <div className="small-2 columns">
-		                                    {feature.feature}
-		                                </div>
+		                        	<tr className="feature row card-section">
+			                            <div key={feature.id}>
+			                                <div className="small-4 columns">
+			                                    {feature.feature}
+			                                </div>
 
-		                                <div className="priority row">
-											<div className="small-9 small-centered columns">
-											    <ul className="button-group round toggle" data-toggle="buttons-radio">
-											      <li>
-											        <input type="radio" id="r1" name="r-group" data-toggle="button"/>
-											        <label className="button" for="r1">Low</label>
-											      </li>
-											      <li>
-											        <input type="radio" id="r2" name="r-group" data-toggle="button"/>
-											        <label className="button" for="r2">Medium</label>
-											      </li>
-											      <li>
-											        <input type="radio" id="r3" name="r-group" data-toggle="button"/>
-											        <label className="button" for="r3">High</label>
-											      </li>
-											    </ul>
-										 	</div>
-										</div>
+			                                <div className="priority row">
+												<div className="small-9 small-centered columns">
+												    <ul className="button-group round toggle" data-toggle="buttons-radio">
+												      <li>
+												        <input type="radio" id="r1" name="r-group" data-toggle="button"/>
+												        <label className="button" for="r1">Low</label>
+												      </li>
+												      <li>
+												        <input type="radio" id="r2" name="r-group" data-toggle="button"/>
+												        <label className="button" for="r2">Medium</label>
+												      </li>
+												      <li>
+												        <input type="radio" id="r3" name="r-group" data-toggle="button"/>
+												        <label className="button" for="r3">High</label>
+												      </li>
+												    </ul>
+											 	</div>
+											</div>
 
-		                                <div className="small-4 columns">
-		                                    <button className="alert button"onClick={() => {dispatch(actions.deleteFeature(id, feature.id))}}>Delete</button>
-		                                </div>
-		                            </div>
+			                                <div className="small-2 columns">
+			                                    <button className="alert button"onClick={() => {dispatch(actions.deleteFeature(id, feature.id))}}>Delete</button>
+			                                </div>
+			                            </div>
+		                            </tr>
 		                        )
 		                    })}
-		                
+		                	</table>
 		                
 
 		                <br/>
@@ -77,7 +79,6 @@ var Checklist = React.createClass({
 		                </div>
 	                </div>
                 </div>
-                <div className="small-1 large-2 columns">t</div>
             </div>
         );
     }
