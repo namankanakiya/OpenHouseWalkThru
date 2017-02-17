@@ -5,6 +5,10 @@ module.exports = {
     entry : [
         'script!jquery/dist/jquery.min.js',
         'script!foundation-sites/dist/foundation.min.js',
+        'script!foundation-sites/js/foundation.dropdown.js',
+        'script!foundation-sites/js/foundation.util.keyboard.js',
+        'script!foundation-sites/js/foundation.util.box.js',
+        'script!foundation-sites/js/foundation.util.nest.js',
         './app/app.jsx'
     ],
     externals : {
