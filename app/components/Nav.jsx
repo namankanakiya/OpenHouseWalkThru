@@ -59,6 +59,9 @@ var NavMenuButton = React.createClass({
 });*/}
 
 var Nav = React.createClass({
+    componentDidMount : function() {
+        $(document).foundation();
+    },
     render : function() {
         return (
             <div className="top-bar">
@@ -72,11 +75,14 @@ var Nav = React.createClass({
                     <ul className="dropdown menu" data-dropdown-menu>
                         <li>
                             <a href="#">Item 1</a>
-                            <ul class="menu">
+                            <ul className="menu">
                                 <li><Link to="/userprofile">Profile</Link></li>
                                 <li><Link to="/settings">Settings</Link></li>
                                 <li><Link to="/logout">Logout</Link></li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="#">Item 2</a>
                         </li>
                     </ul>
                     {/*<NavMenuButton />*/}
