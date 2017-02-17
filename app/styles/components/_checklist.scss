@@ -1,19 +1,15 @@
-.checklist-main {
-	
-}
+.checklist-main {}
 
 .sameLine {
-	display : inline-block;
-	color: blue;
-	.button {
-		vertical-align: bottom;
-	}
+    display : inline-block;
+    color: blue;
+    .button {
+        vertical-align: bottom;
+    }
 }
 
-
-
 .back {
-	vertical-align: top !important;
-   	margin-top: 55px !important;
-   	margin-left: -80px !important;
+    vertical-align: top !important;
+    margin-top: 55px !important;
+    margin-left: -80px !important;
 }

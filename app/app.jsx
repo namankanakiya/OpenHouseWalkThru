@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
-var uuid = require('node-uuid');
+var uuid = require('human-readable-ids').hri;
 var Faker = require('faker');
 var $ = require('jquery');
 
@@ -45,7 +45,7 @@ for (var x = 0; x < num; x++) {
     checklistArray = ohwtAPI.addChecklistItem(checklistArray, 'Wooden Floors');
     checklistArray = ohwtAPI.addChecklistItem(checklistArray, 'Basement');
     var house = {
-        id : uuid(),
+        id : uuid.random(),
         address :  Faker.address.streetAddress(),
         city : Faker.address.city(),
         state : Faker.address.state(),
