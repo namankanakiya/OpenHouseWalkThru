@@ -1,145 +1,145 @@
 body {
-  background: #F0F0F0; 
+    background: #F0F0F0; 
 }
 
 .website-example {
-  background: #fff;
-  padding: 1.75rem;
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    background: #fff;
+    padding: 1.75rem;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
 
-  
-  $unchecked-star: '\2606';
-  $unchecked-color: #888;
-  $checked-star: '\2605';
-  $checked-color: #e52;
+    $unchecked-star: '\2606';
+    $unchecked-color: #888;
+    $checked-star: '\2605';
+    $checked-color: #e52;
 
-  .star-cb-group {
-    /* remove inline-block whitespace */
-    font-size: 0;
-    * {
-      font-size: 1.5rem;
-    }
-    /* flip the order so we can use the + and ~ combinators */
-    unicode-bidi: bidi-override;
-    direction: rtl;
-    & > input {
-      display: none;
-      & + label {
-        /* only enough room for the star */
-        display: inline-block;
-        overflow: hidden;
-        text-indent: 9999px;
-        width: 1em;
-        white-space: nowrap;
-        cursor: pointer;
-        &:before {
-          display: inline-block;
-          text-indent: -9999px;
-          content: $unchecked-star;
-          color: $unchecked-color;
+    .star-cb-group {
+        /* remove inline-block whitespace */
+        font-size: 0;
+        * {
+            font-size: 1.5rem;
         }
-      }
-      &:checked ~ label:before,
-        & + label:hover ~ label:before,
-        & + label:hover:before {
-        content: $checked-star;
-        color: #e52;
-        text-shadow: 0 0 1px #333;
-      }
+        /* flip the order so we can use the + and ~ combinators */
+        unicode-bidi: bidi-override;
+        direction: rtl;
+        & > input {
+            display: none;
+            & + label {
+                /* only enough room for the star */
+                display: inline-block;
+                overflow: hidden;
+                text-indent: 9999px;
+                width: 1em;
+                white-space: nowrap;
+                cursor: pointer;
+                &:before {
+                    display: inline-block;
+                    text-indent: -9999px;
+                    content: $unchecked-star;
+                    color: $unchecked-color;
+                }
+            }
+            &:checked ~ label:before,
+            & + label:hover ~ label:before,
+            & + label:hover:before {
+                content: $checked-star;
+                color: #e52;
+                text-shadow: 0 0 1px #333;
+            }
+        }
+
+        /* the hidden clearer */
+        & > .star-cb-clear + label {
+            text-indent: -9999px;
+            width: .5em;
+            margin-left: -.5em;
+        }
+        & > .star-cb-clear + label:before {
+            width: .5em;
+        }
+
+        &:hover > input + label:before {
+            content: $unchecked-star;
+            color: $unchecked-color;
+            text-shadow: none;
+        }
+        &:hover > input + label:hover ~ label:before,
+        &:hover > input + label:hover:before {
+            content: $checked-star;
+            color: $checked-color;
+            text-shadow: 0 0 1px #333;
+        }
     }
-    
-    /* the hidden clearer */
-    & > .star-cb-clear + label {
-      text-indent: -9999px;
-      width: .5em;
-      margin-left: -.5em;
-    }
-    & > .star-cb-clear + label:before {
-      width: .5em;
+
+    // extra styles
+    :root {
+        font-size: 2em;
+        font-family: Helvetica, arial, sans-serif;
     }
 
-    &:hover > input + label:before {
-      content: $unchecked-star;
-      color: $unchecked-color;
-      text-shadow: none;
+    body {
+        background: #333;
+        color: $unchecked-color;
     }
-    &:hover > input + label:hover ~ label:before,
-    &:hover > input + label:hover:before {
-      content: $checked-star;
-      color: $checked-color;
-      text-shadow: 0 0 1px #333;
+
+    fieldset {
+        border: 0;
+        background: rgba(118, 212, 226, 0.62);
+        width: 18em;
+        border-radius: 10px;
+        padding: 1em 1.5em 0.9em;
+        margin: 1em auto;
     }
-  }
 
-  // extra styles
-  :root {
-    font-size: 2em;
-    font-family: Helvetica, arial, sans-serif;
-  }
-
-  body {
-    background: #333;
-    color: $unchecked-color;
-  }
-  fieldset {
-    border: 0;
-    background: rgba(118, 212, 226, 0.62);
-    width: 18em;
-    border-radius: 10px;
-    padding: 1em 1.5em 0.9em;
-    margin: 1em auto;
-  }
-  #log {
-    margin: 1em auto;
-    width: 5em;
-    text-align: center;
-    background: transparent;
-  }
-
-
-
-
-  h1 {
-    text-align: center;
-  }
-
-  h3 {
-    font-weight: normal;
-    margin: 0;
-    padding: 0 0 0.5rem 0;
-    @media only screen and (max-width: 64em) {
-      padding-top: 1rem;
+    #log {
+        margin: 1em auto;
+        width: 5em;
+        text-align: center;
+        background: transparent;
     }
-  }
-  h6 {
-    color: #50b2d0;
-    text-transform: uppercase;
-    line-height: 1;
-    font-size: 0.875rem;
-    font-weight: bold;
-    padding: 0 0 0.5rem 0;
-  }
-  p {
-    font-size: 0.875rem;
-    line-height: 1.2rem;
-    margin: 0;
-    padding: 0.875rem 0;
-    border-top: 1px solid #999;
-    border-bottom: 1px solid #999;
-  }
-  .button {
-    font-weight: bold;
-    color: #2BA6CB;
-    background: transparent;
-    padding-left: 0;
-    margin-bottom: 0;
-    box-shadow: none;
-  }
+
+    h1 {
+        text-align: center;
+    }
+
+    h3 {
+        font-weight: normal;
+        margin: 0;
+        padding: 0 0 0.5rem 0;
+        @media only screen and (max-width: 64em) {
+            padding-top: 1rem;
+        }
+    }
+
+    h6 {
+        color: #50b2d0;
+        text-transform: uppercase;
+        line-height: 1;
+        font-size: 0.875rem;
+        font-weight: bold;
+        padding: 0 0 0.5rem 0;
+    }
+
+    p {
+        font-size: 0.875rem;
+        line-height: 1.2rem;
+        margin: 0;
+        padding: 0.875rem 0;
+        border-top: 1px solid #999;
+        border-bottom: 1px solid #999;
+    }
+
+    .button {
+        font-weight: bold;
+        color: #2BA6CB;
+        background: transparent;
+        padding-left: 0;
+        margin-bottom: 0;
+        box-shadow: none;
+    }
 }
 
 .row.wide {
-  max-width: rem-calc(1200);
+    max-width: rem-calc(1200);
 }
-

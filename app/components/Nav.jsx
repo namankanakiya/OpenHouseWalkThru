@@ -1,7 +1,7 @@
 var React = require('react');
 var {Link} = require('react-router');
 
-var NavMenu = React.createClass({
+{/*var NavMenu = React.createClass({
     getDefaultProps : function() {
         return {
             isOpen : false
@@ -55,7 +55,7 @@ var NavMenuButton = React.createClass({
         );
     }
 
-});
+});*/}
 
 var Nav = React.createClass({
     render : function() {
@@ -68,7 +68,17 @@ var Nav = React.createClass({
                     </ul>
                 </div>
                 <div className="top-bar-right">
-                    <NavMenuButton />
+                    <ul className="dropdown menu" data-dropdown-menu>
+                        <li>
+                            <a href="#">Item 1</a>
+                            <ul class="menu">
+                                <li><Link to="/userprofile">Profile</Link></li>
+                                <li><Link to="/settings">Settings</Link></li>
+                                <li><Link to="/logout">Logout</Link></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    {/*<NavMenuButton />*/}
                 </div>
             </div>
         );
