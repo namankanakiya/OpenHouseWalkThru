@@ -3,19 +3,17 @@ var {connect} = require('react-redux');
 var actions = require('actions');
 
 var FeatureDetails = React.createClass({
-	componentWillMount : function() {
-		console.log(this.props.checklistId);
-		this.setState({checklistId : this.props.checklistId});
-	},
-	testOnSubmit : function(e) {
-			console.log(this.props.checklistId);
+	updateComments : function(e) {
+		var comments = e.currentTarget.value;
+		var {dispatch, houseId, checklistId} = this.props;
+		var box = this.refs.commentBox;
+		dispatch(actions.updateComments(houseId, checklistId, comments));
 	},
     render: function() {
     	var {rating, priority, feature, comments, houseId, checklistId} = this.props;
     	var ratingChanged = (e) => {
 			var rating = e.currentTarget.value;
 			var {dispatch, houseId, checklistId} = this.props;
-			console.log(checklistId);
 			dispatch(actions.updateRating(houseId, checklistId, rating));
 		};
 		return (
@@ -30,8 +28,9 @@ var FeatureDetails = React.createClass({
  				    </div>
  				    <div className="large-6 columns" style={{"paddingTop" : "100px"}}>
  				      <h3 className="text-center">{feature}</h3>
- 				      <p>{comments}</p>
- 				      <p>"House Id" {houseId} ", checklist ID" {checklistId}</p>
+ 				      <p>
+ 				      	<textarea onBlur={this.updateComments} defaultValue={comments} ref="commentBox"></textarea>
+ 				      </p>
  				        <fieldset>
  				        	<span className="star-cb-group">
 		  				      <input type="radio" id={feature + "5"} name={feature + "5"} value="5" checked={rating === 5} onChange={(e) => ratingChanged(e)}/><label htmlFor={feature + "5"} >5</label>
