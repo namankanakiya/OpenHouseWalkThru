@@ -1,6 +1,7 @@
 var React = require('react');
 var {connect} = require('react-redux');
 var ohwtAPI = require('ohwtAPI');
+var actions = require('actions');
 var FeatureDetails = require('FeatureDetails');
 import { StickyContainer, Sticky } from 'react-sticky';
 var Modal = require('react-modal');
@@ -19,8 +20,8 @@ var Walkthru = React.createClass({
         var feature = this.refs.feature;
         if (feature.value.length > 0) {
             console.log(feature.value);
+            this.setState({height : height, modalOpen : true, featureValue : feature.value});
             feature.value = '';
-            this.setState({height : height, modalOpen : true})
         } else {
             feature.focus();
         }
@@ -39,7 +40,10 @@ var Walkthru = React.createClass({
         var height = 0;
         var priorityChanged = (e) => {
             var priority = e.currentTarget.value;
+            var feature = this.state.featureValue;
             console.log(priority);
+            console.log(feature);
+            dispatch(actions.addChecklistItemPriority(id, feature, priority));
             this.closeModal();
         };
         const customStyles = {
