@@ -9,10 +9,15 @@ module.exports = {
         'script!foundation-sites/js/foundation.util.keyboard.js',
         'script!foundation-sites/js/foundation.util.box.js',
         'script!foundation-sites/js/foundation.util.nest.js',
+        'script!foundation-sites/js/foundation.sticky.js',
+        'script!foundation-sites/js/foundation.util.triggers.js',
+        'script!foundation-sites/js/foundation.core.js',
+        'script!foundation-sites/js/foundation.util.mediaQuery.js',
         './app/app.jsx'
     ],
     externals : {
-        jquery : 'jQuery'
+        jquery : 'jQuery',
+        foundation: 'Foundation'
     },
     plugins : [
         new webpack.ProvidePlugin({

@@ -32,37 +32,37 @@ var Checklist = React.createClass({
                 			<table>
 		                    {checklist.map((feature) => {
 		                        return (
-		                        	<tr className="feature row card-section">
-			                            <div key={feature.id}>
-			                                <div className="small-4 columns">
-			                                    {feature.feature}
-			                                </div>
-
-			                                <div className="priority row">
-												<div className="small-9 small-centered columns">
-												    <ul className="button-group round toggle" data-toggle="buttons-radio">
-												      <li>
-												        <input type="radio" id="r1" name="r-group" data-toggle="button"/>
-												        <label className="button" for="r1">Low</label>
-												      </li>
-												      <li>
-												        <input type="radio" id="r2" name="r-group" data-toggle="button"/>
-												        <label className="button" for="r2">Medium</label>
-												      </li>
-												      <li>
-												        <input type="radio" id="r3" name="r-group" data-toggle="button"/>
-												        <label className="button" for="r3">High</label>
-												      </li>
-												    </ul>
-											 	</div>
-											</div>
-
-			                                <div className="small-2 columns">
-			                                    <button className="alert button"onClick={() => {dispatch(actions.deleteFeature(id, feature.id))}}>Delete</button>
-			                                </div>
-			                            </div>
-		                            </tr>
-		                        )
+		                        	<tbody key={feature.id}>
+                                        <tr className="feature row card-section">
+                                            <div key={feature.id}>
+                                                <div className="small-4 columns">
+                                                    {feature.feature}
+                                                </div>
+                                                    <div className="priority row">
+                                                    <div className="small-9 small-centered columns">
+                                                        <ul className="button-group round toggle" data-toggle="buttons-radio">
+                                                          <li>
+                                                            <input type="radio" id={feature.id + "r1"} name="r-group" data-toggle="button"/>
+                                                            <label className="button" htmlFor={feature.id + "r1"}>Low</label>
+                                                          </li>
+                                                          <li>
+                                                            <input type="radio" id={feature.id + "r2"} name="r-group" data-toggle="button"/>
+                                                            <label className="button" htmlFor={feature.id + "r2"}>Medium</label>
+                                                          </li>
+                                                          <li>
+                                                            <input type="radio" id={feature.id + "r3"} name="r-group" data-toggle="button"/>
+                                                            <label className="button" htmlFor={feature.id + "r3"}>High</label>
+                                                          </li>
+                                                        </ul>
+                                                     </div>
+                                                     </div>
+                                                <div className="small-2 columns">
+                                                    <button className="alert button"onClick={() => {dispatch(actions.deleteFeature(id, feature.id))}}>Delete</button>
+                                                </div>
+                                            </div>
+                                        </tr>
+                                    </tbody>
+		                      )
 		                    })}
 		                	</table>
 		                
