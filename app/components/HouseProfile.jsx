@@ -4,6 +4,13 @@ var Score = require('Score');
 var AverageDistance = require('AverageDistance');
 var {Link} = require('react-router');
 
+// general styles
+import 'style!css!react-responsive-carousel/lib/styles/main.css';
+
+// carousel styles
+import 'style!css!react-responsive-carousel/lib/styles/carousel.css';
+
+
 //Redux
 var {connect} = require('react-redux');
 
@@ -35,7 +42,6 @@ var HouseProfile = React.createClass({
                 <div className="card callout secondary">
                     <div className="card-section">
                         <HouseInfo
-                         picture={house.imageurl}
                          address={addressDummy}
                          description="One of the finest houses in the city" />
                         <h4><Score score={house.score}/></h4>
@@ -52,9 +58,6 @@ var HouseProfile = React.createClass({
                             })}
                         </ul>
                         <h4>Pictures:</h4>
-                        <div className="card-slideshow">
-                            <p>PICTURES SLIDESHOW GOES HERE (coming soon)...</p>
-                        </div>
                     </div>
                 </div>
             </div>
