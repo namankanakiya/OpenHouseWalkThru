@@ -2,7 +2,7 @@ var React = require('react');
 var {Link} = require('react-router');
 var $ = require('jquery');
 
-{/*var NavMenu = React.createClass({
+var NavMenu = React.createClass({
     getDefaultProps : function() {
         return {
             isOpen : false
@@ -56,12 +56,9 @@ var NavMenuButton = React.createClass({
         );
     }
 
-});*/}
+});
 
 var Nav = React.createClass({
-    componentDidMount : function() {
-        $(document).foundation();
-    },
     render : function() {
         return (
             <nav className="top-bar">
@@ -73,20 +70,7 @@ var Nav = React.createClass({
                     </ul>
                 </div>
                 <div className="top-bar-right">
-                    <ul className="dropdown menu" data-dropdown-menu>
-                        <li>
-                            <a href="#">Item 1</a>
-                            <ul className="menu">
-                                <li><Link to="/userprofile">Profile</Link></li>
-                                <li><Link to="/settings">Settings</Link></li>
-                                <li><Link to="/logout">Logout</Link></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">Item 2</a>
-                        </li>
-                    </ul>
-                    {/*<NavMenuButton />*/}
+                    <NavMenuButton />
                 </div>
             </nav>
         );

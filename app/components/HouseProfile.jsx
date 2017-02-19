@@ -37,17 +37,19 @@ var HouseProfile = React.createClass({
             marginTop: "2%",
             marginLeft: "12%",
             width: "75%",
-            border: "1px solid black"
+            border: "1px solid black",
+            overflow: "auto",
+            height: "auto"
         };
 
         var leftCard = {
             float: "left",
-            width: "50%"
+            width: "75%"
         };
 
         var rightCard = {
             float: "right",
-            width: "50%"
+            width: "25%"
         };
 
         var {score, avgDist, house} = this.props;
@@ -65,12 +67,7 @@ var HouseProfile = React.createClass({
                      address={addressDummy}
                      description="One of the finest houses in the city" />
                     <div style={leftCard}>
-                        <h4>Features</h4>
-                        <ul>
-                            {house.checklist.map((feature) => {
-                                return <li key={feature.id}>{feature.feature}</li>
-                            })}
-                        </ul>
+                        <img src="http://cdn.newsapi.com.au/image/v1/0a0ceda4bda18e664ffac1a8fa86a7d1" />
                     </div>
                     <div style={rightCard}>
                         <h4><Score score={house.score}/></h4>
