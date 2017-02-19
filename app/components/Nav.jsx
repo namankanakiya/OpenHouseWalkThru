@@ -64,7 +64,8 @@ var Nav = React.createClass({
     },
     render : function() {
         return (
-            <div className="top-bar">
+            <nav className="top-bar">
+                <div className="logo"><img src="http://i.imgur.com/2jW8gL5.png" width="64" height="40"/></div>
                 <div className="top-bar-left">
                     <ul className="dropdown menu" data-dropdown-menu>
                         <li className="menu-text">Open House Walk Thru</li>
@@ -87,7 +88,7 @@ var Nav = React.createClass({
                     </ul>
                     {/*<NavMenuButton />*/}
                 </div>
-            </div>
+            </nav>
         );
     }
 });

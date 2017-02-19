@@ -73,6 +73,13 @@ $global-text-direction: ltr;
 $global-flexbox: false;
 $print-transparent-backgrounds: true;
 
+//honeypot color scheme
+$honeypot-color-1: #105B63;
+$honeypot-color-2: #FFFAD5;
+$honeypot-color-3: #FFD34E;
+$honeypot-color-4: #DB9E36;
+$honeypot-color-5: #BD4932;
+
 @include add-foundation-colors;
 
 // 2. Breakpoints
@@ -559,7 +566,7 @@ $tooltip-radius: $global-radius;
 // -----------
 
 $topbar-padding: 0.5rem;
-$topbar-background: $light-gray;
+$topbar-background: $honeypot-color-1;
 $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 1rem;
 $topbar-input-width: 200px;

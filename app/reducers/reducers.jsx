@@ -33,6 +33,22 @@ export var housesReducer = (state = [], action) => {
 				}
 				return house;
 			});
+
+        case 'ADD_CHECKLIST_ITEM_PRIORITY':
+            return state.map((house) => {
+                if (house.id === action.id) {
+                    house.checklist = [...house.checklist, {
+                        id : uuid.random(),
+                        feature : action.feature,
+                        rating : -1,
+                        comments : '',
+                        picture : '',
+                        priority : action.priority
+                    }]
+                }
+                return house;
+            });
+
 		case 'DELETE_CHECKLIST_ITEM':
 			return state.map((house) => {
 				if (house.id === action.id) {

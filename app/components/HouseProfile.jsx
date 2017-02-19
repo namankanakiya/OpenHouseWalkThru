@@ -4,6 +4,13 @@ var Score = require('Score');
 var AverageDistance = require('AverageDistance');
 var {Link} = require('react-router');
 
+// general styles
+import 'style!css!react-responsive-carousel/lib/styles/main.css';
+
+// carousel styles
+import 'style!css!react-responsive-carousel/lib/styles/carousel.css';
+
+
 //Redux
 var {connect} = require('react-redux');
 
@@ -27,10 +34,20 @@ var HouseProfile = React.createClass({
 
         var box = {
             backgroundColor: "white",
+            marginTop: "2%",
             marginLeft: "12%",
             width: "75%",
-            border: "1px solid black",
-            opacity: 0.9
+            border: "1px solid black"
+        };
+
+        var leftCard = {
+            float: "left",
+            width: "50%"
+        };
+
+        var rightCard = {
+            float: "right",
+            width: "50%"
         };
 
         var {score, avgDist, house} = this.props;
@@ -43,24 +60,26 @@ var HouseProfile = React.createClass({
         const WALKTHRU_URL = "/walkthru/" + id;
         return (
             <div className="column" style={mainContainer}>
-                {/*<Link to={WALKTHRU_URL} activeClassName="active-link">
-                    <h4>Begin Walkthru</h4>
-                </Link>*/}
                 <div className="card callout secondary" style={box}>
-                    <div className="card-section">
-                        <HouseInfo
-                         picture={house.imageurl}
-                         address={addressDummy}
-                         description="One of the finest houses in the city" />
-                        <h4><Score score={house.score}/></h4>
-                        <Link to={CHECKLIST_URL} activeClassName="active-link">
-                            <h4>Checklist:</h4>
-                        </Link>
+                    <HouseInfo
+                     address={addressDummy}
+                     description="One of the finest houses in the city" />
+                    <div style={leftCard}>
+                        <h4>Features</h4>
                         <ul>
                             {house.checklist.map((feature) => {
                                 return <li key={feature.id}>{feature.feature}</li>
                             })}
                         </ul>
+                    </div>
+                    <div style={rightCard}>
+                        <h4><Score score={house.score}/></h4>
+                        <p><Link to={WALKTHRU_URL} activeClassName="active-link">
+                            <button className="button">Begin Walkthru</button>
+                        </Link></p>
+                        <p><Link to={CHECKLIST_URL} activeClassName="active-link">
+                            <button className="button">Edit Checklist</button>
+                        </Link></p>
                     </div>
                 </div>
             </div>

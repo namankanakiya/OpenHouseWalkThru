@@ -7,6 +7,15 @@ export var addChecklistItem = (id, feature) => {
 	}
 };
 
+export var addChecklistItemPriority = (id, feature, priority) => {
+    return {
+        type : 'ADD_CHECKLIST_ITEM_PRIORITY',
+        feature,
+        id,
+        priority
+    }
+};
+
 export var deleteFeature = (id, featureId) => {
 	return {
 		type : 'DELETE_CHECKLIST_ITEM',
