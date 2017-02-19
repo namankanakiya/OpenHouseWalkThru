@@ -43,11 +43,13 @@ var HouseProfile = React.createClass({
         };
 
         var leftCard = {
+            paddingRight: "1%",
             float: "left",
             width: "75%"
         };
 
         var rightCard = {
+            paddingLeft: "1%",
             float: "right",
             width: "25%"
         };
