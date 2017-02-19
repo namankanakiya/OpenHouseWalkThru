@@ -21,6 +21,7 @@
 .checklist-container {
   	border: "4px solid black";
 	box-shadow : 2px 2px 19px $black;
+	margin-top: 4%;
 }
 
 .priority {
@@ -52,6 +53,15 @@
 }
 
 .feature:nth-of-type(odd) {
-	background: gray;
+	background: $honeypot-color-2;
 	background-clip: content-box;
+}
+
+.feature:nth-of-type(even) {
+	background: $honeypot-color-4;
+	background-clip: content-box;
+}
+
+.checklistButtons {
+	padding-left: 35%;
 }

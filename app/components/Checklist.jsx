@@ -29,11 +29,13 @@ var Checklist = React.createClass({
             <div className="checklist-main row">
                 <div className="small-8 large-8 small-centered large-centered columns">
                 	<div className="checklist-container card">
-                			<table>
+		        			<table>
+		        			<tbody>
 		                    {checklist.map((feature) => {
 		                        return (
-		                        	<tr className="feature row card-section">
-			                            <div key={feature.id}>
+		                        	<tr className="feature row card-section" key={feature.id}>
+		                        	<td>
+			                            <div>
 			                                <div className="small-4 columns">
 			                                    {feature.feature}
 			                                </div>
@@ -42,16 +44,16 @@ var Checklist = React.createClass({
 												<div className="small-9 small-centered columns">
 												    <ul className="button-group round toggle" data-toggle="buttons-radio">
 												      <li>
-												        <input type="radio" id="r1" name="r-group" data-toggle="button"/>
-												        <label className="button" for="r1">Low</label>
+												        <input type="radio" id={"r1" + feature.id} name="r-group" data-toggle="button"/>
+												        <label className="button" htmlFor={"r1" + feature.id}>Low</label>
 												      </li>
 												      <li>
-												        <input type="radio" id="r2" name="r-group" data-toggle="button"/>
-												        <label className="button" for="r2">Medium</label>
+												        <input type="radio" id={"r2" + feature.id} name="r-group" data-toggle="button"/>
+												        <label className="button" htmlFor={"r2" + feature.id}>Medium</label>
 												      </li>
 												      <li>
-												        <input type="radio" id="r3" name="r-group" data-toggle="button"/>
-												        <label className="button" for="r3">High</label>
+												        <input type="radio" id={"r3	" + feature.id} name="r-group" data-toggle="button"/>
+												        <label className="button" htmlFor={"r3	" + feature.id}>High</label>
 												      </li>
 												    </ul>
 											 	</div>
@@ -61,14 +63,16 @@ var Checklist = React.createClass({
 			                                    <button className="alert button"onClick={() => {dispatch(actions.deleteFeature(id, feature.id))}}>Delete</button>
 			                                </div>
 			                            </div>
+		                            </td>
 		                            </tr>
 		                        )
 		                    })}
+		                    </tbody>
 		                	</table>
 		                
 
 		                <br/>
-		                <div>
+		                <div className="checklistButtons">
 		                    <form onSubmit={this.addFeature} className="sameLine">
 		                        <input type="text" ref="newFeature" placeholder ="Enter a feature for tracking"/>
 		                        <button className="button primary"> Add Feature </button>
