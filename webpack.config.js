@@ -6,6 +6,7 @@ module.exports = {
         'script!jquery/dist/jquery.min.js',
         'script!foundation-sites/dist/foundation.min.js',
         'script!foundation-sites/js/foundation.dropdown.js',
+        'script!foundation-sites/js/foundation.dropdownMenu.js',
         'script!foundation-sites/js/foundation.util.keyboard.js',
         'script!foundation-sites/js/foundation.util.box.js',
         'script!foundation-sites/js/foundation.util.nest.js',
