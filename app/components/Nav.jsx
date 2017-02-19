@@ -67,15 +67,6 @@ var Nav = React.createClass({
                     <ul className="dropdown menu" data-dropdown-menu>
                         <li className="menu-text">Open House Walk Thru</li>
                         <li><Link to="/">Dashboard</Link></li>
-                        <li class="has-submenu">
-                            <a href="#">Menu</a>
-                            <ul class="submenu menu vertical" data-submenu>
-                              <li><a href="#/settings">Settings</a></li>
-                              <li><a href="#/userprofile">User Profile</a></li>
-                              <li><a href="#/logout">Logout</a></li>
-                            </ul>
-                        </li>
-
                     </ul>
                 </div>
                 <div className="top-bar-right">
