@@ -26,7 +26,7 @@ var HouseInfo = React.createClass({
         var {streetAddress, city, state} = address;
         return (
             <div className="house-info">
-                <Carousel showArrows={true} showThumbs={false} width={"75%"} dynamicHeight>
+                <Carousel showArrows={true} showThumbs={false} dynamicHeight>
                     <div>
                         <img src="http://lorempixel.com/900/500/sports/1/" />
                         <p className="legend">Legend 1</p>
