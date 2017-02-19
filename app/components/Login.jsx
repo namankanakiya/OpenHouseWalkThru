@@ -3,17 +3,20 @@ var React = require('react');
 var Login = React.createClass({
     render : function() {
         var mainContainer = {
-            backgroundImage: "url(https://s-media-cache-ak0.pinimg.com/originals/41/2f/6c/412f6c9f290bdaff0fdb5af49e139adb.jpg)",
+            opacity: 0.75,
             backgroundSize: "100% 100%",
-            opacity: 0.8
-        }
-
+            backgroundImage: "url(https://s-media-cache-ak0.pinimg.com/originals/41/2f/6c/412f6c9f290bdaff0fdb5af49e139adb.jpg)",
+            height: "690"
+        };
+    
         var box = {
-            backgroundColor: "white",
-            marginTop: "5%",
+            marginTop: "80",
             marginLeft: "33%",
-            width: 420,
+            backgroundColor: "white",
             border: "1px solid black",
+            opacity: 0.9,
+            width: 420,
+            position: "fixed",
             opacity: 0.9
         };
 

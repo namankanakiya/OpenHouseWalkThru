@@ -5,17 +5,21 @@ var Registration = React.createClass({
     render : function() {
 
     var mainContainer = {
-      backgroundImage: "url(https://s-media-cache-ak0.pinimg.com/originals/41/2f/6c/412f6c9f290bdaff0fdb5af49e139adb.jpg)",
-      backgroundSize: "100% 100%",
-      opacity: 0.8
-    }
+            opacity: 0.75,
+            backgroundSize: "100% 100%",
+            backgroundImage: "url(https://s-media-cache-ak0.pinimg.com/originals/41/2f/6c/412f6c9f290bdaff0fdb5af49e139adb.jpg)",
+            height: "690"
+    };
+    
     var box = {
-      backgroundColor: "white",
-      marginTop: "5%",
-      marginLeft: "33%",
-      width: 420,
-      border: "1px solid black",
-      opacity: 0.9
+        marginTop: "80",
+        marginLeft: "33%",
+        backgroundColor: "white",
+        border: "1px solid black",
+        opacity: 0.9,
+        width: 420,
+        position: "fixed",
+        opacity: 0.9
     };
 
     var regHeader = {
@@ -23,12 +27,12 @@ var Registration = React.createClass({
     };
 
     var regImage = {
-      marginLeft: "23%",
+      marginLeft: "25%",
       marginBottom: 10
     };
 
     var formFields = {
-      marginLeft: "16%"
+      marginLeft: "18%"
     }
 
     var formInputs = {
