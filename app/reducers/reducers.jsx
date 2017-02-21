@@ -15,7 +15,7 @@ export var housesReducer = (state = [], action) => {
 		case 'ADD_HOUSE':
 			return [
 				...state,
-				action.house
+				action.house,
 			];
 		case 'DELETE_HOUSE':
 			return state.filter(house => house.id != action.id);

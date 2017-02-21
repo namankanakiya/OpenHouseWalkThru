@@ -5,7 +5,7 @@ const { resolve } = require('path');
 module.exports = {
     entry : [
         'react-hot-loader/patch',
-        'webpack-dev-server/client?http://localhost:8080',
+        'webpack-dev-server/client?http://localhost:3000',
         'webpack/hot/only-dev-server',
         'script-loader!jquery/dist/jquery.min.js',
         'script-loader!foundation-sites/dist/foundation.min.js',
@@ -61,7 +61,9 @@ module.exports = {
         // match the output `publicPath`
 
         //fallback to root for other urls
-        historyApiFallback: true
+        historyApiFallback: true,
+        //port
+        port : 3000
       },
 
     module : {

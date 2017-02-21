@@ -28,7 +28,6 @@ var Dashboard = React.createClass({
                 <div className="row small-up-2 medium-up-3">
                     {houses.map((house) => {
                         {var {id, address, city, state, zipcode, score, imageurl} = house;}
-                        {}
                         return <HouseSummary key={id} id={id} address={address} city={city} state={state} zipcode={zipcode} score={score} imageurl={imageurl}/>
                     })}
                 </div>

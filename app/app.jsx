@@ -99,26 +99,30 @@ const checkHouse = (store) => {
     }
 }
 
+const routes = (
+    <Route path="/" component={Main}>
+        <Route path='/userprofile' component={UserProfile}></Route>
+        <Route path='/housesummary' component={HouseSummary}></Route>
+        <Route path='/score' component={Score}></Route>
+        <Route path='/houseprofile/:id' component={HouseProfile} onEnter={checkHouse(store)}></Route>
+        <Route path='/averagedistance' component={AverageDistance}></Route>
+        <Route path='/settings' component={Settings}></Route>
+        <Route path='/logout' component={Logout}></Route>
+        <Route path='/addhouse' component={AddHouse}></Route>
+        <Route path='/checklist/:id' component={Checklist} onEnter={checkHouse(store)}></Route>
+        <Route path='/login' component={Login}></Route>
+        <Route path='/registration' component={Registration}></Route>
+        <Route path='/walkthru/:id' component={Walkthru} onEnter={checkHouse(store)}></Route>
+        <Route path="*" component={NotFound}/>
+        <IndexRoute component={Dashboard}/>
+    </Route>
+);
+
 const Root = props => {
     return (
         <Provider store={store}>
-            <Router history={hashHistory}>
-                <Route path="/" component={Main}>
-                    <Route path='/userprofile' component={UserProfile}></Route>
-                    <Route path='/housesummary' component={HouseSummary}></Route>
-                    <Route path='/score' component={Score}></Route>
-                    <Route path='/houseprofile/:id' component={HouseProfile} onEnter={checkHouse(store)}></Route>
-                    <Route path='/averagedistance' component={AverageDistance}></Route>
-                    <Route path='/settings' component={Settings}></Route>
-                    <Route path='/logout' component={Logout}></Route>
-                    <Route path='/addhouse' component={AddHouse}></Route>
-                    <Route path='/checklist/:id' component={Checklist} onEnter={checkHouse(store)}></Route>
-                    <Route path='/login' component={Login}></Route>
-                    <Route path='/registration' component={Registration}></Route>
-                    <Route path='/walkthru/:id' component={Walkthru} onEnter={checkHouse(store)}></Route>
-                    <Route path="*" component={NotFound}/>
-                    <IndexRoute component={Dashboard}/>
-                </Route>
+            <Router key={Math.random()} history={hashHistory} routes={routes}>
+                {routes}
             </Router>
         </Provider>
     )
