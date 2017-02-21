@@ -1,5 +1,5 @@
 var React = require('react');
-var Score = require('Score');
+var Score = require('Score').default;
 var {Link} = require('react-router');
 
 var HouseSummary = React.createClass({
@@ -39,4 +39,4 @@ var HouseSummary = React.createClass({
     }
 });
 
-module.exports = HouseSummary;
+export default HouseSummary;

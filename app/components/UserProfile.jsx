@@ -9,4 +9,4 @@ var UserProfile = React.createClass({
     }
 });
 
-module.exports = UserProfile;
+export default UserProfile;

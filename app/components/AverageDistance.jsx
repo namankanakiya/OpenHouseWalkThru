@@ -26,4 +26,4 @@ var AverageDistance = React.createClass({
     }
 });
 
-module.exports = AverageDistance;
+export default AverageDistance;

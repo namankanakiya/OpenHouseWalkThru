@@ -1,14 +1,14 @@
 var React = require('react');
-var HouseInfo = require('HouseInfo');
-var Score = require('Score');
-var AverageDistance = require('AverageDistance');
+var HouseInfo = require('HouseInfo').default;
+var Score = require('Score').default;
+var AverageDistance = require('AverageDistance').default;
 var {Link} = require('react-router');
 
 // general styles
-import 'style!css!react-responsive-carousel/lib/styles/main.css';
+import 'style-loader!css-loader!react-responsive-carousel/lib/styles/main.css';
 
 // carousel styles
-import 'style!css!react-responsive-carousel/lib/styles/carousel.css';
+import 'style-loader!css-loader!react-responsive-carousel/lib/styles/carousel.css';
 
 
 //Redux
@@ -86,7 +86,7 @@ var HouseProfile = React.createClass({
     }
 });
 
-module.exports = connect(
+export default connect(
     (state) => {
         return {
             house : state.house

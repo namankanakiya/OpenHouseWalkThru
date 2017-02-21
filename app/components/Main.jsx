@@ -1,5 +1,5 @@
 var React = require('react');
-var Nav = require('Nav');
+var Nav = require('Nav').default;
 
 var Main = ({children}) => {
     return (
@@ -14,4 +14,4 @@ var Main = ({children}) => {
     );
 }
 
-module.exports = Main;
+export default Main;

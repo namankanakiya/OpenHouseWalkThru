@@ -47,4 +47,4 @@ var FeatureDetails = React.createClass({
     }
 });
 
-module.exports = connect()(FeatureDetails);
+export default connect()(FeatureDetails);

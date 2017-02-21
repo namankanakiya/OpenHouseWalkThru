@@ -25,4 +25,4 @@ var NotFound = React.createClass({
     }
 });
 
-module.exports = NotFound;
+export default NotFound;

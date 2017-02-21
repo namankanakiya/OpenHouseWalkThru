@@ -88,7 +88,7 @@ var Checklist = React.createClass({
     }
 })
 
-module.exports = connect(
+export default connect(
     (state) => {
         return {
             houses : state.houses

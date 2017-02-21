@@ -26,4 +26,4 @@ var Score = React.createClass({
     }
 });
 
-module.exports = Score;
+export default Score;

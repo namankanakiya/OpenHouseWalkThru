@@ -91,4 +91,4 @@ var Registration = React.createClass({
   }
 });
 
-module.exports = Registration;
+export default Registration;

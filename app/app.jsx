@@ -6,21 +6,21 @@ var Faker = require('faker');
 var $ = require('jquery');
 
 //Components
-var Main = require('Main');
-var UserProfile = require('UserProfile');
-var Dashboard = require('Dashboard');
-var HouseSummary = require('HouseSummary');
-var Score = require('Score');
-var HouseProfile = require('HouseProfile');
-var AverageDistance = require('AverageDistance');
-var Settings = require('Settings');
-var Logout = require('Logout');
-var AddHouse = require('AddHouse');
-var Checklist = require('Checklist');
-var Login = require('Login');
-var Registration = require('Registration');
-var Walkthru = require('Walkthru');
-var NotFound = require('NotFound');
+var Main = require('Main').default;
+var UserProfile = require('UserProfile').default;
+var Dashboard = require('Dashboard').default;
+var HouseSummary = require('HouseSummary').default;
+var Score = require('Score').default;
+var HouseProfile = require('HouseProfile').default;
+var AverageDistance = require('AverageDistance').default;
+var Settings = require('Settings').default;
+var Logout = require('Logout').default;
+var AddHouse = require('AddHouse').default;
+var Checklist = require('Checklist').default;
+var Login = require('Login').default;
+var Registration = require('Registration').default;
+var Walkthru = require('Walkthru').default;
+var NotFound = require('NotFound').default;
 var ohwtAPI = require('ohwtAPI');
 
 //Redux
@@ -62,7 +62,7 @@ for (var x = 0; x < num; x++) {
 $(document).foundation();
 
 //SCSS
-require('style!css!sass!applicationStyles');
+require('applicationStyles');
 
 const checkHouse = (store) => {
     return (nextState, replace) => {
@@ -99,25 +99,29 @@ const checkHouse = (store) => {
     }
 }
 
-ReactDOM.render(
-    <Provider store={store}>
-        <Router history={hashHistory}>
-            <Route path="/" component={Main}>
-                <Route path='/userprofile' component={UserProfile}></Route>
-                <Route path='/housesummary' component={HouseSummary}></Route>
-                <Route path='/score' component={Score}></Route>
-                <Route path='/houseprofile/:id' component={HouseProfile} onEnter={checkHouse(store)}></Route>
-                <Route path='/averagedistance' component={AverageDistance}></Route>
-                <Route path='/settings' component={Settings}></Route>
-                <Route path='/logout' component={Logout}></Route>
-                <Route path='/addhouse' component={AddHouse}></Route>
-                <Route path='/checklist/:id' component={Checklist} onEnter={checkHouse(store)}></Route>
-                <Route path='/login' component={Login}></Route>
-                <Route path='/registration' component={Registration}></Route>
-                <Route path='/walkthru/:id' component={Walkthru} onEnter={checkHouse(store)}></Route>
-                <Route path="*" component={NotFound}/>
-                <IndexRoute component={Dashboard}/>
-            </Route>
-        </Router>
-    </Provider>,
-    document.getElementById('app'));
+const Root = props => {
+    return (
+        <Provider store={store}>
+            <Router history={hashHistory}>
+                <Route path="/" component={Main}>
+                    <Route path='/userprofile' component={UserProfile}></Route>
+                    <Route path='/housesummary' component={HouseSummary}></Route>
+                    <Route path='/score' component={Score}></Route>
+                    <Route path='/houseprofile/:id' component={HouseProfile} onEnter={checkHouse(store)}></Route>
+                    <Route path='/averagedistance' component={AverageDistance}></Route>
+                    <Route path='/settings' component={Settings}></Route>
+                    <Route path='/logout' component={Logout}></Route>
+                    <Route path='/addhouse' component={AddHouse}></Route>
+                    <Route path='/checklist/:id' component={Checklist} onEnter={checkHouse(store)}></Route>
+                    <Route path='/login' component={Login}></Route>
+                    <Route path='/registration' component={Registration}></Route>
+                    <Route path='/walkthru/:id' component={Walkthru} onEnter={checkHouse(store)}></Route>
+                    <Route path="*" component={NotFound}/>
+                    <IndexRoute component={Dashboard}/>
+                </Route>
+            </Router>
+        </Provider>
+    )
+}
+
+export default Root;

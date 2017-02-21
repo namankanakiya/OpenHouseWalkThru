@@ -46,4 +46,4 @@ var Nav = React.createClass({
     }
 });
 
-module.exports = Nav;
+export default Nav;

@@ -1,20 +1,24 @@
 var webpack = require('webpack');
 var path = require('path');
+const { resolve } = require('path');
 
 module.exports = {
     entry : [
-        'script!jquery/dist/jquery.min.js',
-        'script!foundation-sites/dist/foundation.min.js',
-        'script!foundation-sites/js/foundation.dropdown.js',
-        'script!foundation-sites/js/foundation.dropdownMenu.js',
-        'script!foundation-sites/js/foundation.util.keyboard.js',
-        'script!foundation-sites/js/foundation.util.box.js',
-        'script!foundation-sites/js/foundation.util.nest.js',
-        'script!foundation-sites/js/foundation.sticky.js',
-        'script!foundation-sites/js/foundation.util.triggers.js',
-        'script!foundation-sites/js/foundation.core.js',
-        'script!foundation-sites/js/foundation.util.mediaQuery.js',
-        './app/app.jsx'
+        'react-hot-loader/patch',
+        'webpack-dev-server/client?http://localhost:8080',
+        'webpack/hot/only-dev-server',
+        'script-loader!jquery/dist/jquery.min.js',
+        'script-loader!foundation-sites/dist/foundation.min.js',
+        'script-loader!foundation-sites/js/foundation.dropdown.js',
+        'script-loader!foundation-sites/js/foundation.dropdownMenu.js',
+        'script-loader!foundation-sites/js/foundation.util.keyboard.js',
+        'script-loader!foundation-sites/js/foundation.util.box.js',
+        'script-loader!foundation-sites/js/foundation.util.nest.js',
+        'script-loader!foundation-sites/js/foundation.sticky.js',
+        'script-loader!foundation-sites/js/foundation.util.triggers.js',
+        'script-loader!foundation-sites/js/foundation.core.js',
+        'script-loader!foundation-sites/js/foundation.util.mediaQuery.js',
+        './app/index.jsx'
     ],
     externals : {
         jquery : 'jQuery',
@@ -26,40 +30,67 @@ module.exports = {
             'jQuery' : 'jquery'
         })
     ],
+    context: resolve(__dirname),
     output : {
-        path : __dirname,
-        filename : './public/bundle.js'
+        path : resolve(__dirname, 'public'),
+        filename : 'bundle.js',
+        publicPath : '/'
     },
     resolve : {
-        root : __dirname,
-        modulesDirectories : [
+        modules : [
+            __dirname,
             'node_modules',
+            './app/actions',
+            './app/api',
             './app/components',
-            './app/api'
+            './app/reducers',
+            './app/store',
+            './app/styles'
         ],
-        alias : {
-            Main : 'app/components/Main.jsx',
-            applicationStyles : 'app/styles/app.scss',
-            actions : 'app/actions/actions.jsx',
-            reducers : 'app/reducers/reducers.jsx',
-            configureStore : 'app/store/configureStore.jsx'
-        },
-        extensions : ['', '.js', '.jsx']
+        extensions : ['.js', '.jsx'],
+        alias : {applicationStyles : 'app/styles/app.scss'}
     },
+    devServer: {
+        hot: true,
+        // enable HMR on the server
+
+        contentBase: resolve(__dirname, 'public'),
+        // match the output path
+
+        publicPath: '/',
+        // match the output `publicPath`
+
+        //fallback to root for other urls
+        historyApiFallback: true
+      },
+
     module : {
-        loaders : [{
-            loader : 'babel-loader',
-            query : {
-                presets : ['react', 'es2015', 'stage-0']
-            },
+        rules : [{
             test : /\.jsx?$/,
-            exclude : /(node_modules|bower_components)/
+            use : {
+                loader : 'babel-loader',
+            },
+            exclude : [/node_modules/]
+        }, {
+            test: /\.(sass|scss)$/,
+            use: [
+              'style-loader',
+              'css-loader',
+              {
+                loader : 'sass-loader',
+                options : {
+                    includePaths : path.resolve(__dirname, './node_modules/foundation-sites/scss')
+                }
+              }
+            ],
         }] 
     },
-    sassLoader : {
-        includePaths: [
-            path.resolve(__dirname, './node_modules/foundation-sites/scss')
-        ]
-    },
-    devtool : 'cheap-module-eval-source-map'
+    devtool : 'cheap-module-eval-source-map',
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        // enable HMR globally
+
+        new webpack.NamedModulesPlugin(),
+        // prints more readable module names in the browser console on HMR updates
+      ],
 };

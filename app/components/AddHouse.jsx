@@ -35,4 +35,4 @@ var AddHouse = React.createClass({
     }
 });
 
-module.exports = connect()(AddHouse);
+export default connect()(AddHouse);

@@ -2,7 +2,7 @@ var React = require('react');
 var {connect} = require('react-redux');
 var ohwtAPI = require('ohwtAPI');
 var actions = require('actions');
-var FeatureDetails = require('FeatureDetails');
+var FeatureDetails = require('FeatureDetails').default;
 import { StickyContainer, Sticky } from 'react-sticky';
 var Modal = require('react-modal');
 
@@ -124,7 +124,7 @@ var Walkthru = React.createClass({
     }
 });
 
-module.exports = connect(
+export default connect(
     (state) => {
         return {
             houses : state.houses

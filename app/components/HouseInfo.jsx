@@ -53,4 +53,4 @@ var HouseInfo = React.createClass({
     }
 });
 
-module.exports = HouseInfo;
+export default HouseInfo;

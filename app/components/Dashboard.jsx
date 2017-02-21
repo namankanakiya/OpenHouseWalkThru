@@ -1,5 +1,5 @@
 var React = require('react');
-var HouseSummary = require('HouseSummary');
+var HouseSummary = require('HouseSummary').default;
 var {connect} = require('react-redux');
 var {Link} = require('react-router');
 
@@ -37,7 +37,7 @@ var Dashboard = React.createClass({
     }
 });
 
-module.exports = connect(
+export default connect(
     (state) => {
         return {
             houses : state.houses
