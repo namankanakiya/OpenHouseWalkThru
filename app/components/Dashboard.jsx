@@ -23,7 +23,7 @@ var Dashboard = React.createClass({
 
         return (
             <div>
-                <h1 className="page-title" style={heading}>Dashboard</h1>
+                <h1 className="page-title" style={heading}>Dashboarssd</h1>
                 <Link to="/addhouse" className="button secondary" style={headerStyle}>Add House</Link>
                 <div className="row small-up-2 medium-up-3">
                     {houses.map((house) => {

@@ -14,8 +14,6 @@ export var configure = () => {
 		window.devToolsExtension ? window.devToolsExtension() : f => f
 	));
 
-    var somePath = resolve(__dirname, 'app/reducers/');
-    console.log(somePath);
     if (module.hot) {
         console.log("hotreload?2");
         // Enable Webpack hot module replacement for reducers
