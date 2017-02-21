@@ -22,11 +22,18 @@ var Registration = require('Registration').default;
 var Walkthru = require('Walkthru').default;
 var NotFound = require('NotFound').default;
 var ohwtAPI = require('ohwtAPI');
+import injectTapEventPlugin from 'react-tap-event-plugin'
 
 //Redux
 var actions = require('actions');
 var store = require('configureStore').configure();
 var {Provider} = require('react-redux');
+
+try {
+    injectTapEventPlugin();
+} catch (e) {
+        //do Nothing
+}
 
 console.log(store);
 

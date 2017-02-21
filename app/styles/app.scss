@@ -1,5 +1,6 @@
 @import "base/variables";
 @import url(//fonts.googleapis.com/css?family=Roboto:400,500,300,100,700,900);
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
 
 //Foundation
 @import "base/foundation-settings";
@@ -11,4 +12,5 @@
 @import "components/featuredetails";
 @import "components/walkthru";
 @import "components/syncvalidationform";
-@import "components/nav"
+@import "components/nav";
+@import "components/app";

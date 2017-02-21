@@ -22,7 +22,7 @@ var HouseSummary = React.createClass({
         const IMAGE_NOT_FOUND = "https://cdn.browshot.com/static/images/not-found.png";
         const HOUSE_URL = "/houseprofile/" + id;
         return (
-            <div className="column">
+            <div className="column" style={{maxWidth : "400px"}}>
                 <div className="card callout secondary small">
                     <Link to={HOUSE_URL} activeClassName="active-link">
                         <img src={imageurl} alt="No Image" style={{width:640, height:240}} onError={(e) => {e.target.src=IMAGE_NOT_FOUND}}/>

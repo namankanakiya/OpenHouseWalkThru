@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Root from './app.jsx'
 import { AppContainer } from 'react-hot-loader'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 
 render( Root )
 
@@ -16,7 +17,9 @@ if (module.hot) {
 function render ( RootElement ) {
   ReactDOM.render(
     <AppContainer>
-      <RootElement/>
+      <MuiThemeProvider>
+          <RootElement/>
+      </MuiThemeProvider>
     </AppContainer>,
     document.getElementById('app')
   )

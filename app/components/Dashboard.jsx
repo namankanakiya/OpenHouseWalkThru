@@ -2,6 +2,7 @@ var React = require('react');
 var HouseSummary = require('HouseSummary').default;
 var {connect} = require('react-redux');
 var {Link} = require('react-router');
+import RaisedButton from 'material-ui/RaisedButton';
 
 var Dashboard = React.createClass({
     render : function() {
@@ -23,9 +24,9 @@ var Dashboard = React.createClass({
 
         return (
             <div>
-                <h1 className="page-title" style={heading}>Dashboarssd</h1>
-                <Link to="/addhouse" className="button secondary" style={headerStyle}>Add House</Link>
-                <div className="row small-up-2 medium-up-3">
+                <h1 className="page-title" style={heading}>Dashboard</h1>
+                <Link to="/addhouse" style={headerStyle}><RaisedButton primary label="Add House" /></Link>
+                <div className="row small-up-2 medium-up-2 large-up-3" style={{marginTop : "1rem"}}>
                     {houses.map((house) => {
                         {var {id, address, city, state, zipcode, score, imageurl} = house;}
                         return <HouseSummary key={id} id={id} address={address} city={city} state={state} zipcode={zipcode} score={score} imageurl={imageurl}/>
