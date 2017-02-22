@@ -38,7 +38,7 @@ var Nav = React.createClass({
                     <ul className="dropdown menu" data-dropdown-menu>
                         <li><Link to="/userprofile">Profile</Link></li>
                         <li><Link to="/settings">Settings</Link></li>
-                        <li><Link to="/logout">Logout</Link></li>
+                        <li><Link to="/login">Logout</Link></li>
                     </ul>
                 </div>
             </nav>
