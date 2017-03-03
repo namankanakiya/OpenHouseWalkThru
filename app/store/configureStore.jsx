@@ -1,16 +1,18 @@
-var redux = require('redux');
+import * as redux from 'redux';
+import thunk from 'redux-thunk';
 const { resolve } = require('path');
-var {checklistReducer, housesReducer, curHouseReducer} = require('reducers');
+import {checklistReducer, housesReducer, curHouseReducer} from 'reducers';
 import { reducer as formReducer } from 'redux-form';
 
-export var configure = () => {
+export var configure = (initialState = {}) => {
 	var reducer = redux.combineReducers({
 		form : formReducer,
 		houses : housesReducer,
 		house : curHouseReducer
 	});
 
-	var store = redux.createStore(reducer, redux.compose(
+	var store = redux.createStore(reducer, initialState, redux.compose(
+        redux.applyMiddleware(thunk),
 		window.devToolsExtension ? window.devToolsExtension() : f => f
 	));
 

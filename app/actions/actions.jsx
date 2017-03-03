@@ -1,19 +1,37 @@
+import firebase, {firebaseRef} from 'app/firebase';
 
-export var addChecklistItem = (id, feature) => {
+export var addChecklistItem = (id, item) => {
 	return {
 		type : 'ADD_CHECKLIST_ITEM',
-		feature,
-		id
+        id,
+		item
 	}
 };
 
-export var addChecklistItemPriority = (id, feature, priority) => {
-    return {
-        type : 'ADD_CHECKLIST_ITEM_PRIORITY',
-        feature,
-        id,
-        priority
-    }
+export var startAddChecklist = (id, feature, priority=null) => {
+    return (dispatch, getState) => {
+        //
+        console.log("start add feature");
+        var item = {
+            feature : feature,
+            rating : -1,
+            comments : '',
+            picture : '',
+            priority : priority
+        };
+        var checklistRef = firebaseRef.child("checklistItems").push(item);
+        return checklistRef.then(() => {
+            //Assign checklist to house
+            var mapObject = {};
+            mapObject[checklistRef.key] = true;
+            var checklistItemHouseRef = firebaseRef.child("checklistItemHouseRef/" + id).update(mapObject);
+            //update Redux
+            dispatch(addChecklistItem(id, {
+                ...item,
+                id : checklistRef.key
+            }));            
+        })
+    };
 };
 
 export var deleteFeature = (id, featureId) => {
@@ -23,6 +41,27 @@ export var deleteFeature = (id, featureId) => {
 		featureId
 	}
 };
+
+export var startAddHouse = (house, userID) => {
+    return (dispatch, getState) => {
+        //add house to houses Firebase object
+        var houseRef = firebaseRef.child("houses").push(house);
+        //after async call
+        return houseRef.then(() => {
+            //update store with house
+            dispatch(addHouse({...house, id:houseRef.key, checklist:[]}));
+            //Assign house to uuid
+            var mapObject = {}
+            mapObject[houseRef.key] = true;
+            var userHouseRef = firebaseRef.child("userHouses/" + userID).update(mapObject);
+            //Add default checklist features to house
+            dispatch(startAddChecklist(houseRef.key, 'Big Garage'));
+            dispatch(startAddChecklist(houseRef.key, 'Wooden Floors'));
+            dispatch(startAddChecklist(houseRef.key, 'Spacy Basement'));
+            dispatch(startAddChecklist(houseRef.key, 'Modern'));
+        })
+    }
+}
 
 export var addHouse = (house) => {
 	return {

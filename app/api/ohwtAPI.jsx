@@ -2,7 +2,7 @@ var $ = require('jquery');
 var uuid = require('human-readable-ids').hri;
 
 module.exports = {
-	setChecklists : function(checklists) {
+	/*setChecklists : function(checklists) {
 		if ($.isArray(checklists)) {
 			localStorage.setItem('checklists', JSON.stringify(checklists));
 			return checklists;
@@ -17,7 +17,7 @@ module.exports = {
 			console.log("error retrieving checklists", e);
 		}
 		return $.isArray(checklists) ? checklists : [];
-	},
+	},*/
 	findHouseById : function(houses, id) {
 		if ($.isArray(houses)) {
 			for (var i = 0; i < houses.length; i++) {
@@ -29,8 +29,8 @@ module.exports = {
 		} else {
 			return null;
 		}
-	},
-	addChecklistItem : function(checklistArray, checklistString) {
+	}
+	/*addChecklistItem : function(checklistArray, checklistString) {
 		if ($.isArray(checklistArray)) {
 			var checklistObject = {
 				id : uuid.random(),
@@ -45,5 +45,5 @@ module.exports = {
 		} else {
 			return [];
 		}
-	}
+	}*/
 }

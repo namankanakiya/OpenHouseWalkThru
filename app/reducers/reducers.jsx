@@ -20,34 +20,14 @@ export var housesReducer = (state = [], action) => {
 		case 'DELETE_HOUSE':
 			return state.filter(house => house.id != action.id);
 		case 'ADD_CHECKLIST_ITEM':
+            console.log("stateReducer", state);
 			return state.map((house) => {
+                console.log("reached inside map")
 				if (house.id === action.id) {
-					house.checklist = [...house.checklist, {
-						id : uuid.random(),
-						feature : action.feature,
-						rating : -1,
-						comments : '',
-						picture : '',
-						priority : -1
-					}]
+					house.checklist = [...house.checklist, action.item]
 				}
 				return house;
 			});
-
-        case 'ADD_CHECKLIST_ITEM_PRIORITY':
-            return state.map((house) => {
-                if (house.id === action.id) {
-                    house.checklist = [...house.checklist, {
-                        id : uuid.random(),
-                        feature : action.feature,
-                        rating : -1,
-                        comments : '',
-                        picture : '',
-                        priority : action.priority
-                    }]
-                }
-                return house;
-            });
 
 		case 'DELETE_CHECKLIST_ITEM':
 			return state.map((house) => {

@@ -43,7 +43,7 @@ var Walkthru = React.createClass({
             var feature = this.state.featureValue;
             console.log(priority);
             console.log(feature);
-            dispatch(actions.addChecklistItemPriority(id, feature, priority));
+            dispatch(actions.startAddChecklist(id, feature, priority));
             this.closeModal();
         };
         const customStyles = {

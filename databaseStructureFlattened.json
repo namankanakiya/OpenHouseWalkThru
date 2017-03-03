@@ -1,0 +1,87 @@
+users : {
+    uuid1 : {
+        username:
+    },
+    uuid2 : {
+        username:
+    },
+    uuid3 : {
+        username:
+    }
+}
+
+userHouses : {
+    uuid1 : {
+        id : true,
+        id2 : true
+    },
+    uuid2 : {
+        id3 : true
+    }
+}
+
+houses : {
+    id : {
+        address : ,
+        city : ,
+        description : ,
+        imageURL : 
+    },
+    id2 : {
+        address : ,
+        city : ,
+        description : ,
+        imageURL : 
+    },
+    id3 : {
+        address : ,
+        city : ,
+        description : ,
+        imageURL : 
+    }
+}
+
+checklistItems : {
+    cid : {
+        comments : ,
+        feature : ,
+        pictureUrl : ,
+        priority : ,
+        rating : 
+    },
+    cid2 : {
+        comments : ,
+        feature : ,
+        pictureUrl : ,
+        priority : ,
+        rating : 
+    },
+    cid3 : {
+        comments : ,
+        feature : ,
+        pictureUrl : ,
+        priority : ,
+        rating : 
+    },
+    cid4 : {
+        comments : ,
+        feature : ,
+        pictureUrl : ,
+        priority : ,
+        rating : 
+    },
+}
+
+houseToChecklist : {
+    id : {
+        cid3 : true,
+        cid1 : true
+    },
+    id2 : {
+        null
+    },
+    id3 : {
+        cid2 : true,
+        cid4 : true
+    }
+}

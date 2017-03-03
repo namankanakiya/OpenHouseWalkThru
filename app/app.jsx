@@ -47,12 +47,7 @@ var randomIntFromInterval = function(min, max) {
 // Generate Initial Houses
 var num = randomIntFromInterval(5, 10)
 for (var x = 0; x < num; x++) {
-    var checklistArray = ohwtAPI.addChecklistItem([],'Big Garage');
-    checklistArray = ohwtAPI.addChecklistItem(checklistArray, 'Great Lighting');
-    checklistArray = ohwtAPI.addChecklistItem(checklistArray, 'Wooden Floors');
-    checklistArray = ohwtAPI.addChecklistItem(checklistArray, 'Basement');
     var house = {
-        id : uuid.random(),
         address :  Faker.address.streetAddress(),
         city : Faker.address.city(),
         state : Faker.address.state(),
@@ -60,9 +55,8 @@ for (var x = 0; x < num; x++) {
         description : Faker.lorem.sentences(),
         imageurl : Faker.image.image(),
         score : randomIntFromInterval(60, 100),
-        checklist : checklistArray
     }
-    store.dispatch(actions.addHouse(house));    
+    store.dispatch(actions.startAddHouse(house, 1));
 }
 
 // Load Foundation

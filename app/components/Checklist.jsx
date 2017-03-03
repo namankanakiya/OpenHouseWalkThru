@@ -13,7 +13,7 @@ var Checklist = React.createClass({
         if (newFeature.length > 0) {
             this.refs.newFeature.value = '';
             var {dispatch} = this.props;
-            dispatch(actions.addChecklistItem(id, newFeature));
+            dispatch(actions.startAddChecklist(id, newFeature));
         } else {
             this.refs.newFeature.focus();
         }

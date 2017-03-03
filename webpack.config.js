@@ -48,7 +48,7 @@ module.exports = {
             './app/styles'
         ],
         extensions : ['.js', '.jsx'],
-        alias : {applicationStyles : 'app/styles/app.scss'}
+        alias : {app : 'app', applicationStyles : 'app/styles/app.scss'}
     },
     devServer: {
         hot: true,
