@@ -22,6 +22,7 @@ var Registration = require('Registration').default;
 var Walkthru = require('Walkthru').default;
 var NotFound = require('NotFound').default;
 var ohwtAPI = require('ohwtAPI');
+var ContactForm = require('ContactForm').default;
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
 //Redux
@@ -114,6 +115,7 @@ const routes = (
         <Route path='/login' component={Login}></Route>
         <Route path='/registration' component={Registration}></Route>
         <Route path='/walkthru/:id' component={Walkthru} onEnter={checkHouse(store)}></Route>
+        <Route path='/contactform' component={ContactForm}></Route>
         <Route path="*" component={NotFound}/>
         <IndexRoute component={Dashboard}/>
     </Route>
