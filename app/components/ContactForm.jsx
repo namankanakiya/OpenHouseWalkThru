@@ -3,7 +3,6 @@ import request from 'superagent';
 
 var React = require('react');
 var {Link} = require('react-router');
-var uuid = require('human-readable-ids').hri;
 var {connect} = require('react-redux');
 var actions = require('actions');
 

@@ -1,5 +1,4 @@
 var $ = require('jquery');
-var uuid = require('human-readable-ids').hri;
 
 module.exports = {
 	/*setChecklists : function(checklists) {

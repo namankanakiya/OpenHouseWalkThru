@@ -1,6 +1,5 @@
 var React = require('react');
 import SyncValidationForm from './SyncValidationForm';
-var uuid = require('human-readable-ids').hri;
 var {connect} = require('react-redux');
 var actions = require('actions');
 var {Link} = require('react-router');

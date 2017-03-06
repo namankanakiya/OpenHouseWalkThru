@@ -1,6 +1,3 @@
-var uuid = require('human-readable-ids').hri;
-var ohwtAPI = require('ohwtAPI');
-
 export var curHouseReducer = (state = {}, action) => {
 	switch (action.type) {
 		case 'ADD_CUR_HOUSE':
