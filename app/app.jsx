@@ -45,7 +45,7 @@ var randomIntFromInterval = function(min, max) {
 };
 
 // Generate Initial Houses
-var num = randomIntFromInterval(5, 10)
+/*var num = randomIntFromInterval(5, 10)
 for (var x = 0; x < num; x++) {
     var house = {
         address :  Faker.address.streetAddress(),
@@ -57,7 +57,13 @@ for (var x = 0; x < num; x++) {
         score : randomIntFromInterval(60, 100),
     }
     store.dispatch(actions.startAddHouse(house, 1));
-}
+}*/
+
+//Load user ID
+var userID = 1;
+
+//Load Houses via userID
+store.dispatch(actions.startLoadHouse(userID));
 
 // Load Foundation
 $(document).foundation();

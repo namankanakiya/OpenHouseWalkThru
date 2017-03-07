@@ -17,9 +17,7 @@ export var housesReducer = (state = [], action) => {
 		case 'DELETE_HOUSE':
 			return state.filter(house => house.id != action.id);
 		case 'ADD_CHECKLIST_ITEM':
-            console.log("stateReducer", state);
 			return state.map((house) => {
-                console.log("reached inside map")
 				if (house.id === action.id) {
 					house.checklist = [...house.checklist, action.item]
 				}

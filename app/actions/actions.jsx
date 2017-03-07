@@ -1,5 +1,32 @@
 import firebase, {firebaseRef} from 'app/firebase';
 
+export var startLoadHouse = (userID) => {
+    return (dispatch, getState) => {
+        var userHousesRef = firebaseRef.child("userHouses/" + userID);
+        userHousesRef.once("value", (snapshot) => {
+            snapshot.forEach((houseKey) => {
+                var houseRef = firebaseRef.child("houses/" + houseKey.key);
+                houseRef.once("value", (snapshot) => {
+                    var house = snapshot.val();
+                    var checklist = []
+                    var checklistHouseRef = firebaseRef.child("checklistItemHouseRef/" + houseKey.key);
+                    checklistHouseRef.once("value", (snapshot) => {
+                        snapshot.forEach((checklistKey) => {
+                            var checklistRef = firebaseRef.child("checklistItems/" + checklistKey.key);
+                            checklistRef.once("value", (snapshot) => {
+                                var checklistItem = snapshot.val();
+                                checklist.push(checklistItem);
+                            })
+                        })
+                    })
+                    house = {...house, id: houseKey.key, checklist: checklist};
+                    dispatch(addHouse(house));
+                })
+            })
+        })
+    }
+}
+
 export var addChecklistItem = (id, item) => {
 	return {
 		type : 'ADD_CHECKLIST_ITEM',
@@ -11,7 +38,6 @@ export var addChecklistItem = (id, item) => {
 export var startAddChecklist = (id, feature, priority=null) => {
     return (dispatch, getState) => {
         //
-        console.log("start add feature");
         var item = {
             feature : feature,
             rating : -1,
