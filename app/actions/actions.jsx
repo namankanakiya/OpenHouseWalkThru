@@ -2,23 +2,27 @@ import firebase, {firebaseRef} from 'app/firebase';
 
 export var startLoadHouse = (userID) => {
     return (dispatch, getState) => {
+        // Figure out which houses belong to current user
         var userHousesRef = firebaseRef.child("userHouses/" + userID);
         userHousesRef.once("value", (snapshot) => {
             snapshot.forEach((houseKey) => {
+                // For each of these houses, get the house
                 var houseRef = firebaseRef.child("houses/" + houseKey.key);
                 houseRef.once("value", (snapshot) => {
                     var house = snapshot.val();
                     var checklist = []
+                    // For each house, get the checklist items which belong to it
                     var checklistHouseRef = firebaseRef.child("checklistItemHouseRef/" + houseKey.key);
                     checklistHouseRef.once("value", (snapshot) => {
                         snapshot.forEach((checklistKey) => {
                             var checklistRef = firebaseRef.child("checklistItems/" + checklistKey.key);
                             checklistRef.once("value", (snapshot) => {
-                                var checklistItem = snapshot.val();
-                                checklist.push(checklistItem);
+                                // For each checklist item, add to checklist array for house
+                                checklist.push(snapshot.val());
                             })
                         })
                     })
+                    // Add the checklist items, and house id to house object, and add to state
                     house = {...house, id: houseKey.key, checklist: checklist};
                     dispatch(addHouse(house));
                 })
