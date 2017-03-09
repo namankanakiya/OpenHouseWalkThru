@@ -19,7 +19,6 @@ var Walkthru = React.createClass({
         var height = this.state.height;
         var feature = this.refs.feature;
         if (feature.value.length > 0) {
-            console.log(feature.value);
             this.setState({height : height, modalOpen : true, featureValue : feature.value});
             feature.value = '';
         } else {
@@ -41,8 +40,6 @@ var Walkthru = React.createClass({
         var priorityChanged = (e) => {
             var priority = e.currentTarget.value;
             var feature = this.state.featureValue;
-            console.log(priority);
-            console.log(feature);
             dispatch(actions.startAddChecklist(id, feature, priority));
             this.closeModal();
         };
@@ -59,7 +56,6 @@ var Walkthru = React.createClass({
         if (heightObject != null) {
             height = heightObject.height;
         }
-        console.log("height", height);
         return(
             <div className='walkthru columns'>
                 <StickyContainer className="columns" style={{height : height}}>

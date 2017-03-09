@@ -18,7 +18,7 @@ export var startLoadHouse = (userID) => {
                             var checklistRef = firebaseRef.child("checklistItems/" + checklistKey.key);
                             checklistRef.once("value", (snapshot) => {
                                 // For each checklist item, add to checklist array for house
-                                checklist.push(snapshot.val());
+                                checklist.push({...snapshot.val(), id: checklistRef.key});
                             })
                         })
                     })
@@ -56,10 +56,7 @@ export var startAddChecklist = (id, feature, priority=null) => {
             mapObject[checklistRef.key] = true;
             var checklistItemHouseRef = firebaseRef.child("checklistItemHouseRef/" + id).update(mapObject);
             //update Redux
-            dispatch(addChecklistItem(id, {
-                ...item,
-                id : checklistRef.key
-            }));            
+            dispatch(addChecklistItem(id, {...item, id:checklistRef.key}));            
         })
     };
 };

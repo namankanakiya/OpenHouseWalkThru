@@ -32,7 +32,7 @@ var Checklist = React.createClass({
 		        			<table>
 		        			<tbody>
 		                    {checklist.map((feature) => {
-		                        return (
+                                return (
 		                        	<tr className="feature row card-section" key={feature.id}>
 		                        	<td>
 			                            <div>

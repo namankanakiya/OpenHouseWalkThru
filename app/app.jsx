@@ -35,8 +35,6 @@ try {
         //do Nothing
 }
 
-console.log(store);
-
 store.subscribe(() => {
     console.log('New State', store.getState());
 });
@@ -77,7 +75,6 @@ const checkHouse = (store) => {
         var splitArray = nextLoc.split('/');
         var id = splitArray.slice(-1)[0];
         var otherLoc = splitArray.slice(-2)[0];
-        console.log(otherLoc);
         var houses = store.getState().houses;
         if ($.isArray(houses)) {
             if (houses.length > 0) {
