@@ -60,7 +60,7 @@ var Checklist = React.createClass({
 											</div>
 
 			                                <div className="small-2 columns">
-			                                    <button className="alert button"onClick={() => {dispatch(actions.deleteFeature(id, feature.id))}}>Delete</button>
+			                                    <button className="alert button"onClick={() => {dispatch(actions.startDeleteFeature(id, feature.id))}}>Delete</button>
 			                                </div>
 			                            </div>
 		                            </td>

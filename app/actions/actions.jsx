@@ -1,9 +1,9 @@
 import firebase, {firebaseRef} from 'app/firebase';
 
-export var startLoadHouse = (userID) => {
+export var startLoadHouse = (userId) => {
     return (dispatch, getState) => {
         // Figure out which houses belong to current user
-        var userHousesRef = firebaseRef.child("userHouses/" + userID);
+        var userHousesRef = firebaseRef.child("userHouses/" + userId);
         userHousesRef.once("value", (snapshot) => {
             snapshot.forEach((houseKey) => {
                 // For each of these houses, get the house
@@ -29,7 +29,7 @@ export var startLoadHouse = (userID) => {
             })
         })
     }
-}
+};
 
 export var addChecklistItem = (id, item) => {
 	return {
@@ -39,7 +39,7 @@ export var addChecklistItem = (id, item) => {
 	}
 };
 
-export var startAddChecklist = (id, feature, priority=null) => {
+export var startAddChecklist = (houseId, feature, priority=null) => {
     return (dispatch, getState) => {
         //
         var item = {
@@ -54,9 +54,9 @@ export var startAddChecklist = (id, feature, priority=null) => {
             //Assign checklist to house
             var mapObject = {};
             mapObject[checklistRef.key] = true;
-            var checklistItemHouseRef = firebaseRef.child("checklistItemHouseRef/" + id).update(mapObject);
+            var checklistItemHouseRef = firebaseRef.child("checklistItemHouseRef/" + houseId).update(mapObject);
             //update Redux
-            dispatch(addChecklistItem(id, {...item, id:checklistRef.key}));            
+            dispatch(addChecklistItem(houseId, {...item, id:checklistRef.key}));            
         })
     };
 };
@@ -69,7 +69,21 @@ export var deleteFeature = (id, featureId) => {
 	}
 };
 
-export var startAddHouse = (house, userID) => {
+export var startDeleteFeature = (houseId, featureId) => {
+    return (dispatch, getState) => {
+        var featureRef = firebaseRef.child("checklistItems/" + featureId).remove();
+        return featureRef.then(() => {
+            var mapObject = {};
+            mapObject[featureId] = null;
+            var checklistItemHouseRef = firebaseRef.child("checklistItemHouseRef/" + houseId).update(mapObject);
+            checklistItemHouseRef.then(() => {
+                dispatch(deleteFeature(houseId, featureId));
+            });
+        });
+    }
+};
+
+export var startAddHouse = (house, userId) => {
     return (dispatch, getState) => {
         //add house to houses Firebase object
         var houseRef = firebaseRef.child("houses").push(house);
@@ -80,7 +94,7 @@ export var startAddHouse = (house, userID) => {
             //Assign house to uuid
             var mapObject = {}
             mapObject[houseRef.key] = true;
-            var userHouseRef = firebaseRef.child("userHouses/" + userID).update(mapObject);
+            var userHouseRef = firebaseRef.child("userHouses/" + userId).update(mapObject);
             //Add default checklist features to house
             dispatch(startAddChecklist(houseRef.key, 'Big Garage'));
             dispatch(startAddChecklist(houseRef.key, 'Wooden Floors'));
@@ -88,7 +102,7 @@ export var startAddHouse = (house, userID) => {
             dispatch(startAddChecklist(houseRef.key, 'Modern'));
         })
     }
-}
+};
 
 export var addHouse = (house) => {
 	return {
@@ -96,6 +110,26 @@ export var addHouse = (house) => {
 		house
 	}
 };
+
+export var startDeleteHouse = (userId, houseId) => {
+    return (dispatch, getState) => {
+        var houseRef = firebaseRef.child("houses/" + houseId).remove();
+        return houseRef.then(() => {
+            var checklistHouseRef = firebaseRef.child("checklistItemHouseRef/" + houseId);
+            checklistHouseRef.once("value", (snapshot) => {
+                snapshot.forEach((checklistKey) => {
+                    dispatch(startDeleteFeature(houseId, checklistKey.key));
+                })
+            });
+            var mapObject = {};
+            mapObject[houseId] = null;
+            var userHousesRef = firebaseRef.child("userHouses/" + userId).update(mapObject);
+            userHousesRef.then(() => {
+                dispatch(deleteHouse(houseId));
+            });
+        });
+    };
+}
 
 export var deleteHouse = (id) => {
 	return {

@@ -3,6 +3,7 @@ var HouseInfo = require('HouseInfo').default;
 var Score = require('Score').default;
 var AverageDistance = require('AverageDistance').default;
 var {Link} = require('react-router');
+var actions = require('actions');
 
 // general styles
 import 'style-loader!css-loader!react-responsive-carousel/lib/styles/main.css';
@@ -24,6 +25,13 @@ var HouseProfile = React.createClass({
     propTypes : {
         score : React.PropTypes.number,
         avgDist : React.PropTypes.number,
+    },
+    delete : function() {
+        var {dispatch} = this.props;
+        var id = this.props.params.id;
+        var userId = 1;
+        console.log("deleting house: " + id);
+        dispatch(actions.startDeleteHouse(userId, id));
     },
     render : function() {
         var mainContainer = {
@@ -78,6 +86,9 @@ var HouseProfile = React.createClass({
                         </Link></p>
                         <p><Link to={CHECKLIST_URL} activeClassName="active-link">
                             <button className="button">Edit Checklist</button>
+                        </Link></p>
+                        <p><Link to="/" activeClassName="active-link">
+                            <button className="button" onClick={this.delete}>Delete House</button>
                         </Link></p>
                     </div>
                 </div>
