@@ -1,14 +1,15 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 const { resolve } = require('path');
-import {checklistReducer, housesReducer, curHouseReducer} from 'reducers';
+import {checklistReducer, housesReducer, curHouseReducer, photoUploadReducer} from 'reducers';
 import { reducer as formReducer } from 'redux-form';
 
 export var configure = (initialState = {}) => {
 	var reducer = redux.combineReducers({
 		form : formReducer,
 		houses : housesReducer,
-		house : curHouseReducer
+		house : curHouseReducer,
+        photo : photoUploadReducer
 	});
 
 	var store = redux.createStore(reducer, initialState, redux.compose(
@@ -25,7 +26,8 @@ export var configure = (initialState = {}) => {
             var nextRootReducer = redux.combineReducers({
                 form : formReducer,
                 houses : housesReducer,
-                house : curHouseReducer
+                house : curHouseReducer,
+                photo : photoUploadReducer
             });
             store.replaceReducer(nextRootReducer);
         });
