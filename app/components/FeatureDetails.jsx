@@ -8,30 +8,38 @@ var FeatureDetails = React.createClass({
         var comments = e.currentTarget.value;
         var {dispatch, houseId, checklistId} = this.props;
         var box = this.refs.commentBox;
-        dispatch(actions.updateComments(houseId, checklistId, comments));
+        dispatch(actions.startUpdateComments(houseId, checklistId, comments));
     },
     render: function() {
         var {rating, priority, feature, comments, houseId, checklistId, pictureUrl} = this.props;
         var ratingChanged = (e) => {
             var rating = e.currentTarget.value;
             var {dispatch, houseId, checklistId} = this.props;
-            dispatch(actions.updateRating(houseId, checklistId, rating));
+            dispatch(actions.startUpdateRating(houseId, checklistId, rating));
         };
 
         // NEW STUFF
         var pictureAdded = (pictureUrl) => {
             var {dispatch, houseId, checklistId} = this.props;
             console.log("I'm being called:" + pictureUrl)
-            dispatch(actions.addFeaturePhoto(houseId, checklistId, pictureUrl));
+            dispatch(actions.startUpdatePhoto(houseId, checklistId, pictureUrl));
         };
+        /*
+        var addedPhoto;
 
+        if (pictureUrl != '') {
+            addedPhoto = pictureUrl;
+        } else {
+            addedPhoto = "https://s-media-cache-ak0.pinimg.com/originals/54/ec/0a/54ec0a14670d5a34edcab1f8e04720e8.jpg";
+        }
+        */
         return (
             <div>
                 <article className="website-example row wide">
                     <div className="large-6 columns">
                       <div className="row">
                         <div className="small-12 columns">
-                          <img src="https://static.pexels.com/photos/24353/pexels-photo.jpg" alt="Mini Cooper Site Desktop Image"/>
+                          <img src="https://s-media-cache-ak0.pinimg.com/originals/54/ec/0a/54ec0a14670d5a34edcab1f8e04720e8.jpg" alt="Mini Cooper Site Desktop Image"/>
                         </div>
                       </div>
                     </div>
@@ -40,7 +48,7 @@ var FeatureDetails = React.createClass({
                       <p>
                         <textarea onBlur={this.updateComments} defaultValue={comments} ref="commentBox"></textarea>
                       </p>
-                      <p> <ImageUpload featurePhoto = {pictureAdded}/> </p>
+                      <p><ImageUpload featurePhoto = {pictureAdded}/> </p>
                         <fieldset>
                             <span className="star-cb-group">
                               <input type="radio" id={feature + "5"} name={feature + "5"} value="5" checked={rating === 5} onChange={(e) => ratingChanged(e)}/><label htmlFor={feature + "5"} >5</label>

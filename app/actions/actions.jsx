@@ -145,6 +145,18 @@ export var addCurHouse = (house) => {
 	}
 };
 
+export var startUpdateRating = (houseId, checklistId, rating) => {
+    return (dispatch, getState) => {
+        var mapObject = {};
+        mapObject["rating"] = rating;
+        console.log(checklistId)
+        var ratingRef = firebaseRef.child("checklistItems/" + checklistId).update(mapObject);
+        return ratingRef.then(() => {
+            dispatch(updateRating(houseId, checklistId, rating));
+        })
+    }
+};
+
 export var updateRating = (houseId, checklistId, rating) => {
 	return {
 		type : 'UPDATE_RATING',
@@ -152,6 +164,17 @@ export var updateRating = (houseId, checklistId, rating) => {
 		checklistId,
 		rating
 	}
+};
+
+export var startUpdateComments = (houseId, checklistId, comments) => {
+    return (dispatch, getState) => {
+        var mapObject = {}
+        mapObject["comments"] = comments;
+        var commentRef = firebaseRef.child("checklistItems/" + checklistId).update(mapObject);
+        return commentRef.then(() => {
+            dispatch(updateComments(houseId, checklistId, comments));
+        })
+    }
 };
 
 export var updateComments = (houseId, checklistId, comments) => {
@@ -164,12 +187,23 @@ export var updateComments = (houseId, checklistId, comments) => {
 };
 
 // NEW STUFF
-export var addFeaturePhoto = (houseId, checklistId, pictureUrl) => {
+export var updatePhoto = (houseId, checklistId, pictureUrl) => {
     return {
         type: 'ADD_FEATURE_PHOTO',
         houseId,
         checklistId,
         pictureUrl
+    }
+};
+
+export var startUpdatePhoto = (houseId, checklistId, pictureUrl) => {
+    return (dispatch, getState) => {
+        var mapObject = {}
+        mapObject["picture"] = pictureUrl;
+        var pictureRef = firebaseRef.child("checklistItems/" + checklistId).update(mapObject);
+        return pictureRef.then(() => {
+            dispatch(updatePhoto(houseId, checklistId, pictureUrl));
+        })
     }
 };
 

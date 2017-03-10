@@ -140,6 +140,12 @@ body {
     }
 }
 
+.dropContainer {
+    height: 200px;
+    width: 500px;
+    position: fixed;
+}
+
 .row.wide {
     max-width: rem-calc(1200);
 }
