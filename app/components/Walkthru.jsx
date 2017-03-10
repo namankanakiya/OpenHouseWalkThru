@@ -64,7 +64,7 @@ var Walkthru = React.createClass({
                             <h1>Walkthru for {house.address}</h1>
                             {checklist.map((feature) => {
                                 return (
-                                    <FeatureDetails key={feature.id} checklistId={feature.id} houseId={id} rating={feature.rating} priority={feature.priority} feature={feature.feature} comments={feature.comments}/>
+                                    <FeatureDetails key={feature.id} checklistId={feature.id} houseId={id} rating={feature.rating} priority={feature.priority} feature={feature.feature} comments={feature.comments} picture={feature.picture}/>
                                 )
                             })}
                         </div>

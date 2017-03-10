@@ -4,6 +4,21 @@ var actions = require('actions');
 var ImageUpload = require('ImageUpload').default;
 
 var FeatureDetails = React.createClass({
+    // NEW STUFF
+    pictureAdded : function(picture) {
+        var {dispatch, houseId, checklistId} = this.props;
+        console.log("I'm being called:" + picture)
+        this.setState({pictureUrl : picture});
+        dispatch(actions.startUpdatePhoto(houseId, checklistId, picture));
+    },
+    componentWillMount : function() {
+        var {picture} = this.props;
+        if (picture) {
+            this.setState({pictureUrl : picture});
+        } else {
+            this.setState({pictureUrl : "https://s-media-cache-ak0.pinimg.com/originals/54/ec/0a/54ec0a14670d5a34edcab1f8e04720e8.jpg"});
+        }
+    },
     updateComments : function(e) {
         var comments = e.currentTarget.value;
         var {dispatch, houseId, checklistId} = this.props;
@@ -11,18 +26,11 @@ var FeatureDetails = React.createClass({
         dispatch(actions.startUpdateComments(houseId, checklistId, comments));
     },
     render: function() {
-        var {rating, priority, feature, comments, houseId, checklistId, pictureUrl} = this.props;
+        var {rating, priority, feature, comments, houseId, checklistId, picture} = this.props;
         var ratingChanged = (e) => {
             var rating = e.currentTarget.value;
             var {dispatch, houseId, checklistId} = this.props;
             dispatch(actions.startUpdateRating(houseId, checklistId, rating));
-        };
-
-        // NEW STUFF
-        var pictureAdded = (pictureUrl) => {
-            var {dispatch, houseId, checklistId} = this.props;
-            console.log("I'm being called:" + pictureUrl)
-            dispatch(actions.startUpdatePhoto(houseId, checklistId, pictureUrl));
         };
         /*
         var addedPhoto;
@@ -39,7 +47,7 @@ var FeatureDetails = React.createClass({
                     <div className="large-6 columns">
                       <div className="row">
                         <div className="small-12 columns">
-                          <img src="https://s-media-cache-ak0.pinimg.com/originals/54/ec/0a/54ec0a14670d5a34edcab1f8e04720e8.jpg" alt="Mini Cooper Site Desktop Image"/>
+                          <img src={this.state.pictureUrl} alt="Mini Cooper Site Desktop Image"/>
                         </div>
                       </div>
                     </div>
@@ -48,7 +56,7 @@ var FeatureDetails = React.createClass({
                       <p>
                         <textarea onBlur={this.updateComments} defaultValue={comments} ref="commentBox"></textarea>
                       </p>
-                      <p><ImageUpload featurePhoto = {pictureAdded}/> </p>
+                      <p><ImageUpload featurePhoto = {this.pictureAdded}/> </p>
                         <fieldset>
                             <span className="star-cb-group">
                               <input type="radio" id={feature + "5"} name={feature + "5"} value="5" checked={rating === 5} onChange={(e) => ratingChanged(e)}/><label htmlFor={feature + "5"} >5</label>

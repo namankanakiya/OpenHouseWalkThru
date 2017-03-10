@@ -55,24 +55,16 @@ var ImageUpload = React.createClass({
 
   render() {
     return (
-      <form>
-        <div className="FileUpload">
-          <Dropzone
-            onDrop={this.onImageDrop}
-            multiple={false}
-            accept="image/*" className="box">
-            <div>Drop an image</div>
-          </Dropzone>
-        </div>
-
         <div>
-          {this.state.uploadedFileCloudinaryUrl === '' ? null :
-          <div>
-            <p>{this.state.uploadedFile.name}</p>
-            <img src={this.state.uploadedFileCloudinaryUrl} />
-          </div>}
+            <div className="FileUpload">
+              <Dropzone
+                onDrop={this.onImageDrop}
+                multiple={false}
+                accept="image/*" className="box">
+                <div>Drop an image</div>
+              </Dropzone>
+            </div>
         </div>
-      </form>
     )
   }
 });
