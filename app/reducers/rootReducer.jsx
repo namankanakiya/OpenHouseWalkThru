@@ -5,6 +5,7 @@ import { reducer as formReducer } from 'redux-form';
 export default rootReducer = combineReducers({
     form : formReducer,
     houses : housesReducer,
-    house : curHouseReducer
+    house : curHouseReducer,
+    photo : uploadPhotoReducer
 });
 

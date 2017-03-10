@@ -1,6 +1,7 @@
 var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
+var ImageUpload = require('ImageUpload').default;
 
 var FeatureDetails = React.createClass({
     updateComments : function(e) {
@@ -10,12 +11,20 @@ var FeatureDetails = React.createClass({
         dispatch(actions.updateComments(houseId, checklistId, comments));
     },
     render: function() {
-        var {rating, priority, feature, comments, houseId, checklistId} = this.props;
+        var {rating, priority, feature, comments, houseId, checklistId, pictureUrl} = this.props;
         var ratingChanged = (e) => {
             var rating = e.currentTarget.value;
             var {dispatch, houseId, checklistId} = this.props;
             dispatch(actions.updateRating(houseId, checklistId, rating));
         };
+
+        // NEW STUFF
+        var pictureAdded = (pictureUrl) => {
+            var {dispatch, houseId, checklistId} = this.props;
+            console.log("I'm being called:" + pictureUrl)
+            dispatch(actions.addFeaturePhoto(houseId, checklistId, pictureUrl));
+        };
+
         return (
             <div>
                 <article className="website-example row wide">
@@ -31,6 +40,7 @@ var FeatureDetails = React.createClass({
                       <p>
                         <textarea onBlur={this.updateComments} defaultValue={comments} ref="commentBox"></textarea>
                       </p>
+                      <p> <ImageUpload featurePhoto = {pictureAdded}/> </p>
                         <fieldset>
                             <span className="star-cb-group">
                               <input type="radio" id={feature + "5"} name={feature + "5"} value="5" checked={rating === 5} onChange={(e) => ratingChanged(e)}/><label htmlFor={feature + "5"} >5</label>

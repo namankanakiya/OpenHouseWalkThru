@@ -162,3 +162,20 @@ export var updateComments = (houseId, checklistId, comments) => {
 		comments
 	}
 };
+
+// NEW STUFF
+export var addFeaturePhoto = (houseId, checklistId, pictureUrl) => {
+    return {
+        type: 'ADD_FEATURE_PHOTO',
+        houseId,
+        checklistId,
+        pictureUrl
+    }
+};
+
+export var currentImageURL = (pictureUrlId) => {
+    return {
+        type: 'CURRENT_IMAGE_URL',
+        pictureUrlId
+    }
+};
