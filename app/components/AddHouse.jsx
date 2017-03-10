@@ -18,7 +18,8 @@ var AddHouse = React.createClass({
             imageurl : photo || null,
             score : -1,
         }
-        dispatch(actions.startAddHouse(house,2));
+        var userId = 1;
+        dispatch(actions.startAddHouse(house, userId));
         this.props.router.push('/');
         console.log(photo);
     },
