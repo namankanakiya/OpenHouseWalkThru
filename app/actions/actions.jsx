@@ -149,7 +149,6 @@ export var startUpdateRating = (houseId, checklistId, rating) => {
     return (dispatch, getState) => {
         var mapObject = {};
         mapObject["rating"] = rating;
-        console.log(checklistId)
         var ratingRef = firebaseRef.child("checklistItems/" + checklistId).update(mapObject);
         return ratingRef.then(() => {
             dispatch(updateRating(houseId, checklistId, rating));

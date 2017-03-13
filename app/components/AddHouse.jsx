@@ -21,7 +21,6 @@ var AddHouse = React.createClass({
         var userId = 1;
         dispatch(actions.startAddHouse(house, userId));
         this.props.router.push('/');
-        console.log(photo);
     },
     render: function() {
         return (

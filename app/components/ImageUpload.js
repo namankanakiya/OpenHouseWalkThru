@@ -28,8 +28,6 @@ var ImageUpload = React.createClass({
 
   handleImageUpload(file) {
     var func = this.props.featurePhoto;
-    console.log(func);
-    console.log(this.props);
     let upload = request.post(CLOUDINARY_UPLOAD_URL)
                      .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                      .field('file', file);
@@ -48,7 +46,6 @@ var ImageUpload = React.createClass({
         if (func) {
           func(response.body.secure_url);
         }
-        console.log(response.body.secure_url);
       }
     });
   },

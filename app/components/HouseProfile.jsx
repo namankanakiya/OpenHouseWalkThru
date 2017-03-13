@@ -30,7 +30,6 @@ var HouseProfile = React.createClass({
         var {dispatch} = this.props;
         var id = this.props.params.id;
         var userId = 1;
-        console.log("deleting house: " + id);
         dispatch(actions.startDeleteHouse(userId, id));
     },
     render : function() {

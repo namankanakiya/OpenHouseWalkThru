@@ -7,7 +7,6 @@ var FeatureDetails = React.createClass({
     // NEW STUFF
     pictureAdded : function(picture) {
         var {dispatch, houseId, checklistId} = this.props;
-        console.log("I'm being called:" + picture)
         this.setState({pictureUrl : picture});
         dispatch(actions.startUpdatePhoto(houseId, checklistId, picture));
     },
