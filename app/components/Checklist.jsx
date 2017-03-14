@@ -32,6 +32,11 @@ var Checklist = React.createClass({
 		        			<table>
 		        			<tbody>
 		                    {checklist.map((feature) => {
+                                var ratingChanged = (e) => {
+                                    var rating = e.currentTarget.value;
+                                    dispatch(actions.startUpdateRating(id, feature.id, rating));
+                                };
+                                var rating = parseInt(feature.rating);
                                 return (
 		                        	<tr className="feature row card-section" key={feature.id}>
 		                        	<td>
@@ -43,18 +48,9 @@ var Checklist = React.createClass({
 			                                <div className="priority row">
 												<div className="small-9 small-centered columns">
 												    <ul className="button-group round toggle" data-toggle="buttons-radio">
-												      <li>
-												        <input type="radio" id={"r1" + feature.id} name="r-group" data-toggle="button"/>
-												        <label className="button" htmlFor={"r1" + feature.id}>Low</label>
-												      </li>
-												      <li>
-												        <input type="radio" id={"r2" + feature.id} name="r-group" data-toggle="button"/>
-												        <label className="button" htmlFor={"r2" + feature.id}>Medium</label>
-												      </li>
-												      <li>
-												        <input type="radio" id={"r3	" + feature.id} name="r-group" data-toggle="button"/>
-												        <label className="button" htmlFor={"r3	" + feature.id}>High</label>
-												      </li>
+                                                        <input type="radio" id={feature.id + "1"} data-toggle="button" name={feature.id + "1"} value="1" checked={rating === 1} onChange={(e) => ratingChanged(e)}/><label className="priorityLabel" htmlFor={feature.id + "1"} >Low</label>
+                                                        <input type="radio" id={feature.id + "2"} data-toggle="button" name={feature.id + "2"} value="2" checked={rating === 2} onChange={(e) => ratingChanged(e)}/><label className="priorityLabel" htmlFor={feature.id + "2"} >Medium</label>
+                                                        <input type="radio" id={feature.id + "3"} data-toggle="button" name={feature.id + "3"} value="3" checked={rating === 3} onChange={(e) => ratingChanged(e)}/><label className="priorityLabel" htmlFor={feature.id + "3"} >High</label>
 												    </ul>
 											 	</div>
 											</div>

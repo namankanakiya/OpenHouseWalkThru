@@ -4,7 +4,6 @@ var actions = require('actions');
 var ImageUpload = require('ImageUpload').default;
 
 var FeatureDetails = React.createClass({
-    // NEW STUFF
     pictureAdded : function(picture) {
         var {dispatch, houseId, checklistId} = this.props;
         this.setState({pictureUrl : picture});

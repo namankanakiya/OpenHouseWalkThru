@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
 var Faker = require('faker');
 var $ = require('jquery');
+var ohwtAPI = require('ohwtAPI');
 
 //Components
 var Main = require('Main').default;
@@ -20,8 +21,9 @@ var Login = require('Login').default;
 var Registration = require('Registration').default;
 var Walkthru = require('Walkthru').default;
 var NotFound = require('NotFound').default;
-var ohwtAPI = require('ohwtAPI');
 var ContactForm = require('ContactForm').default;
+
+// Material UI
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
 //Redux
@@ -32,16 +34,18 @@ var {Provider} = require('react-redux');
 try {
     injectTapEventPlugin();
 } catch (e) {
-        //do Nothing
+        //do Nothing, already injected
 }
 
 store.subscribe(() => {
+    // Every time store changes, log it in the console
     console.log('New State', store.getState());
 });
-var randomIntFromInterval = function(min, max) {
-    return Math.floor(Math.random()*(max-min+1)+min);
-};
 
+
+/*var randomIntFromInterval = function(min, max) {
+    return Math.floor(Math.random()*(max-min+1)+min);
+};*/
 // Generate Initial Houses
 /*var num = randomIntFromInterval(5, 10)
 for (var x = 0; x < num; x++) {
@@ -69,11 +73,15 @@ $(document).foundation();
 //SCSS
 require('applicationStyles');
 
+// Function used to check that the URL the user is accessing
+// has a house/checklist associated with it
 const checkHouse = (store) => {
     return (nextState, replace) => {
+        // Get URL -> get checklist/house id
         var nextLoc = nextState.location.pathname;
         var splitArray = nextLoc.split('/');
         var id = splitArray.slice(-1)[0];
+        // otherLoc to determine where they were going (house or checklist)
         var otherLoc = splitArray.slice(-2)[0];
         var houses = store.getState().houses;
         if ($.isArray(houses)) {
@@ -85,6 +93,7 @@ const checkHouse = (store) => {
                         state : {notFound : otherLoc}
                     });
                 } else {
+                    // House was found, add it to redux state
                     store.dispatch(actions.addCurHouse(house));
                 }
             }
@@ -103,6 +112,8 @@ const checkHouse = (store) => {
     }
 }
 
+
+// Defining the URL routes, and the components they map to
 const routes = (
     <Route path="/" component={Main}>
         <Route path='/userprofile' component={UserProfile}></Route>
@@ -123,6 +134,8 @@ const routes = (
     </Route>
 );
 
+
+// Uses all of the above
 const Root = props => {
     return (
         <Provider store={store}>
