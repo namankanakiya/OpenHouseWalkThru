@@ -36,58 +36,58 @@ var Checklist = React.createClass({
 
         
         return (
-                	<Paper className="checklist-main" zDepth={3}>
-		        			<Table>
-		        			<TableBody
-		        				stripedRows={false}
-		        				displayRowCheckbox = {false}
-		        			>
+	    	<Paper className="checklist-main" zDepth={3}>
+    			<Table>
+    			<TableBody
+    				stripedRows={false}
+    				displayRowCheckbox = {false}
+    			>
 
-		                    {
+                {
+                	checklist.map((feature) => {
+                	var ratingChanged = (event, index, value) => {
+            			console.log(value);
+                	    dispatch(actions.startUpdateRating(id, feature.id, value));
+                   	};
+                 	var rating = parseInt(feature.rating);
 
-		                    	checklist.map((feature) => {
-		                    	var ratingChanged = (event, index, value) => {
-	                    			console.log(value);
-                            	    dispatch(actions.startUpdateRating(id, feature.id, value));
-                               	};
-                             	var rating = parseInt(feature.rating);
+                    return (
+                    	<TableRow className="feature" key={feature.id}>
+                                <TableRowColumn>
+                                    {feature.feature}
+                                </TableRowColumn>
 
-		                        return (
-		                        	<TableRow className="feature" key={feature.id}>
-			                                <TableRowColumn>
-			                                    {feature.feature}
-			                                </TableRowColumn>
+                                <TableRowColumn className="priority row">
+	                                <SelectField value={rating} onChange={ratingChanged}>
+							          <MenuItem value={1} primaryText="Low" />
+							          <MenuItem value={2} primaryText="Medium" />
+							          <MenuItem value={3} primaryText="High" />
+							        </SelectField>
+								</TableRowColumn>
 
-			                                <TableRowColumn className="priority row">
-				                                <SelectField value={rating} onChange={ratingChanged}>
-										          <MenuItem value={1} primaryText="Low" />
-										          <MenuItem value={2} primaryText="Medium" />
-										          <MenuItem value={3} primaryText="High" />
-										        </SelectField>
-											</TableRowColumn>
+                                <TableRowColumn>
+                                    <RaisedButton secondary={true} 
+                                    	onClick={() => {dispatch(actions.deleteFeature(id, feature.id))}}>Delete
+                                    </RaisedButton>
+                                </TableRowColumn>
+                        </TableRow>
+                    )
+                })}
+                </TableBody>
+            	</Table>
+	            
 
-			                                <TableRowColumn>
-			                                    <RaisedButton secondary={true} className="alert button"onClick={() => {dispatch(actions.deleteFeature(id, feature.id))}}>Delete</RaisedButton>
-			                                </TableRowColumn>
-		                            </TableRow>
-		                        )
-		                    })}
-		                    </TableBody>
-		                	</Table>
-		                
-
-		                <br/>
-		                <div className="checklistButtons">
-		                    <form onSubmit={this.addFeature} className="sameLine">
-		                        <input type="text" ref="newFeature" placeholder ="Enter a feature for tracking"/>
-		                        <button className="button primary"> Add Feature </button>
-		                    </form>
-		                     <Link to={HOUSE_URL} activeClassName="active-link">
-		                        <button className="back button secondary">Go back</button>
-		                     </Link>
-		                </div>
-	                </Paper>
-      
+	            <br/>
+	            <div className="checklistButtons">
+	                <form onSubmit={this.addFeature} className="sameLine">
+	                    <input type="text" ref="newFeature" placeholder ="Enter a feature for tracking"/>
+	                    <button className="button primary"> Add Feature </button>
+	                </form>
+	                 <Link to={HOUSE_URL} activeClassName="active-link">
+	                    <button className="back button secondary">Go back</button>
+	                 </Link>
+	            </div>
+	        </Paper>
         );
     }
 })
