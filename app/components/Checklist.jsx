@@ -49,12 +49,11 @@ var Checklist = React.createClass({
 			                                </TableRowColumn>
 
 			                                <TableRowColumn className="priority row">
-			                                <DropDownMenu value={1}>
-									          <MenuItem value={1} primaryText="Low" />
-									          <MenuItem value={2} primaryText="Medium" />
-									          <MenuItem value={3} primaryText="High" />
-									        </DropDownMenu>
-
+				                                <DropDownMenu value={1}>
+										          <MenuItem value={1} primaryText="Low" />
+										          <MenuItem value={2} primaryText="Medium" />
+										          <MenuItem value={3} primaryText="High" />
+										        </DropDownMenu>
 											</TableRowColumn>
 
 			                                <TableRowColumn>
