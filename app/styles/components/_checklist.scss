@@ -1,4 +1,14 @@
-.checklist-main {}
+.checklist-main {
+	width: 80%;
+	height: 80%;
+	margin: 30;
+	position: relative;
+	left: 30px;
+	top:10px;
+	bottom: 20px;
+	text-align: 'center';
+	display: 'inline-block';
+}
 
 .sameLine {
     display : inline-block;
