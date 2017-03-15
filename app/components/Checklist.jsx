@@ -7,7 +7,7 @@ import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColu
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import Paper from 'material-ui/Paper';
-import DropDownMenu from 'material-ui/DropDownMenu';
+import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 
@@ -40,8 +40,18 @@ var Checklist = React.createClass({
 		        			<Table>
 		        			<TableBody
 		        				stripedRows={false}
+		        				displayRowCheckbox = {false}
 		        			>
-		                    {checklist.map((feature) => {
+
+		                    {
+
+		                    	checklist.map((feature) => {
+		                    	var ratingChanged = (event, index, value) => {
+	                    			console.log(value);
+                            	    dispatch(actions.startUpdateRating(id, feature.id, value));
+                               	};
+                             	var rating = parseInt(feature.rating);
+
 		                        return (
 		                        	<TableRow className="feature" key={feature.id}>
 			                                <TableRowColumn>
@@ -49,11 +59,11 @@ var Checklist = React.createClass({
 			                                </TableRowColumn>
 
 			                                <TableRowColumn className="priority row">
-				                                <DropDownMenu value={1}>
+				                                <SelectField value={rating} onChange={ratingChanged}>
 										          <MenuItem value={1} primaryText="Low" />
 										          <MenuItem value={2} primaryText="Medium" />
 										          <MenuItem value={3} primaryText="High" />
-										        </DropDownMenu>
+										        </SelectField>
 											</TableRowColumn>
 
 			                                <TableRowColumn>
