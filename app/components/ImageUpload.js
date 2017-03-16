@@ -57,8 +57,8 @@ var ImageUpload = React.createClass({
               <Dropzone
                 onDrop={this.onImageDrop}
                 multiple={false}
-                accept="image/*" className="box">
-                <div>Drop an image</div>
+                accept="image/*" className="imageUploadBox">
+                <p>Click to upload /<br/>Drag an image</p>
               </Dropzone>
             </div>
         </div>

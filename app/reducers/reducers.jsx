@@ -83,7 +83,8 @@ export var housesReducer = (state = [], action) => {
 				if (house.id === action.houseId) {
 					house.checklist = house.checklist.map(feature => {
 						if (feature.id === action.checklistId) {
-							feature.pictureUrl = action.pictureUrl;
+							feature.picture = action.pictureUrl;
+                            feature.numPics = action.numPics;
 						}
 						return feature;
 					});

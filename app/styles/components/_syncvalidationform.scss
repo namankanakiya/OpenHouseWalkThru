@@ -25,3 +25,16 @@
     opacity: 0.9;
 }
 
+.imageUploadBox {
+    width: 200px;
+    height: 100px;
+    border-width: 2px;
+    border-color: rgb(102, 102, 102);
+    border-style: dashed;
+    border-radius: 5px;
+    margin: 1em auto;
+    p {
+        text-align: center;
+    }
+}
+

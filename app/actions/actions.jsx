@@ -50,6 +50,7 @@ export var startAddChecklist = (houseId, feature, priority=null) => {
             rating : -1,
             comments : '',
             picture : '',
+            numPics : 0,
             priority : priority
         };
         var checklistRef = firebaseRef.child("checklistItems").push(item);
@@ -200,25 +201,34 @@ export var updateComments = (houseId, checklistId, comments) => {
 	}
 };
 
-export var updatePhoto = (houseId, checklistId, pictureUrl) => {
+export var updatePhoto = (houseId, checklistId, pictureUrl, numPics) => {
     return {
         type: 'ADD_FEATURE_PHOTO',
         houseId,
         checklistId,
-        pictureUrl
+        pictureUrl,
+        numPics
     }
 };
 
-export var startUpdatePhoto = (houseId, checklistId, pictureUrl) => {
+export var startUpdatePhoto = (houseId, checklistId, pictureUrl, numPics) => {
     return (dispatch, getState) => {
         // Update picture URL on Firebase
-        var mapObject = {}
-        mapObject["picture"] = pictureUrl;
-        var pictureRef = firebaseRef.child("checklistItems/" + checklistId).update(mapObject);
-        return pictureRef.then(() => {
-            // Update internal store
-            dispatch(updatePhoto(houseId, checklistId, pictureUrl));
-        })
+        var checklistRef = firebaseRef.child("checklistItems/" + checklistId);
+        var pictureRef = checklistRef.child("picture");
+        pictureRef.once("value", (snapshot) => {
+            var newUrl = pictureUrl + ";" + snapshot.val();
+            console.log("newURl:", newUrl);
+            var mapObject = {}
+            mapObject["picture"] = newUrl;
+            console.log(numPics);
+            mapObject["numPics"] = numPics;
+            console.log(mapObject);
+            checklistRef.update(mapObject).then(()=>{
+                console.log("success");
+                dispatch(updatePhoto(houseId, checklistId, newUrl, numPics));
+            })
+        });
     }
 };
 

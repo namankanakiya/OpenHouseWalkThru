@@ -2,20 +2,13 @@ var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var ImageUpload = require('ImageUpload').default;
+import {Carousel} from 'react-responsive-carousel';
 
 var FeatureDetails = React.createClass({
     pictureAdded : function(picture) {
-        var {dispatch, houseId, checklistId} = this.props;
-        this.setState({pictureUrl : picture});
-        dispatch(actions.startUpdatePhoto(houseId, checklistId, picture));
-    },
-    componentWillMount : function() {
-        var {picture} = this.props;
-        if (picture) {
-            this.setState({pictureUrl : picture});
-        } else {
-            this.setState({pictureUrl : "https://s-media-cache-ak0.pinimg.com/originals/54/ec/0a/54ec0a14670d5a34edcab1f8e04720e8.jpg"});
-        }
+        var {dispatch, houseId, checklistId, numPics} = this.props;
+        numPics = parseInt(numPics) + 1;
+        dispatch(actions.startUpdatePhoto(houseId, checklistId, picture, numPics));
     },
     updateComments : function(e) {
         var comments = e.currentTarget.value;
@@ -24,32 +17,38 @@ var FeatureDetails = React.createClass({
         dispatch(actions.startUpdateComments(houseId, checklistId, comments));
     },
     render: function() {
-        var {rating, priority, feature, comments, houseId, checklistId, picture} = this.props;
+        var {rating, priority, feature, comments, houseId, checklistId, picture, numPics} = this.props;
         var ratingChanged = (e) => {
             var rating = e.currentTarget.value;
             var {dispatch, houseId, checklistId} = this.props;
             dispatch(actions.startUpdateRating(houseId, checklistId, rating));
         };
-        /*
-        var addedPhoto;
-
-        if (pictureUrl != '') {
-            addedPhoto = pictureUrl;
+        if (numPics > 0 && picture) {
+            var splitArray = picture.split(';');
+            var index = splitArray.indexOf("");
+            if (index > -1) {
+                splitArray.splice(index, 1);
+            }
         } else {
-            addedPhoto = "https://s-media-cache-ak0.pinimg.com/originals/54/ec/0a/54ec0a14670d5a34edcab1f8e04720e8.jpg";
+            var splitArray = ["https://s-media-cache-ak0.pinimg.com/originals/54/ec/0a/54ec0a14670d5a34edcab1f8e04720e8.jpg"];
         }
-        */
         return (
             <div>
                 <article className="website-example row wide">
                     <div className="large-6 columns">
                       <div className="row">
                         <div className="small-12 columns">
-                          <img src={this.state.pictureUrl} alt="Mini Cooper Site Desktop Image"/>
+                          <Carousel showArrows={true} showThumbs={false} axis="horizontal" dynamicHeight>
+                            {splitArray.map((url, index) => {
+                                if (index <= numPics) {
+                                    return <div><img src={url}/></div>;
+                                }
+                              })}
+                          </Carousel>
                         </div>
                       </div>
                     </div>
-                    <div className="large-6 columns" style={{"paddingTop" : "100px"}}>
+                    <div className="large-6 columns">
                       <h3 className="text-center">{feature}</h3>
                       <p>
                         <textarea onBlur={this.updateComments} defaultValue={comments} ref="commentBox"></textarea>

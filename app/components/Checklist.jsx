@@ -46,7 +46,6 @@ var Checklist = React.createClass({
                 {
                 	checklist.map((feature) => {
                 	var ratingChanged = (event, index, value) => {
-            			console.log(value);
                 	    dispatch(actions.startUpdateRating(id, feature.id, value));
                    	};
                  	var rating = parseInt(feature.rating);
