@@ -72,6 +72,11 @@ $(document).foundation();
 
 //SCSS
 require('applicationStyles');
+//Sleep function
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 
 // Function used to check that the URL the user is accessing
 // has a house/checklist associated with it
@@ -98,9 +103,12 @@ const checkHouse = (store) => {
                 }
             }
             else {
-                replace({
-                    pathname : '/notfound',
-                    state : {notFound : otherLoc}
+                sleep(1000).then(() => {
+                    var houses = store.getState().houses;
+                    replace({
+                        pathname : '/notfound',
+                        state : {notFound : otherLoc}
+                    });
                 });
             }
         } else {
