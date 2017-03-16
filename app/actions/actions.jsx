@@ -218,14 +218,10 @@ export var startUpdatePhoto = (houseId, checklistId, pictureUrl, numPics) => {
         var pictureRef = checklistRef.child("picture");
         pictureRef.once("value", (snapshot) => {
             var newUrl = pictureUrl + ";" + snapshot.val();
-            console.log("newURl:", newUrl);
             var mapObject = {}
             mapObject["picture"] = newUrl;
-            console.log(numPics);
             mapObject["numPics"] = numPics;
-            console.log(mapObject);
             checklistRef.update(mapObject).then(()=>{
-                console.log("success");
                 dispatch(updatePhoto(houseId, checklistId, newUrl, numPics));
             })
         });
