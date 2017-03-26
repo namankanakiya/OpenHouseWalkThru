@@ -29,7 +29,7 @@ var HouseSummary = React.createClass({
                         <div className="card-section">
                             <h4>{address}, {city}, {state} {zipcode}</h4>
                             <div>
-                                Score: <Score score={score}/>
+                                <Score score={score}/>
                             </div>
                         </div>
                     </Link>

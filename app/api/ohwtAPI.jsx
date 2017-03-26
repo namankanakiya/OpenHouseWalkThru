@@ -29,7 +29,27 @@ module.exports = {
 		} else {
 			return null;
 		}
-	}
+	},
+
+    sortHouses : function(houses) {
+        if ($.isArray(houses)) {
+            houses = houses.filter((house) => {
+                return house.score !== -1;
+            });
+            houses.sort((a,b) => {
+                if (a.score > b.score) {
+                    return -1;
+                } else if (b.score > a.score) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
+            return houses;
+        } else {
+            return [];
+        }
+    }
 	/*addChecklistItem : function(checklistArray, checklistString) {
 		if ($.isArray(checklistArray)) {
 			var checklistObject = {
