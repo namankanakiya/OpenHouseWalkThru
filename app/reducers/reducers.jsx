@@ -16,7 +16,17 @@ export var photoUploadReducer = (state = null, action) => {
 			return state;
 	}
 }
+/*
+export var mapAddressReducer = (state = null, action) => {
+	switch (action.type) {
+		case 'SHOW_ADDRESS':
+			return action.addressId;
 
+		default:
+			return state;
+	}
+}
+*/
 export var housesReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'ADD_HOUSE':

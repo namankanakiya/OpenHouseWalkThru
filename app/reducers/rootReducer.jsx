@@ -6,6 +6,7 @@ export default rootReducer = combineReducers({
     form : formReducer,
     houses : housesReducer,
     house : curHouseReducer,
-    photo : uploadPhotoReducer
+    address : mapAddressReducer,
+    //photo : uploadPhotoReducer
 });
 

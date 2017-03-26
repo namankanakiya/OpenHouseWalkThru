@@ -9,6 +9,7 @@ export var configure = (initialState = {}) => {
 		form : formReducer,
 		houses : housesReducer,
 		house : curHouseReducer,
+        //address : mapAddressReducer,
         photo : photoUploadReducer
 	});
 
@@ -27,6 +28,7 @@ export var configure = (initialState = {}) => {
                 form : formReducer,
                 houses : housesReducer,
                 house : curHouseReducer,
+                //address : mapAddressReducer,
                 photo : photoUploadReducer
             });
             store.replaceReducer(nextRootReducer);

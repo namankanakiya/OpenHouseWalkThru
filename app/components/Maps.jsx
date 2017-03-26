@@ -9,7 +9,7 @@ var INITIAL_LOCATION = {
   }
 };
 
-var INITIAL_MAP_ZOOM_LEVEL = 8;
+var INITIAL_MAP_ZOOM_LEVEL = 16;
 
 var ATLANTIC_OCEAN = {
   latitude: 29.532804,

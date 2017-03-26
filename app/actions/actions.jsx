@@ -236,3 +236,11 @@ export var currentImageURL = (pictureUrlId) => {
         pictureUrlId
     }
 };
+/*
+export var showAddress = (addressId) => {
+    return {
+        type: 'SHOW_ADDRESS',
+        addressId
+    }
+};
+*/
