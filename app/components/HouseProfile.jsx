@@ -4,6 +4,7 @@ var Score = require('Score').default;
 var AverageDistance = require('AverageDistance').default;
 var {Link} = require('react-router');
 var actions = require('actions');
+var Maps = require('Maps').default;
 
 // general styles
 import 'style-loader!css-loader!react-responsive-carousel/lib/styles/main.css';
@@ -76,7 +77,8 @@ var HouseProfile = React.createClass({
                      address={addressDummy}
                      description="One of the finest houses in the city" />
                     <div style={leftCard}>
-                        <img src="http://cdn.newsapi.com.au/image/v1/0a0ceda4bda18e664ffac1a8fa86a7d1" />
+                        {/*<img src="http://cdn.newsapi.com.au/image/v1/0a0ceda4bda18e664ffac1a8fa86a7d1" />*/}
+                        <Maps />
                     </div>
                     <div style={rightCard}>
                         <h4><Score score={house.score}/></h4>

@@ -98,16 +98,14 @@ var Maps = React.createClass({
 
   render: function () {
     return (
-      <div> <p>Hey</p>
       <div className="container">
 
         <div className="row">
           <div className="col-sm-12">
-
+          {/*}
             <form className="form-inline" onSubmit={this.handleFormSubmit}>
               <div className="row">
                 <div className="col-xs-8 col-sm-10">
-
                   <div className="form-group">
                     <label className="sr-only" htmlFor="address">Address</label>
                     <input type="text" className="form-control input-lg" id="address" placeholder="London, United Kingdom" ref={this.setSearchInputElementReference} required />
@@ -123,7 +121,7 @@ var Maps = React.createClass({
                 </div>
               </div>
             </form>
-
+          */}
           </div>
         </div>
         <div className="row">
@@ -135,7 +133,6 @@ var Maps = React.createClass({
             
           </div>
         </div>
-      </div>
       </div>
     );
   }
