@@ -1,8 +1,11 @@
+// React imports
 var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
 var ohwtAPI = require('ohwtAPI');
 var {Link} = require('react-router');
+
+// UI imports
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
 import RaisedButton from 'material-ui/RaisedButton';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
@@ -13,16 +16,20 @@ import MenuItem from 'material-ui/MenuItem';
 
 
 var Checklist = React.createClass({
-
+    // Add a feature to a checklist for a house
     addFeature : function(e) {
+        // prevent refresh
         e.preventDefault(); 
+        // get values
         var newFeature = this.refs.newFeature.value;
         var id = this.props.params.id;
         if (newFeature.length > 0) {
+            // reset input field, and dispatch action
             this.refs.newFeature.value = '';
             var {dispatch} = this.props;
             dispatch(actions.startAddChecklist(id, newFeature));
         } else {
+            // there was nothing in there
             this.refs.newFeature.focus();
         }
     },

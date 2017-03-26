@@ -1,5 +1,7 @@
 var React = require('react');
 
+// Simple component which renders the distance it is inputted with.
+// If distance doesn't exist, returns that
 var AverageDistance = React.createClass({
     getDefaultProps : function() {
         return {

@@ -17,6 +17,7 @@ module.exports = {
 		}
 		return $.isArray(checklists) ? checklists : [];
 	},*/
+    // Given a house id, return te house from the list of houses
 	findHouseById : function(houses, id) {
 		if ($.isArray(houses)) {
 			for (var i = 0; i < houses.length; i++) {

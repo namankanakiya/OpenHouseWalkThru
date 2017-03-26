@@ -217,10 +217,12 @@ export var startUpdatePhoto = (houseId, checklistId, pictureUrl, numPics) => {
         var checklistRef = firebaseRef.child("checklistItems/" + checklistId);
         var pictureRef = checklistRef.child("picture");
         pictureRef.once("value", (snapshot) => {
+            // Get the original pictures, and append new picture
             var newUrl = pictureUrl + ";" + snapshot.val();
             var mapObject = {}
             mapObject["picture"] = newUrl;
             mapObject["numPics"] = numPics;
+            // Update picture, then update local store
             checklistRef.update(mapObject).then(()=>{
                 dispatch(updatePhoto(houseId, checklistId, newUrl, numPics));
             })

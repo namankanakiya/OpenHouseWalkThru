@@ -1,4 +1,5 @@
 var React = require('react');
+var {connect} = require('react-redux');
 
 var INITIAL_LOCATION = {
   address: 'London, United Kingdom',
@@ -140,4 +141,4 @@ var Maps = React.createClass({
   }
 });
 
-module.exports = Maps;
+export default connect()(Maps);
