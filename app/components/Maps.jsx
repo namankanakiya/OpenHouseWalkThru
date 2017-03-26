@@ -2,10 +2,10 @@ var React = require('react');
 var {connect} = require('react-redux');
 
 var INITIAL_LOCATION = {
-  address: 'London, United Kingdom',
+  address: 'Atlanta, GA',
   position: {
-    latitude: 51.5085300,
-    longitude: -0.1257400
+    latitude: 33.7490,
+    longitude: -84.3880
   }
 };
 
@@ -127,7 +127,7 @@ var Maps = React.createClass({
         <div className="row">
           <div className="col-sm-12">
 
-            {this.state.isGeocodingError ? <p className="bg-danger">Address not found.</p> : <p className="bg-info">{this.state.foundAddress}</p>}
+            {this.state.isGeocodingError ? <p className="bg-danger">Address not found.</p> : <p className="bg-info">{this.state.foundAddress}</p> }
 
             <div className="map" ref={this.setMapElementReference}></div>
             
