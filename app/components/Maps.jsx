@@ -9,7 +9,7 @@ var INITIAL_LOCATION = {
     }
 };
 
-var INITIAL_MAP_ZOOM_LEVEL = 16;
+var INITIAL_MAP_ZOOM_LEVEL = 14;
 
 var ATLANTIC_OCEAN = {
     latitude: 29.532804,
@@ -44,13 +44,13 @@ var Maps = React.createClass({
             });
 
             this.map.setCenter({
-                lat: ATLANTIC_OCEAN.latitude,
-                lng: ATLANTIC_OCEAN.longitude
+                lat: INITIAL_LOCATION.position.latitude,
+                lng: INITIAL_LOCATION.position.longitude
             });
 
             this.marker.setPosition({
-                lat: ATLANTIC_OCEAN.latitude,
-                lng: ATLANTIC_OCEAN.longitude
+                lat: INITIAL_LOCATION.position.latitude,
+                lng: INITIAL_LOCATION.position.longitude
             });
         }.bind(this));
     },
@@ -81,6 +81,13 @@ var Maps = React.createClass({
         });
 
         this.geocoder = new google.maps.Geocoder();
+        var address = this.props.address;
+        var city = this.props.city;
+        var state = this.props.state;
+        if (address && city && state) {
+            var fullAddress = address + ", " + city + ", " + state;
+            this.geocodeAddress(fullAddress);
+        }
     },
 
     setSearchInputElementReference: function (inputReference) {
@@ -96,7 +103,7 @@ var Maps = React.createClass({
             <div className="container">
                 <div className="row">
                     <div className="col-sm-12">
-                        {/*
+                    {/*}
                         <form className="form-inline" onSubmit={this.handleFormSubmit}>
                         <div className="row">
                         <div className="col-xs-8 col-sm-10">
@@ -115,13 +122,13 @@ var Maps = React.createClass({
                         </div>
                         </div>
                         </form>
-                        */}
+                    */}
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-sm-12">
-                        {this.state.isGeocodingError ? <p className="bg-danger">Address not found.</p> : <p className="bg-info">{this.state.foundAddress}</p> }
                         <div className="map" ref={this.setMapElementReference}></div>
+                        {this.state.isGeocodingError ? <p className="bg-danger">Address not found.</p> : <p></p> }
                     </div>
                 </div>
             </div>

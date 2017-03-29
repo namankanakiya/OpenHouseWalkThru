@@ -28,7 +28,7 @@ export var configure = (initialState = {}) => {
                 form : formReducer,
                 houses : housesReducer,
                 house : curHouseReducer,
-                //address : mapAddressReducer,
+                // address : mapAddressReducer,
                 photo : photoUploadReducer
             });
             store.replaceReducer(nextRootReducer);

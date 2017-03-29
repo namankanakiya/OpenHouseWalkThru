@@ -74,7 +74,7 @@ var HouseProfile = React.createClass({
                      address={addressDummy}
                      description="One of the finest houses in the city" />
                     <div style={leftCard}>
-                        <Maps />
+                        <Maps address={house.address} city={house.city} state={house.state} />
                     </div>
                     <div style={rightCard}>
                         <h4><Score score={house.score}/></h4>
