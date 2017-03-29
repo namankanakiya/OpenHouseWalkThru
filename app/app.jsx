@@ -23,6 +23,7 @@ var Walkthru = require('Walkthru').default;
 var NotFound = require('NotFound').default;
 var ContactForm = require('ContactForm').default;
 var Maps = require('Maps').default;
+var AddPOI = require('AddPOI').default;
 
 // Material UI
 import injectTapEventPlugin from 'react-tap-event-plugin'
@@ -139,11 +140,11 @@ const routes = (
         <Route path='/walkthru/:id' component={Walkthru} onEnter={checkHouse(store)}></Route>
         <Route path='/contactform' component={ContactForm}></Route>
         <Route path='/maps' component={Maps}></Route>
+        <Route path='/addpoi' component={AddPOI}></Route>
         <Route path="*" component={NotFound}/>
         <IndexRoute component={Dashboard}/>
     </Route>
 );
-
 
 // Uses all of the above
 const Root = props => {
