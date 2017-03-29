@@ -1,10 +1,11 @@
 // Imports
 var React = require('react');
-import SyncValidationForm from './SyncValidationForm';
 var {connect} = require('react-redux');
 var actions = require('actions');
 var {Link} = require('react-router');
 var ImageUpload = require('ImageUpload').default;
+
+import SyncValidationForm from './SyncValidationForm';
 
 // React component
 var AddHouse = React.createClass({
@@ -29,18 +30,19 @@ var AddHouse = React.createClass({
         // redirect to dashboard
         this.props.router.push('/');
     },
-    render: function() {
+
+    render : function() {
         return (
             <div>
-            <SyncValidationForm onSubmit={this.addHouse}/>
-            <p> <ImageUpload/></p>
+                <SyncValidationForm onSubmit={this.addHouse} />
+                <p><ImageUpload /></p>
             </div>
         )
     }
 });
 
 export default connect((state) => {
-        return {
-            photo : state.photo
-        }
-    })(AddHouse);
+    return {
+        photo : state.photo
+    }
+})(AddHouse);

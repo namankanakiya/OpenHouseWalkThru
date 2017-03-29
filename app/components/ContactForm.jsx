@@ -1,70 +1,71 @@
-import Dropzone from 'react-dropzone';
-import request from 'superagent';
-
 var React = require('react');
 var {Link} = require('react-router');
 var {connect} = require('react-redux');
 var actions = require('actions');
 
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
+
 const CLOUDINARY_UPLOAD_PRESET = 'w3ktvtk0';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/open-house-walk-thru/upload';
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-      uploadedFile: null,
-      uploadedFileCloudinaryUrl: ''
-    };
-  }
+        this.state = {
+            uploadedFile: null,
+            uploadedFileCloudinaryUrl: ''
+        };
+    }
 
-  onImageDrop(files) {
-    this.setState({
-      uploadedFile: files[0]
-    });
-
-    this.handleImageUpload(files[0]);
-  }
-
-  handleImageUpload(file) {
-    let upload = request.post(CLOUDINARY_UPLOAD_URL)
-                     .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
-                     .field('file', file);
-
-    upload.end((err, response) => {
-      if (err) {
-        console.error(err);
-      }
-
-      if (response.body.secure_url !== '') {
+    onImageDrop(files) {
         this.setState({
-          uploadedFileCloudinaryUrl: response.body.secure_url
+            uploadedFile: files[0]
         });
-      }
-    });
-  }
 
-  render() {
-    return (
-      <form>
-        <div className="FileUpload">
-          <Dropzone
-            onDrop={this.onImageDrop.bind(this)}
-            multiple={false}
-            accept="image/*">
-            <div>Drop an image or click to select a file to upload.</div>
-          </Dropzone>
-        </div>
+        this.handleImageUpload(files[0]);
+    }
 
-        <div>
-          {this.state.uploadedFileCloudinaryUrl === '' ? null :
-          <div>
-            <p>{this.state.uploadedFile.name}</p>
-            <img src={this.state.uploadedFileCloudinaryUrl} />
-          </div>}
-        </div>
-      </form>
-    )
-  }
+    handleImageUpload(file) {
+        let upload = request.post(CLOUDINARY_UPLOAD_URL)
+        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+        .field('file', file);
+
+        upload.end((err, response) => {
+            if (err) {
+                console.error(err);
+            }
+
+            if (response.body.secure_url !== '') {
+                this.setState({
+                    uploadedFileCloudinaryUrl: response.body.secure_url
+                });
+            }
+        });
+    }
+
+    render() {
+        return (
+            <form>
+                <div className="FileUpload">
+                    <Dropzone
+                        onDrop={this.onImageDrop.bind(this)}
+                        multiple={false}
+                        accept="image/*">
+                        <div>Drop an image or click to select a file to upload.</div>
+                    </Dropzone>
+                </div>
+
+                <div>
+                    {this.state.uploadedFileCloudinaryUrl === '' ? null :
+                        <div>
+                            <p>{this.state.uploadedFile.name}</p>
+                            <img src={this.state.uploadedFileCloudinaryUrl} />
+                        </div>
+                    }
+                </div>
+            </form>
+        )
+    }
 }

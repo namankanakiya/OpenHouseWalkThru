@@ -12,7 +12,6 @@ var HouseInfo = React.createClass({
             picture : '',
             description : ''
         };
-
     },
 
     propTypes : {
