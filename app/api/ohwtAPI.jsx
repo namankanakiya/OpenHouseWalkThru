@@ -49,7 +49,31 @@ module.exports = {
         } else {
             return [];
         }
-    }
+    },
+
+    calculateHouseScore : function(house) {
+        let checklistItems = house.checklist;
+        let runningScore = 0;
+        let numAmount = 0;
+        checklistItems.map((item) => {
+            //calculate score
+            let priority = item.priority || 0;
+            let rating = item.rating || 0;
+            if (!(rating === 0) && !(rating === -1) && !(priority === 0) && !(priority === -1)) {
+                let priorityMultiplier = (priority * 0.5) + 0.5; // change 1,2,3 -> 1,1.5,2
+                let ratingMultiplier = rating * 20; //out of 100
+                runningScore = runningScore + (priorityMultiplier * ratingMultiplier);
+                numAmount = numAmount + 1;
+            }
+        });
+        if (numAmount !== 0) {
+            let toReturn = runningScore / numAmount;
+            console.log("Calc house score:", toReturn);
+            return toReturn;
+        } else {
+            return -1;
+        }
+    },
 	/*addChecklistItem : function(checklistArray, checklistString) {
 		if ($.isArray(checklistArray)) {
 			var checklistObject = {
