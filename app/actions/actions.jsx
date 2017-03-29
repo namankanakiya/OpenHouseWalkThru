@@ -42,7 +42,7 @@ export var addChecklistItem = (id, item) => {
 	}
 };
 
-export var startAddChecklist = (houseId, feature, priority=null) => {
+export var startAddChecklist = (houseId, feature, priority=-1) => {
     return (dispatch, getState) => {
         // Initial checklist initialization to Firebase
         var item = {
@@ -177,6 +177,28 @@ export var updateRating = (houseId, checklistId, rating) => {
 		checklistId,
 		rating
 	}
+};
+
+export var startUpdatePriority = (houseId, checklistId, priority) => {
+    return (dispatch, getState) => {
+        // Update priority on Firebase
+        var mapObject = {};
+        mapObject["priority"] = priority;
+        var priorityRef = firebaseRef.child("checklistItems/" + checklistId).update(mapObject);
+        return priorityRef.then(() => {
+            // After, update internal store
+            dispatch(updatePriority(houseId, checklistId, priority));
+        })
+    }
+};
+
+export var updatePriority = (houseId, checklistId, priority) => {
+    return {
+        type : 'UPDATE_PRIORITY',
+        houseId,
+        checklistId,
+        priority
+    }
 };
 
 export var startUpdateComments = (houseId, checklistId, comments) => {

@@ -2,7 +2,7 @@ var React = require('react');
 
 var Login = React.createClass({
 
-    {/*function toggleSignIn() {
+    /*function toggleSignIn() {
       if (firebase.auth().currentUser) {
         // [START signout]
         firebase.auth().signOut();
@@ -37,7 +37,7 @@ var Login = React.createClass({
         // [END authwithemail]
         }
         document.getElementById('quickstart-sign-in').disabled = true;
-    }*/}
+    }*/
 
     render : function() {
         var mainContainer = {

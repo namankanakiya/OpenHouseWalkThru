@@ -20,6 +20,11 @@ var FeatureDetails = React.createClass({
         var {rating, priority, feature, comments, houseId, checklistId, picture, numPics} = this.props;
         var ratingChanged = (e) => {
             var rating = e.currentTarget.value;
+            try {
+                rating = parseInt(rating);
+            } catch (e) {
+                console.log(e);
+            }
             var {dispatch, houseId, checklistId} = this.props;
             dispatch(actions.startUpdateRating(houseId, checklistId, rating));
         };

@@ -52,10 +52,10 @@ var Checklist = React.createClass({
 
                 {
                 	checklist.map((feature) => {
-                	var ratingChanged = (event, index, value) => {
-                	    dispatch(actions.startUpdateRating(id, feature.id, value));
+                	var priorityChanged = (event, index, value) => {
+                	    dispatch(actions.startUpdatePriority(id, feature.id, value));
                    	};
-                 	var rating = parseInt(feature.rating);
+                    var priority = parseInt(feature.priority);
 
                     return (
                     	<TableRow className="feature" key={feature.id}>
@@ -64,7 +64,7 @@ var Checklist = React.createClass({
                                 </TableRowColumn>
 
                                 <TableRowColumn className="priority row">
-	                                <SelectField value={rating} onChange={ratingChanged}>
+	                                <SelectField value={priority} onChange={priorityChanged}>
 							          <MenuItem value={1} primaryText="Low" />
 							          <MenuItem value={2} primaryText="Medium" />
 							          <MenuItem value={3} primaryText="High" />

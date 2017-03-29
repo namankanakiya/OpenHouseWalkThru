@@ -2,7 +2,7 @@ var React = require('react');
 
 var Registration = React.createClass({
 
-    {/*function handleSignUp() {
+    /*function handleSignUp() {
       var email = document.getElementById('email').value;
       var password = document.getElementById('password').value;
       if (email.length < 4) {
@@ -29,7 +29,7 @@ var Registration = React.createClass({
         // [END_EXCLUDE]
       });
       // [END createwithemail]
-    }*/}
+    }*/
 
     render : function() {
 

@@ -74,6 +74,19 @@ export var housesReducer = (state = [], action) => {
 				return house;
 			});
 
+        case 'UPDATE_PRIORITY':
+            return state.map((house) => {
+                if (house.id === action.houseId) {
+                    house.checklist = house.checklist.map(feature => {
+                        if (feature.id === action.checklistId) {
+                            feature.priority = Number(action.priority);
+                        }
+                        return feature;
+                    });
+                }
+                return house;
+            });
+
 		case 'UPDATE_COMMENTS':
 			return state.map((house) => {
 				if (house.id === action.houseId) {
