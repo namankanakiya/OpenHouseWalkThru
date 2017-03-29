@@ -3,6 +3,7 @@ var HouseSummary = require('HouseSummary').default;
 var {connect} = require('react-redux');
 var {Link} = require('react-router');
 var ohwtAPI = require('ohwtAPI');
+
 import RaisedButton from 'material-ui/RaisedButton';
 import Toggle from 'material-ui/Toggle';
 import Divider from 'material-ui/Divider';
@@ -46,12 +47,12 @@ var Dashboard = React.createClass({
                     </div>
                 </div>
                 <div className="row">
-                    <Divider/>
+                    <Divider />
                 </div>
                 <div className="row small-up-2 medium-up-2 large-up-3" style={{marginTop : "1rem"}}>
                     {houses.map((house) => {
                         {var {id, address, city, state, zipcode, score, imageurl} = house;}
-                        return <HouseSummary key={id} id={id} address={address} city={city} state={state} zipcode={zipcode} score={score} imageurl={imageurl}/>
+                        return <HouseSummary key={id} id={id} address={address} city={city} state={state} zipcode={zipcode} score={score} imageurl={imageurl} />
                     })}
                 </div>
             </div>

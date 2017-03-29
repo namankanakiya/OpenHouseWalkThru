@@ -126,4 +126,4 @@ export default connect(
             houses : state.houses
         }
     }
-)(Walkthru);    
+)(Walkthru);

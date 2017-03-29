@@ -9,6 +9,7 @@ var HouseSummary = React.createClass({
             imageURL : ''
         };
     },
+
     propTypes : {
         address : React.PropTypes.string.isRequired,
         city : React.PropTypes.string.isRequired,
@@ -17,6 +18,7 @@ var HouseSummary = React.createClass({
         score : React.PropTypes.number,
         imageurl : React.PropTypes.string
     },
+
     render : function() {
         var {id, address, city, state, zipcode, score, imageurl} = this.props;
         const IMAGE_NOT_FOUND = "https://cdn.browshot.com/static/images/not-found.png";

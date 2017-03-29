@@ -6,9 +6,11 @@ var Score = React.createClass({
             score : -1
         };
     },
+
     propTypes : {
         score : React.PropTypes.number.isRequired
     },
+
     render : function() {
         var {score} = this.props; 
         var renderScore = () => {
@@ -18,6 +20,7 @@ var Score = React.createClass({
                 return <p>Not Yet Rated</p>
             }
         };
+
         return (
             <div>
                 {renderScore()}

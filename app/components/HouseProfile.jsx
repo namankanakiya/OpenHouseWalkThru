@@ -5,16 +5,10 @@ var AverageDistance = require('AverageDistance').default;
 var {Link} = require('react-router');
 var actions = require('actions');
 var Maps = require('Maps').default;
+var {connect} = require('react-redux'); // Redux
 
-// general styles
-import 'style-loader!css-loader!react-responsive-carousel/lib/styles/main.css';
-
-// carousel styles
-import 'style-loader!css-loader!react-responsive-carousel/lib/styles/carousel.css';
-
-
-//Redux
-var {connect} = require('react-redux');
+import 'style-loader!css-loader!react-responsive-carousel/lib/styles/main.css'; // general styles
+import 'style-loader!css-loader!react-responsive-carousel/lib/styles/carousel.css'; // carousel styles
 
 var HouseProfile = React.createClass({
     getDefaultProps : function() {
@@ -23,16 +17,19 @@ var HouseProfile = React.createClass({
             avgDist : -1
         };
     },
+
     propTypes : {
         score : React.PropTypes.number,
         avgDist : React.PropTypes.number,
     },
+
     delete : function() {
         var {dispatch} = this.props;
         var id = this.props.params.id;
         var userId = 1;
         dispatch(actions.startDeleteHouse(userId, id));
     },
+
     render : function() {
         var mainContainer = {
             backgroundImage: "url(https://s-media-cache-ak0.pinimg.com/originals/41/2f/6c/412f6c9f290bdaff0fdb5af49e139adb.jpg)",
@@ -77,7 +74,6 @@ var HouseProfile = React.createClass({
                      address={addressDummy}
                      description="One of the finest houses in the city" />
                     <div style={leftCard}>
-                        {/*<img src="http://cdn.newsapi.com.au/image/v1/0a0ceda4bda18e664ffac1a8fa86a7d1" />*/}
                         <Maps />
                     </div>
                     <div style={rightCard}>
