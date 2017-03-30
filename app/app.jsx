@@ -10,6 +10,7 @@ var Main = require('Main').default;
 var UserProfile = require('UserProfile').default;
 var Dashboard = require('Dashboard').default;
 var HouseSummary = require('HouseSummary').default;
+var HouseSummaryTileItem = require('HouseSummary').default;
 var Score = require('Score').default;
 var HouseProfile = require('HouseProfile').default;
 var AverageDistance = require('AverageDistance').default;

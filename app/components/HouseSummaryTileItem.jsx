@@ -1,13 +1,11 @@
 var React = require('react');
 var Score = require('Score').default;
-var HouseSummaryTileItem = require('HouseSummaryTileItem').default;
 var {Link} = require('react-router');
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 
-
-var HouseSummary = React.createClass({
+var HouseSummaryTileItem = React.createClass({
     getDefaultProps : function() {
         return {
             score : -1,
@@ -37,9 +35,17 @@ var HouseSummary = React.createClass({
             width: 20
         };
         return (
-            <HouseSummaryTileItem key={id} id={id} address={address} city={city} state={state} zipcode={zipcode} score={score} imageurl={imageurl} title={<span>{address},{city}, {state}</span>} subtitle={<b><Score score={score}/></b>} actionIcon={<IconButton><StarBorder color="white" /></IconButton>}/>
+            <GridTile title={<span>{address},{city}, {state}</span>} subtitle={<b><Score score={score}/></b>} actionIcon={<IconButton><StarBorder color="white" /></IconButton>}>                
+                
+                <Link to={HOUSE_URL} activeClassName="active-link">
+                
+                    <img src={imageurl} alt="No Image" style={{width:640, height:240}} onError={(e) => {e.target.src=IMAGE_NOT_FOUND}}/>
+                
+                </Link>
+            
+            </GridTile>
         );
     }
 });
 
-export default HouseSummary;
+export default HouseSummaryTileItem;

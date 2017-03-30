@@ -7,6 +7,7 @@ var ohwtAPI = require('ohwtAPI');
 import RaisedButton from 'material-ui/RaisedButton';
 import Toggle from 'material-ui/Toggle';
 import Divider from 'material-ui/Divider';
+import {GridList, GridTile} from 'material-ui/GridList';
 
 var Dashboard = React.createClass({
     doSomething : function(isChecked) {
@@ -46,15 +47,12 @@ var Dashboard = React.createClass({
                         <Link to="/addhouse"><RaisedButton style={{marginBottom : "10px"}} primary label="Add House" /></Link>
                     </div>
                 </div>
-                <div className="row">
-                    <Divider />
-                </div>
-                <div className="row small-up-2 medium-up-2 large-up-3" style={{marginTop : "1rem"}}>
+                <GridList style={{marginTop : "1rem"}} cols="4" padding>
                     {houses.map((house) => {
                         {var {id, address, city, state, zipcode, score, imageurl} = house;}
                         return <HouseSummary key={id} id={id} address={address} city={city} state={state} zipcode={zipcode} score={score} imageurl={imageurl} />
                     })}
-                </div>
+                </GridList>
             </div>
         );
     }
