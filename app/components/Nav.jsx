@@ -4,6 +4,8 @@ var $ = require('jquery');
 var {connect} = require('react-redux'); // Redux
 var actions = require('actions');
 
+import firebase, {firebaseRef} from 'app/firebase';
+
 {/* This is supposed to go inside the createClass() function
 componentDidUpdate : function() {
     $(document).foundation();
@@ -15,7 +17,9 @@ componentDidUpdate : function() {
 var Nav = React.createClass({
     logout : function(e) {
         var {dispatch} = this.props;
-        dispatch(actions.logoutUser());
+        firebase.auth().signOut().then(()=>{
+            dispatch(actions.logoutUser());
+        })
         console.log("Logout button clicked");
     },
 
