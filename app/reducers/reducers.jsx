@@ -61,6 +61,14 @@ export var housesReducer = (state = [], action) => {
 				return house;
 			});
 
+        case 'UPDATE_SCORE':
+            return state.map((house) => {
+                if (house.id === action.houseId) {
+                    house.score = action.score
+                }
+                return house;
+            });
+
 		case 'UPDATE_RATING':
 			return state.map((house) => {
 				if (house.id === action.houseId) {

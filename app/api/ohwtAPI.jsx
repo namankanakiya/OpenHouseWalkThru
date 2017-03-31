@@ -63,13 +63,13 @@ module.exports = {
                 let priorityMultiplier = (priority * 0.5) + 0.5; // change 1,2,3 -> 1,1.5,2
                 let ratingMultiplier = rating * 20; //out of 100
                 runningScore = runningScore + (priorityMultiplier * ratingMultiplier);
-                numAmount = numAmount + 1;
+                numAmount = numAmount + priorityMultiplier;
             }
         });
         if (numAmount !== 0) {
             let toReturn = runningScore / numAmount;
             console.log("Calc house score:", toReturn);
-            return toReturn;
+            return Math.ceil(toReturn);
         } else {
             return -1;
         }

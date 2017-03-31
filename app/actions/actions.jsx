@@ -1,4 +1,5 @@
 import firebase, {firebaseRef} from 'app/firebase';
+var ohwtAPI = require('ohwtAPI');
 
 // Components call these actions, which then do certain actions like access Firebase
 // and then dispatch to the reducers file to update the internal state
@@ -42,7 +43,7 @@ export var addChecklistItem = (id, item) => {
 	}
 };
 
-export var startAddChecklist = (houseId, feature, priority=-1) => {
+export var startAddChecklist = (houseId, feature, priority=1) => {
     return (dispatch, getState) => {
         // Initial checklist initialization to Firebase
         var item = {
@@ -166,7 +167,31 @@ export var startUpdateRating = (houseId, checklistId, rating) => {
         return ratingRef.then(() => {
             // After, update internal store
             dispatch(updateRating(houseId, checklistId, rating));
+            dispatch(startUpdateScore(houseId));
         })
+    }
+};
+
+export var startUpdateScore = (houseId) => {
+    return (dispatch, getState) => {
+        var houses = getState().houses;
+        var house = ohwtAPI.findHouseById(houses, houseId);
+        var newScore = ohwtAPI.calculateHouseScore(house);
+        console.log("New Score: ", newScore);
+        var mapObject = {};
+        mapObject["score"] = newScore;
+        var scoreRef = firebaseRef.child("houses/" + houseId).update(mapObject);
+        return scoreRef.then(() => {
+            dispatch(updateScore(houseId, newScore));
+        });
+    };
+};
+
+export var updateScore = (houseId, score) => {
+    return {
+        type : 'UPDATE_SCORE',
+        houseId,
+        score
     }
 };
 
@@ -188,6 +213,7 @@ export var startUpdatePriority = (houseId, checklistId, priority) => {
         return priorityRef.then(() => {
             // After, update internal store
             dispatch(updatePriority(houseId, checklistId, priority));
+            dispatch(startUpdateScore(houseId));
         })
     }
 };

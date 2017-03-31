@@ -45,8 +45,8 @@ store.subscribe(() => {
     console.log('New State', store.getState());
 });
 
-
-/*var randomIntFromInterval = function(min, max) {
+/*
+var randomIntFromInterval = function(min, max) {
     return Math.floor(Math.random()*(max-min+1)+min);
 };*/
 // Generate Initial Houses
@@ -59,7 +59,6 @@ for (var x = 0; x < num; x++) {
         zipcode : Faker.address.zipCode(),
         description : Faker.lorem.sentences(),
         imageurl : Faker.image.image(),
-        score : randomIntFromInterval(60, 100),
     }
     store.dispatch(actions.startAddHouse(house, 1));
 }*/

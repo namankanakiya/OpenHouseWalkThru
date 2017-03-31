@@ -20,7 +20,7 @@ var FeatureDetails = React.createClass({
     },
 
     render: function() {
-        var {rating, priority, feature, comments, houseId, checklistId, picture, numPics} = this.props;
+        var {rating, priority, feature, comments, houseId, checklistId, picture, numPics, house} = this.props;
         var ratingChanged = (e) => {
             var rating = e.currentTarget.value;
             try {
