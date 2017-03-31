@@ -1,19 +1,20 @@
+import firebase, {firebaseRef} from 'app/firebase';
+var {connect} = require('react-redux'); // Redux
+var actions = require('actions');
+
 var React = require('react');
 
 var Registration = React.createClass({
-    /*function handleSignUp() {
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
-        if (email.length < 4) {
-            alert('Please enter an email address.');
-            return;
-        }
-        if (password.length < 4) {
-            alert('Please enter a password.');
-            return;
-        }
-        // Sign in with email and pass.
-        // [START createwithemail]
+
+    register : function(e) {
+        e.preventDefault();
+
+        var name = this.refs.name.value;
+        var email = this.refs.email.value;
+        var password = this.refs.password.value;
+
+        console.log(name, email, password);
+
         firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
             // Handle Errors here.
             var errorCode = error.code;
@@ -26,26 +27,30 @@ var Registration = React.createClass({
             }
             console.log(error);
             // [END_EXCLUDE]
+        }).then((user) => {
+            var uid = user.uid;
+            var {dispatch} = this.props;
+            dispatch(actions.startRegisterUser(uid, name));
+            this.props.router.push('/');
         });
-        // [END createwithemail]
-    }*/
+    },
 
     render : function() {
         var mainContainer = {
             opacity: 0.75,
             backgroundSize: "100% 100%",
             backgroundImage: "url(https://s-media-cache-ak0.pinimg.com/originals/41/2f/6c/412f6c9f290bdaff0fdb5af49e139adb.jpg)",
+            paddingTop: "4%",
             height: "690"
         };
 
         var box = {
-            marginTop: "80",
             marginLeft: "33%",
             backgroundColor: "white",
             border: "1px solid black",
             opacity: 0.9,
             width: 420,
-            position: "fixed",
+            position: "float",
             opacity: 0.9
         };
 
@@ -78,7 +83,7 @@ var Registration = React.createClass({
                             Registration
                         </div>
                     </h1>
-                    <form id="login-form" data-abide noValidate action="/#/login">
+                    <form id="registration-form" data-abide noValidate onSubmit={this.register}>
                         <div>
                             <img src="http://calibratedadvisory.com/user/img_avatar2.png" alt="Avatar" className="avatar" style={regImage}/>
                         </div>
@@ -91,23 +96,31 @@ var Registration = React.createClass({
                                 </div>
                             </div>
                             <div className="row align-center">
-                                <div className="small-6 columns ">
-                                    <label>Username
-                                        <input type="text" name="username" style={formInputs} />
-                                        <span className="form-error">Username is required</span>
+                                <div className="small-6 columns">
+                                    <label> Name
+                                        <input type="text" ref="name" style={formInputs} />
+                                        <span className="form-error">Name is required</span>
                                     </label>
                                 </div>
                             </div>
                             <div className="row align-center">
-                                <div className="small-6 columns ">
+                                <div className="small-6 columns">
+                                    <label>Email
+                                        <input type="text" ref="email" style={formInputs} />
+                                        <span className="form-error">Email is required</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div className="row align-center">
+                                <div className="small-6 columns">
                                     <label>Password
-                                        <input type="password" name="password" required style={formInputs} />
+                                        <input type="password" ref="password" required style={formInputs} />
                                         <span className="form-error">Password is required</span>
                                     </label>
                                 </div>
                             </div>
                             <div className="row align-center">
-                                <div className="small-6 columns ">
+                                <div className="small-6 columns">
                                     <button type="submit" className="button" style={regButton}>Register</button>
                                 </div>
                             </div>
@@ -119,4 +132,4 @@ var Registration = React.createClass({
     }
 });
 
-export default Registration;
+export default connect()(Registration);

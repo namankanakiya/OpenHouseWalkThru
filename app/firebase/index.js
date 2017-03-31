@@ -13,5 +13,6 @@ try {
 } catch(e) {
 
 }
+
 export var firebaseRef = firebase.database().ref();
 export default firebase;

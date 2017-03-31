@@ -1,6 +1,8 @@
 var React = require('react');
 var {Link} = require('react-router');
 var $ = require('jquery');
+var {connect} = require('react-redux'); // Redux
+var actions = require('actions');
 
 {/* This is supposed to go inside the createClass() function
 componentDidUpdate : function() {
@@ -11,6 +13,12 @@ componentDidUpdate : function() {
 },*/}
 
 var Nav = React.createClass({
+    logout : function(e) {
+        var {dispatch} = this.props;
+        dispatch(actions.logoutUser());
+        console.log("Logout button clicked");
+    },
+
     render : function() {
         {/*var menu = (true)?
             <ul className="dropdown menu" data-dropdown-menu>
@@ -38,7 +46,7 @@ var Nav = React.createClass({
                     <ul className="dropdown menu" data-dropdown-menu>
                         <li><Link to="/userprofile">Profile</Link></li>
                         <li><Link to="/settings">Settings</Link></li>
-                        <li><Link to="/login">Logout</Link></li>
+                        <li><Link to="/login"><button onClick={this.logout}>Logout</button></Link></li>
                     </ul>
                 </div>
             </nav>
@@ -46,4 +54,4 @@ var Nav = React.createClass({
     }
 });
 
-export default Nav;
+export default connect()(Nav);

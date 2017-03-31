@@ -27,6 +27,18 @@ export var mapAddressReducer = (state = null, action) => {
 	}
 }
 */
+
+export var loggedInReducer = (state = {loggedIn : false, userId : null}, action) => {
+    switch (action.type) {
+        case 'LOGIN_USER' :
+            return {loggedIn : true, userId : action.userId};
+        case 'LOGOUT_USER' :
+            return {loggedIn : false, userId : null};
+        default:
+            return state;
+    }
+}
+
 export var housesReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'ADD_HOUSE':
