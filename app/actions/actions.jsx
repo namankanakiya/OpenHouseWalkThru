@@ -3,6 +3,27 @@ import firebase, {firebaseRef} from 'app/firebase';
 // Components call these actions, which then do certain actions like access Firebase
 // and then dispatch to the reducers file to update the internal state
 
+
+export var startRegisterUser = (userId, name) => {
+    return (dispatch, getState) => {
+        var item = {name : name};
+        var userRef = firebaseRef.child("userInfo/" + userId).set(item);
+    }
+}
+
+export var loginUser = (userId) => {
+    return {
+        type : 'LOGIN_USER',
+        userId
+    }
+}
+
+export var logoutUser = () => {
+    return {
+        type: 'LOGOUT_USER'
+    }
+}
+
 export var startLoadHouse = (userId) => {
     return (dispatch, getState) => {
         // Figure out which houses belong to current user

@@ -26,12 +26,15 @@ var ContactForm = require('ContactForm').default;
 var Maps = require('Maps').default;
 var AddPOI = require('AddPOI').default;
 
+//Firebase
+import firebase, {firebaseRef} from 'app/firebase';
+
 // Material UI
 import injectTapEventPlugin from 'react-tap-event-plugin'
 
 //Redux
 var actions = require('actions');
-var store = require('configureStore').configure();
+export var store = require('configureStore').configure();
 var {Provider} = require('react-redux');
 
 try {
@@ -63,6 +66,16 @@ for (var x = 0; x < num; x++) {
     }
     store.dispatch(actions.startAddHouse(house, 1));
 }*/
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        console.log("Signed in!");
+        var uid = user.uid;
+        store.dispatch(actions.loginUser(uid));
+    } else {
+        console.log("Logged out :(");
+    }
+});
 
 //Load user ID
 var userID = 1;

@@ -1,7 +1,7 @@
 import * as redux from 'redux';
 import thunk from 'redux-thunk';
 const { resolve } = require('path');
-import {checklistReducer, housesReducer, curHouseReducer, photoUploadReducer} from 'reducers';
+import {checklistReducer, housesReducer, curHouseReducer, photoUploadReducer, loggedInReducer} from 'reducers';
 import { reducer as formReducer } from 'redux-form';
 
 export var configure = (initialState = {}) => {
@@ -10,7 +10,8 @@ export var configure = (initialState = {}) => {
 		houses : housesReducer,
 		house : curHouseReducer,
         //address : mapAddressReducer,
-        photo : photoUploadReducer
+        photo : photoUploadReducer,
+        loggedIn : loggedInReducer
 	});
 
 	var store = redux.createStore(reducer, initialState, redux.compose(
@@ -29,7 +30,8 @@ export var configure = (initialState = {}) => {
                 houses : housesReducer,
                 house : curHouseReducer,
                 // address : mapAddressReducer,
-                photo : photoUploadReducer
+                photo : photoUploadReducer,
+                loggedIn : loggedInReducer
             });
             store.replaceReducer(nextRootReducer);
         });

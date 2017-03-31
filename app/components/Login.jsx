@@ -43,17 +43,17 @@ var Login = React.createClass({
             opacity: 0.75,
             backgroundSize: "100% 100%",
             backgroundImage: "url(https://s-media-cache-ak0.pinimg.com/originals/41/2f/6c/412f6c9f290bdaff0fdb5af49e139adb.jpg)",
+            paddingTop: "4%",
             height: "690"
         };
     
         var box = {
-            marginTop: "80",
             marginLeft: "33%",
             backgroundColor: "white",
             border: "1px solid black",
             opacity: 0.9,
             width: 420,
-            position: "fixed",
+            position: "float",
             opacity: 0.9
         };
 
