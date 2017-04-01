@@ -25,9 +25,46 @@ var Nav = React.createClass({
     renderLogoutLogin : function() {
         var {loggedIn} = this.props;
         if (loggedIn.loggedIn) {
-            return (<li><Link to="/login"><button onClick={this.logout}>Logout</button></Link></li>)
+            return (
+                <div className="top-bar-right">
+                    {/*menu*/}
+                    <ul className="dropdown menu" data-dropdown-menu>
+                        <li><Link to="/userprofile">Profile</Link></li>
+                        <li><Link to="/settings">Settings</Link></li>
+                        <li><Link to="/login"><button onClick={this.logout}>Logout</button></Link></li>
+                    </ul>
+                </div>
+                )
         } else {
-            return (<li><Link to="/login">Login</Link></li>)
+            return (
+                <div className="top-bar-right">
+                    {/*menu*/}
+                    <ul className="dropdown menu" data-dropdown-menu>
+                        <li><Link to="/login">Login</Link></li>
+                    </ul>
+                </div>
+                )
+        }
+    },
+    renderLogoutLoginLeft : function() {
+        var {loggedIn} = this.props;
+        if (loggedIn.loggedIn) {
+            return (
+                <div className="top-bar-left">
+                    <ul className="dropdown menu" data-dropdown-menu>
+                        <li className="menu-text">Open House Walk Thru</li>
+                        <li><Link to="/">Dashboard</Link></li>
+                    </ul>
+                </div>
+            );
+        } else {
+            return (
+                <div className="top-bar-left">
+                    <ul className="dropdown menu" data-dropdown-menu>
+                        <li className="menu-text">Open House Walk Thru</li>
+                    </ul>
+                </div>
+            );
         }
     },
     render : function() {
@@ -46,20 +83,8 @@ var Nav = React.createClass({
         return (
             <nav className="top-bar">
                 <div className="logo"><img src="http://i.imgur.com/2jW8gL5.png" width="64" height="40"/></div>
-                <div className="top-bar-left">
-                    <ul className="dropdown menu" data-dropdown-menu>
-                        <li className="menu-text">Open House Walk Thru</li>
-                        <li><Link to="/">Dashboard</Link></li>
-                    </ul>
-                </div>
-                <div className="top-bar-right">
-                    {/*menu*/}
-                    <ul className="dropdown menu" data-dropdown-menu>
-                        <li><Link to="/userprofile">Profile</Link></li>
-                        <li><Link to="/settings">Settings</Link></li>
-                        {this.renderLogoutLogin()}
-                    </ul>
-                </div>
+                {this.renderLogoutLoginLeft()}
+                {this.renderLogoutLogin()}
             </nav>
         );
     }
