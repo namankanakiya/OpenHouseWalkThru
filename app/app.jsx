@@ -11,6 +11,7 @@ var UserProfile = require('UserProfile').default;
 var Dashboard = require('Dashboard').default;
 var HouseProfile = require('HouseProfile').default;
 var AddHouse = require('AddHouse').default;
+var POI = require('POI').default;
 var Checklist = require('Checklist').default;
 var Login = require('Login').default;
 var Registration = require('Registration').default;
@@ -131,6 +132,7 @@ const routes = (
         <Route path='/userprofile' component={UserProfile}></Route>
         <Route path='/houseprofile/:id' component={HouseProfile} onEnter={checkHouse(store)}></Route>
         <Route path='/addhouse' component={AddHouse}></Route>
+        <Route path='/poi' component={POI}></Route>
         <Route path='/checklist/:id' component={Checklist} onEnter={checkHouse(store)}></Route>
         <Route path='/login' component={Login}></Route>
         <Route path='/register' component={Registration}></Route>

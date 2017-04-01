@@ -25,7 +25,7 @@ var UserProfile = React.createClass({
                     <p>User Profile {hello}</p>
                 </div>
                 <div>
-                    <Link to="/addpoi"><RaisedButton style={{marginBottom : "10px"}} primary label="Add POI" /></Link>
+                    <Link to="/poi"><RaisedButton style={{marginBottom : "10px"}} primary label="Points of Interest" /></Link>
                 </div>
             </div>
         )

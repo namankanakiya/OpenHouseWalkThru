@@ -50,7 +50,6 @@ var Checklist = React.createClass({
         var house = ohwtAPI.findHouseById(houses, id);
         const HOUSE_URL = "/houseprofile/" + id;
         var checklist = house.checklist;
-
         
         return (
             <Paper className="checklist-main" zDepth={3}>
