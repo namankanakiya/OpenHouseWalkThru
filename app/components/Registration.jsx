@@ -1,5 +1,6 @@
 import firebase, {firebaseRef} from 'app/firebase';
 var {connect} = require('react-redux'); // Redux
+var {Link} = require('react-router');
 var actions = require('actions');
 
 var React = require('react');
@@ -29,6 +30,7 @@ var Registration = React.createClass({
             // [END_EXCLUDE]
         }).then((user) => {
             var uid = user.uid;
+            user.updateProfile({name : name});
             var {dispatch} = this.props;
             dispatch(actions.startRegisterUser(uid, name));
             this.props.router.push('/');
@@ -120,9 +122,15 @@ var Registration = React.createClass({
                                 </div>
                             </div>
                             <div className="row align-center">
-                                <div className="small-6 columns">
-                                    <button type="submit" className="button" style={regButton}>Register</button>
+                                <div className="small-10 columns">
+                                    <button type="submit" className="button">Register</button>
+                                    <Link to="/login"><button className="button" style={{marginLeft:"1rem"}}>Back</button></Link>
                                 </div>
+                                <div className="small-2 columns ">
+                                </div>
+                            </div>
+                            <div className="row">
+                                
                             </div>
                         </div>
                     </form>

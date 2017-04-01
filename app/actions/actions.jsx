@@ -25,6 +25,12 @@ export var logoutUser = () => {
     }
 }
 
+export var logoutHouses = () => {
+    return {
+        type: 'LOGOUT_HOUSES'
+    }
+}
+
 export var startLoadHouse = (userId) => {
     return (dispatch, getState) => {
         // Figure out which houses belong to current user

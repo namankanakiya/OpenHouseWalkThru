@@ -1,23 +1,19 @@
 var React = require('react');
 var {connect} = require('react-redux');
+var actions = require('actions');
+var {Link} = require('react-router');
+import firebase, {firebaseRef} from 'app/firebase';
 
 var Login = React.createClass({
-    /*function toggleSignIn() {
+    login : function(e) {
+        e.preventDefault();
         if (firebase.auth().currentUser) {
             // [START signout]
             firebase.auth().signOut();
             // [END signout]
         } else {
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-            if (email.length < 4) {
-                alert('Please enter an email address.');
-                return;
-            }
-            if (password.length < 4) {
-                alert('Please enter a password.');
-                return;
-            }
+            var email = this.refs.username.value;
+            var password = this.refs.password.value;
             // Sign in with email and pass.
             // [START authwithemail]
             firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
@@ -33,11 +29,15 @@ var Login = React.createClass({
                 console.log(error);
                 document.getElementById('quickstart-sign-in').disabled = false;
                 // [END_EXCLUDE]
+            }).then((user) => {
+                var uid = user.uid;
+                var {dispatch} = this.props;
+                dispatch(actions.loginUser(uid));
+                this.props.router.push('/')
             });
             // [END authwithemail]
         }
-        document.getElementById('quickstart-sign-in').disabled = true;
-    }*/
+    },
     componentWillMount : function() {
         var {loggedIn} = this.props;
         if (loggedIn.loggedIn) {
@@ -47,11 +47,65 @@ var Login = React.createClass({
 
     componentWillUpdate : function(nextProps, nextState) {
         var {loggedIn} = this.props;
+        console.log("loggedin", loggedIn);
         if (loggedIn.loggedIn) {
             this.props.router.push('/');
         }
     },
     render : function() {
+        var {loggedIn} = this.props;
+        if (loggedIn.loggedIn) {
+            var container = (<div>
+                <p>Welcome back, you have been logged in!</p>
+                                   <Link to="/">Please click here to continue</Link>
+            </div> );
+        } else {
+            var container = (<div>
+                <h1 className="row align-center">
+                            <div className="small-6 columns" style={logHeader}>
+                                Login
+                            </div>
+                        </h1>
+                        <form id="login-form" data-abide noValidate onSubmit={this.login}>
+                            <div>
+                                <img src="http://calibratedadvisory.com/user/img_avatar2.png" alt="Avatar" className="avatar" style={logImage}/>
+                            </div>
+                            <div style = {formFields}>
+                                <div className="row align-center">
+                                    <div className="small-6 columns">
+                                        <div data-abide-error role="alert" className="alert callout" style={{display: 'none'}}>
+                                            <p><i className="fi-alert"></i> There are some errors in your form.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="row align-center">
+                                    <div className="small-6 columns ">
+                                        <label>Username
+                                            <input type="text" ref="username" style={formInputs} />
+                                            <span className="form-error">Username is required</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="row align-center">
+                                    <div className="small-6 columns ">
+                                        <label>Password
+                                            <input type="password" ref="password" required style={formInputs}/>
+                                            <span className="form-error">Password is required</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div className="row align-center">
+                                    <div className="small-6 columns ">
+                                        <button type="submit" className="button">Login</button>
+                                        <Link to="/register"><button className="button" style={{marginLeft : "1rem"}}>Register</button></Link>
+                                    </div>
+                                    <div className="small-6 columns ">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+            </div>);
+        }
         var mainContainer = {
             opacity: 0.75,
             backgroundSize: "100% 100%",
@@ -94,46 +148,7 @@ var Login = React.createClass({
         return (
             <div style={mainContainer}>
                 <div style={box}>
-                    <h1 className="row align-center">
-                        <div className="small-6 columns" style={logHeader}>
-                            Login
-                        </div>
-                    </h1>
-                    <form id="login-form" data-abide noValidate action="/#/">
-                        <div>
-                            <img src="http://calibratedadvisory.com/user/img_avatar2.png" alt="Avatar" className="avatar" style={logImage}/>
-                        </div>
-                        <div style = {formFields}>
-                            <div className="row align-center">
-                                <div className="small-6 columns">
-                                    <div data-abide-error role="alert" className="alert callout" style={{display: 'none'}}>
-                                        <p><i className="fi-alert"></i> There are some errors in your form.</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="row align-center">
-                                <div className="small-6 columns ">
-                                    <label>Username
-                                        <input type="text" name="username" style={formInputs} />
-                                        <span className="form-error">Username is required</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div className="row align-center">
-                                <div className="small-6 columns ">
-                                    <label>Password
-                                        <input type="password" name="password" required style={formInputs}/>
-                                        <span className="form-error">Password is required</span>
-                                    </label>
-                                </div>
-                            </div>
-                            <div className="row align-center">
-                                <div className="small-6 columns ">
-                                    <button type="submit" className="button" style={logButton}>Login</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
+                    {container}
                 </div>
             </div>
         );

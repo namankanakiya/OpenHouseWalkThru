@@ -134,6 +134,9 @@ export var housesReducer = (state = [], action) => {
 				}
 				return house;
 			});
+
+        case 'LOGOUT_HOUSES':
+            return [];
 			
 		default:
 			return state;

@@ -64,6 +64,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         store.dispatch(actions.loginUser(uid));
         store.dispatch(actions.startLoadHouse(uid));
     } else {
+        store.dispatch(actions.logoutHouses());
         store.dispatch(actions.logoutUser());
         console.log("Logged out :(");
     }
@@ -132,7 +133,7 @@ const routes = (
         <Route path='/addhouse' component={AddHouse}></Route>
         <Route path='/checklist/:id' component={Checklist} onEnter={checkHouse(store)}></Route>
         <Route path='/login' component={Login}></Route>
-        <Route path='/registration' component={Registration}></Route>
+        <Route path='/register' component={Registration}></Route>
         <Route path='/walkthru/:id' component={Walkthru} onEnter={checkHouse(store)}></Route>
         <Route path="*" component={NotFound}/>
         <IndexRoute component={Dashboard}/>

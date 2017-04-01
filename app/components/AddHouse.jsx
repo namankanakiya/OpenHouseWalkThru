@@ -12,7 +12,7 @@ var AddHouse = React.createClass({
     // On form submission function to dispatch add house
     addHouse : function(e) {
         // values from form
-        var {address, city, state, zipcode, description} = e;
+        var {address, city, state, zipcode, description, imageurl} = e;
         var {dispatch, photo} = this.props;
         // create new house object
         var house = {
@@ -21,7 +21,7 @@ var AddHouse = React.createClass({
             state : state,
             zipcode : zipcode,
             description : description || null,
-            imageurl : photo || null,
+            imageurl : imageurl || null,
             score : -1,
         }
         // assign house to current user
@@ -47,7 +47,7 @@ var AddHouse = React.createClass({
         return (
             <div>
                 <SyncValidationForm onSubmit={this.addHouse} />
-                <p><ImageUpload /></p>
+                {/*<p><ImageUpload /></p>*/}
             </div>
         )
     }
