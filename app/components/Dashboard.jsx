@@ -10,6 +10,18 @@ import Divider from 'material-ui/Divider';
 import {GridList, GridTile} from 'material-ui/GridList';
 
 var Dashboard = React.createClass({
+    componentWillMount : function() {
+        var {loggedIn} = this.props;
+        if (!loggedIn.loggedIn) {
+            this.props.router.push('/login');
+        }
+    },
+    componentWillUpdate : function(nextProps, nextState) {
+        var {loggedIn} = this.props;
+        if (!loggedIn.loggedIn) {
+            this.props.router.push('/login');
+        }
+    },
     doSomething : function(isChecked) {
         this.setState({sort : !this.state.sort});
     },
@@ -61,7 +73,8 @@ var Dashboard = React.createClass({
 export default connect(
     (state) => {
         return {
-            houses : state.houses
+            houses : state.houses,
+            loggedIn : state.loggedIn
         }
     }
 )(Dashboard);

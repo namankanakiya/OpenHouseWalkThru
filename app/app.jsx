@@ -9,22 +9,13 @@ var ohwtAPI = require('ohwtAPI');
 var Main = require('Main').default;
 var UserProfile = require('UserProfile').default;
 var Dashboard = require('Dashboard').default;
-var HouseSummary = require('HouseSummary').default;
-var HouseSummaryTileItem = require('HouseSummary').default;
-var Score = require('Score').default;
 var HouseProfile = require('HouseProfile').default;
-var AverageDistance = require('AverageDistance').default;
-var Settings = require('Settings').default;
-var Logout = require('Logout').default;
 var AddHouse = require('AddHouse').default;
 var Checklist = require('Checklist').default;
 var Login = require('Login').default;
 var Registration = require('Registration').default;
 var Walkthru = require('Walkthru').default;
 var NotFound = require('NotFound').default;
-var ContactForm = require('ContactForm').default;
-var Maps = require('Maps').default;
-var AddPOI = require('AddPOI').default;
 
 //Firebase
 import firebase, {firebaseRef} from 'app/firebase';
@@ -71,16 +62,13 @@ firebase.auth().onAuthStateChanged(function(user) {
         console.log("Signed in!");
         var uid = user.uid;
         store.dispatch(actions.loginUser(uid));
+        store.dispatch(actions.startLoadHouse(uid));
     } else {
+        store.dispatch(actions.logoutUser());
         console.log("Logged out :(");
     }
 });
 
-//Load user ID
-var userID = 1;
-
-//Load Houses via userID
-store.dispatch(actions.startLoadHouse(userID));
 
 // Load Foundation
 $(document).foundation();
@@ -140,20 +128,12 @@ const checkHouse = (store) => {
 const routes = (
     <Route path="/" component={Main}>
         <Route path='/userprofile' component={UserProfile}></Route>
-        <Route path='/housesummary' component={HouseSummary}></Route>
-        <Route path='/score' component={Score}></Route>
         <Route path='/houseprofile/:id' component={HouseProfile} onEnter={checkHouse(store)}></Route>
-        <Route path='/averagedistance' component={AverageDistance}></Route>
-        <Route path='/settings' component={Settings}></Route>
-        <Route path='/logout' component={Logout}></Route>
         <Route path='/addhouse' component={AddHouse}></Route>
         <Route path='/checklist/:id' component={Checklist} onEnter={checkHouse(store)}></Route>
         <Route path='/login' component={Login}></Route>
         <Route path='/registration' component={Registration}></Route>
         <Route path='/walkthru/:id' component={Walkthru} onEnter={checkHouse(store)}></Route>
-        <Route path='/contactform' component={ContactForm}></Route>
-        <Route path='/maps' component={Maps}></Route>
-        <Route path='/addpoi' component={AddPOI}></Route>
         <Route path="*" component={NotFound}/>
         <IndexRoute component={Dashboard}/>
     </Route>

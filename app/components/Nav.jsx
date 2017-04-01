@@ -22,7 +22,14 @@ var Nav = React.createClass({
         })
         console.log("Logout button clicked");
     },
-
+    renderLogoutLogin : function() {
+        var {loggedIn} = this.props;
+        if (loggedIn.loggedIn) {
+            return (<li><Link to="/login"><button onClick={this.logout}>Logout</button></Link></li>)
+        } else {
+            return (<li><Link to="/login">Login</Link></li>)
+        }
+    },
     render : function() {
         {/*var menu = (true)?
             <ul className="dropdown menu" data-dropdown-menu>
@@ -50,7 +57,7 @@ var Nav = React.createClass({
                     <ul className="dropdown menu" data-dropdown-menu>
                         <li><Link to="/userprofile">Profile</Link></li>
                         <li><Link to="/settings">Settings</Link></li>
-                        <li><Link to="/login"><button onClick={this.logout}>Logout</button></Link></li>
+                        {this.renderLogoutLogin()}
                     </ul>
                 </div>
             </nav>
@@ -58,4 +65,8 @@ var Nav = React.createClass({
     }
 });
 
-export default connect()(Nav);
+export default connect((state) => {
+    return {
+        loggedIn : state.loggedIn
+    }
+})(Nav);

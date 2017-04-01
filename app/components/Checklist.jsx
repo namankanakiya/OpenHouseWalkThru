@@ -31,7 +31,18 @@ var Checklist = React.createClass({
             this.refs.newFeature.focus();
         }
     },
-
+    componentWillMount : function() {
+        var {loggedIn} = this.props;
+        if (!loggedIn.loggedIn) {
+            this.props.router.push('/login');
+        }
+    },
+    componentWillUpdate : function(nextProps, nextState) {
+        var {loggedIn} = this.props;
+        if (!loggedIn.loggedIn) {
+            this.props.router.push('/login');
+        }
+    },
     render : function() {
         var key = 0;
         var {houses, dispatch} = this.props;
@@ -98,7 +109,8 @@ var Checklist = React.createClass({
 export default connect(
     (state) => {
         return {
-            houses : state.houses
+            houses : state.houses,
+            loggedIn : state.loggedIn
         }
     }
 )(Checklist);

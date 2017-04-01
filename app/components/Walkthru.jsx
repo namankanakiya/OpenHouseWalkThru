@@ -7,6 +7,18 @@ import { StickyContainer, Sticky } from 'react-sticky';
 var Modal = require('react-modal');
 
 var Walkthru = React.createClass({
+    componentWillMount : function() {
+        var {loggedIn} = this.props;
+        if (!loggedIn.loggedIn) {
+            this.props.router.push('/login');
+        }
+    },
+    componentWillUpdate : function(nextProps, nextState) {
+        var {loggedIn} = this.props;
+        if (!loggedIn.loggedIn) {
+            this.props.router.push('/login');
+        }
+    },
     componentDidMount : function() {
         const height = document.getElementById('needHeight').clientHeight;
         var modalOpen = this.state.modalOpen;
@@ -123,7 +135,8 @@ var Walkthru = React.createClass({
 export default connect(
     (state) => {
         return {
-            houses : state.houses
+            houses : state.houses,
+            loggedIn : state.loggedIn
         }
     }
 )(Walkthru);

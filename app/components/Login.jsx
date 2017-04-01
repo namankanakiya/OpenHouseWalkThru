@@ -1,4 +1,5 @@
 var React = require('react');
+var {connect} = require('react-redux');
 
 var Login = React.createClass({
     /*function toggleSignIn() {
@@ -37,7 +38,19 @@ var Login = React.createClass({
         }
         document.getElementById('quickstart-sign-in').disabled = true;
     }*/
+    componentWillMount : function() {
+        var {loggedIn} = this.props;
+        if (loggedIn.loggedIn) {
+            this.props.router.push('/');
+        }
+    },
 
+    componentWillUpdate : function(nextProps, nextState) {
+        var {loggedIn} = this.props;
+        if (loggedIn.loggedIn) {
+            this.props.router.push('/');
+        }
+    },
     render : function() {
         var mainContainer = {
             opacity: 0.75,
@@ -127,4 +140,8 @@ var Login = React.createClass({
     }
 });
 
-export default Login;
+export default connect((state) => {
+    return {
+        loggedIn : state.loggedIn
+    }
+})(Login);

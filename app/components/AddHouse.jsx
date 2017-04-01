@@ -25,12 +25,24 @@ var AddHouse = React.createClass({
             score : -1,
         }
         // assign house to current user
-        var userId = 1;
+        var {loggedIn} = this.props;
+        var userId = loggedIn.userId;
         dispatch(actions.startAddHouse(house, userId));
         // redirect to dashboard
         this.props.router.push('/');
     },
-
+    componentWillMount : function() {
+        var {loggedIn} = this.props;
+        if (!loggedIn.loggedIn) {
+            this.props.router.push('/login');
+        }
+    },
+    componentWillUpdate : function(nextProps, nextState) {
+        var {loggedIn} = this.props;
+        if (!loggedIn.loggedIn) {
+            this.props.router.push('/login');
+        }
+    },
     render : function() {
         return (
             <div>
@@ -43,6 +55,7 @@ var AddHouse = React.createClass({
 
 export default connect((state) => {
     return {
-        photo : state.photo
+        photo : state.photo,
+        loggedIn : state.loggedIn
     }
 })(AddHouse);
