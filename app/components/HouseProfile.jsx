@@ -65,6 +65,7 @@ var HouseProfile = React.createClass({
         addressDummy.streetAddress= house.address;
         addressDummy.city = house.city;
         addressDummy.state = house.state;
+        var picture = house.imageurl;
         const CHECKLIST_URL = "/checklist/" + id;
         const WALKTHRU_URL = "/walkthru/" + id;
         return (
@@ -72,7 +73,7 @@ var HouseProfile = React.createClass({
                 <div className="card callout secondary" style={box}>
                     <HouseInfo
                      address={addressDummy}
-                     description="One of the finest houses in the city" />
+                     description="One of the finest houses in the city" picture={picture} />
                     <div style={leftCard}>
                         <Maps address={house.address} city={house.city} state={house.state} />
                     </div>

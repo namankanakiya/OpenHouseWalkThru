@@ -27,7 +27,7 @@ var HouseInfo = React.createClass({
             <div className="house-info">
                 <Carousel showArrows={true} showThumbs={false} dynamicHeight>
                     <div>
-                        <img src="http://lorempixel.com/900/500/sports/1/" />
+                        <img src={picture} />
                     </div>
                     <div>
                         <img src="http://lorempixel.com/900/500/sports/2/" />
