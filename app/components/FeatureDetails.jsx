@@ -5,33 +5,56 @@ var ImageUpload = require('ImageUpload').default;
 
 import {Carousel} from 'react-responsive-carousel';
 
+/*
+    This class handles adding photos, comments, priority and ratings to
+    features during the WalkThru.
+    Please note that checkListId here represents the feature "number". Eg: Light
+*/
 var FeatureDetails = React.createClass({
+
+    // handles adding photos
     pictureAdded : function(picture) {
+        // store houseId, checklistId, numPics as props
         var {dispatch, houseId, checklistId, numPics} = this.props;
         numPics = parseInt(numPics) + 1;
+
+        // call startUpdatePhoto from actions to upload image URL to Firebase
         dispatch(actions.startUpdatePhoto(houseId, checklistId, picture, numPics));
     },
 
+    // handles writing a comment for a feature
     updateComments : function(e) {
         var comments = e.currentTarget.value;
         var {dispatch, houseId, checklistId} = this.props;
         var box = this.refs.commentBox;
+
+        // call startUpdateComments from actions to upload comment for the specific
+        // feature to Firebase
         dispatch(actions.startUpdateComments(houseId, checklistId, comments));
     },
 
     render: function() {
+        // store rating, priority, feature, comments, houseId, checklistId, picture url, numPics
+        // house as props for easy manipulation
         var {rating, priority, feature, comments, houseId, checklistId, picture, numPics, house} = this.props;
+        
+        // method to change rating. Rating is obtained from the radio inputs in the class start-cb-group
         var ratingChanged = (e) => {
             var rating = e.currentTarget.value;
+            // check to see if rating is valid
             try {
                 rating = parseInt(rating);
             } catch (e) {
                 console.log(e);
             }
             var {dispatch, houseId, checklistId} = this.props;
+
+            // call startUpdateRating from actions to update rating of the feature in Firebase
             dispatch(actions.startUpdateRating(houseId, checklistId, rating));
         };
 
+        // this block of code handles multiple images uploaded for a single feature. They're split by 
+        // the delimiter ";". If no images uploaded, a default image is shown to the user.
         if (numPics > 0 && picture) {
             var splitArray = picture.split(';');
             var index = splitArray.indexOf("");
