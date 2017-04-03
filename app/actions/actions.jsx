@@ -6,6 +6,7 @@ var ohwtAPI = require('ohwtAPI');
 
 
 export var startRegisterUser = (userId, name) => {
+    // After successful firebase OAuth, we store the user info in the DB
     return (dispatch, getState) => {
         var item = {name : name};
         var userRef = firebaseRef.child("userInfo/" + userId).set(item);
@@ -13,6 +14,7 @@ export var startRegisterUser = (userId, name) => {
 }
 
 export var loginUser = (userId) => {
+    // state login
     return {
         type : 'LOGIN_USER',
         userId
@@ -20,12 +22,14 @@ export var loginUser = (userId) => {
 }
 
 export var logoutUser = () => {
+    // state logout
     return {
         type: 'LOGOUT_USER'
     }
 }
 
 export var logoutHouses = () => {
+    // state clear houses on logout
     return {
         type: 'LOGOUT_HOUSES'
     }
@@ -63,6 +67,7 @@ export var startLoadHouse = (userId) => {
 };
 
 export var addChecklistItem = (id, item) => {
+    // add item to state
 	return {
 		type : 'ADD_CHECKLIST_ITEM',
         id,
@@ -94,6 +99,7 @@ export var startAddChecklist = (houseId, feature, priority=1) => {
 };
 
 export var deleteFeature = (id, featureId) => {
+    // delete feature from checklist from state
 	return {
 		type : 'DELETE_CHECKLIST_ITEM',
 		id,
@@ -140,6 +146,7 @@ export var startAddHouse = (house, userId) => {
 };
 
 export var addHouse = (house) => {
+    // add a house item to state
 	return {
 		type : 'ADD_HOUSE',
 		house
@@ -172,6 +179,7 @@ export var startDeleteHouse = (userId, houseId) => {
 }
 
 export var deleteHouse = (id) => {
+    // delete an id'd house from state
 	return {
 		type : 'DELETE_HOUSE',
 		id
@@ -179,6 +187,7 @@ export var deleteHouse = (id) => {
 };
 
 export var addCurHouse = (house) => {
+    // switch out the house that the user is viewing
 	return {
 		type : 'ADD_CUR_HOUSE',
 		house
@@ -192,7 +201,7 @@ export var startUpdateRating = (houseId, checklistId, rating) => {
         mapObject["rating"] = rating;
         var ratingRef = firebaseRef.child("checklistItems/" + checklistId).update(mapObject);
         return ratingRef.then(() => {
-            // After, update internal store
+            // After, update internal store, and updating scoring
             dispatch(updateRating(houseId, checklistId, rating));
             dispatch(startUpdateScore(houseId));
         })
@@ -201,13 +210,16 @@ export var startUpdateRating = (houseId, checklistId, rating) => {
 
 export var startUpdateScore = (houseId) => {
     return (dispatch, getState) => {
+        // find the house that we want to update
         var houses = getState().houses;
         var house = ohwtAPI.findHouseById(houses, houseId);
+        // calculate the updated score
         var newScore = ohwtAPI.calculateHouseScore(house);
-        console.log("New Score: ", newScore);
         var mapObject = {};
         mapObject["score"] = newScore;
+        // modify database to reflect new score
         var scoreRef = firebaseRef.child("houses/" + houseId).update(mapObject);
+        // update local state with new score
         return scoreRef.then(() => {
             dispatch(updateScore(houseId, newScore));
         });
@@ -215,6 +227,7 @@ export var startUpdateScore = (houseId) => {
 };
 
 export var updateScore = (houseId, score) => {
+    // update state with new score
     return {
         type : 'UPDATE_SCORE',
         houseId,
@@ -223,6 +236,7 @@ export var updateScore = (houseId, score) => {
 };
 
 export var updateRating = (houseId, checklistId, rating) => {
+    // update a checklist item with new rating
 	return {
 		type : 'UPDATE_RATING',
 		houseId,
@@ -238,7 +252,7 @@ export var startUpdatePriority = (houseId, checklistId, priority) => {
         mapObject["priority"] = priority;
         var priorityRef = firebaseRef.child("checklistItems/" + checklistId).update(mapObject);
         return priorityRef.then(() => {
-            // After, update internal store
+            // After, update internal store, and update the rating
             dispatch(updatePriority(houseId, checklistId, priority));
             dispatch(startUpdateScore(houseId));
         })
@@ -246,6 +260,7 @@ export var startUpdatePriority = (houseId, checklistId, priority) => {
 };
 
 export var updatePriority = (houseId, checklistId, priority) => {
+    // update local state with new priority
     return {
         type : 'UPDATE_PRIORITY',
         houseId,
@@ -268,6 +283,7 @@ export var startUpdateComments = (houseId, checklistId, comments) => {
 };
 
 export var updateComments = (houseId, checklistId, comments) => {
+    // update local state with new comments
 	return {
 		type : 'UPDATE_COMMENTS',
 		houseId,
@@ -277,6 +293,7 @@ export var updateComments = (houseId, checklistId, comments) => {
 };
 
 export var updatePhoto = (houseId, checklistId, pictureUrl, numPics) => {
+    // photo update for each individual feature
     return {
         type: 'ADD_FEATURE_PHOTO',
         houseId,
@@ -306,6 +323,7 @@ export var startUpdatePhoto = (houseId, checklistId, pictureUrl, numPics) => {
 };
 
 export var currentImageURL = (pictureUrlId) => {
+    // get URL to state from the cloudinary upload response
     return {
         type: 'CURRENT_IMAGE_URL',
         pictureUrlId

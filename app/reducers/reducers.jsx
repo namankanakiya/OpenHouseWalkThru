@@ -1,3 +1,9 @@
+// Each of these reducers is responsible for keeping the local
+// state of that object in order.
+
+
+// Takes care of the current house that the user is looking at
+// (an object)
 export var curHouseReducer = (state = {}, action) => {
 	switch (action.type) {
 		case 'ADD_CUR_HOUSE':
@@ -7,6 +13,7 @@ export var curHouseReducer = (state = {}, action) => {
 	}
 }
 
+// Takes care of storing the uploaded image URL
 export var photoUploadReducer = (state = null, action) => {
 	switch (action.type) {
 		case 'CURRENT_IMAGE_URL':
@@ -16,18 +23,8 @@ export var photoUploadReducer = (state = null, action) => {
 			return state;
 	}
 }
-/*
-export var mapAddressReducer = (state = null, action) => {
-	switch (action.type) {
-		case 'SHOW_ADDRESS':
-			return action.addressId;
 
-		default:
-			return state;
-	}
-}
-*/
-
+// Takes care of tracking whether the user is logged in, and who it is
 export var loggedInReducer = (state = {loggedIn : false, userId : null}, action) => {
     switch (action.type) {
         case 'LOGIN_USER' :
@@ -39,6 +36,9 @@ export var loggedInReducer = (state = {loggedIn : false, userId : null}, action)
     }
 }
 
+// Takes care of managing all of the houses (list) that the user owns
+// the spread operater (...) takes everything before it. Easy way
+// to append information. Names are self-explanatory.
 export var housesReducer = (state = [], action) => {
 	switch (action.type) {
 		case 'ADD_HOUSE':
@@ -55,8 +55,6 @@ export var housesReducer = (state = [], action) => {
 				}
 				return house;
 			});
-
-		// NEW STUFF
 		case 'ADD_HOUSE_PHOTO':
 			return state.map((house) => {
 				if (house.id === action.id) {
@@ -120,7 +118,6 @@ export var housesReducer = (state = [], action) => {
 				return house;
 			});
 
-		// NEW STUFF
 		case 'ADD_FEATURE_PHOTO':
 			return state.map((house) => {
 				if (house.id === action.houseId) {

@@ -1,26 +1,32 @@
+// React / Redux / Router imports
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 var {Link} = require('react-router');
 
+// This constant is where you specify the requirements for each form field
 const validate = values => {
     const errors = {}
 
+    // Need an address value
     if (!values.address) {
         errors.address = 'Required'
     }
 
+    // Need a city value, letters only
     if (!values.city) {
         errors.city = 'Required'
     } else if (!/^[a-zA-Z ]*$/i.test(values.city)) {
         errors.city = 'Invalid city, no numbers, or special characters allowed'
     }
 
+    // Need a state value, letters only
     if (!values.state) {
         errors.state = 'Required'
     } else if (!/^[a-zA-Z ]*$/i.test(values.state)) {
         errors.state = 'Invalid state, no numbers, or special characters allowed'
     }
 
+    // Need a zipcode value, official zipcode length only
     if (!values.zipcode) {
         errors.zipcode = 'Required'
     } else if (!/^\d{5}(?:[-]\d{4})?$/i.test(values.zipcode)) {
@@ -32,26 +38,28 @@ const validate = values => {
 
 const warn = values => {
     const warnings = {}
-    /*  if (values.age < 19) {
-    warnings.age = 'Hmm, you seem a bit young...'
-    }*/
     return warnings
 }
 
 const renderInputError = (input, label, type, touched, error, warning, labelHelp) => {
+    // if there's an error, red boxshadow
     var errorShadow = {
         "boxShadow" : "0 0 10px #CC0000"
     }
 
+    // if they succesfully filled it out, green box shadow
     var successShadow = {
         "boxShadow" : "0 0 8px #5cb85c"
     }
 
     if (touched && (error || warning)) {
+        // if they have attempted to fill out the field, and there's an error
         var toReturn = (<input style={errorShadow} {...input} placeholder={label} type={type} aria-describedby={labelHelp}/>)
     } else if (touched) {
+        // if they have attempted to fill out field, with no errors
         var toReturn = (<input style={successShadow} {...input} placeholder={label} type={type} aria-describedby={labelHelp}/>)
     } else {
+        // if they haven't done anything (no box shadow needed)
         var toReturn = (<input {...input} placeholder={label} type={type} aria-describedby={labelHelp}/>)
     }
 
@@ -59,6 +67,7 @@ const renderInputError = (input, label, type, touched, error, warning, labelHelp
 }
 
 const renderField = ({ input, label, type, labelHelp, meta: { touched, error, warning } }) => (
+    // Container for the above, with error text appropriately styled
     <div>
         <label>{label}</label>
         <div>

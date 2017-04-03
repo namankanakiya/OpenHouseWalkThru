@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 
 // Initialize Firebase
+// Eventually move this to deployment website
 try {
     var config = {
         apiKey: "AIzaSyD8vwcY3h8W6g-KmLGTQKC0RCflGzQt-x4",
