@@ -22,6 +22,7 @@ var Login = React.createClass({
                 var errorMessage = error.message;
                 // [START_EXCLUDE]
                 if (errorCode === 'auth/wrong-password') {
+                // show alert message     
                 alert('Wrong password.');
                 } else {
                 alert(errorMessage);
@@ -38,25 +39,28 @@ var Login = React.createClass({
             // [END authwithemail]
         }
     },
+    //After login, redirect to the dashboard
     componentWillMount : function() {
         var {loggedIn} = this.props;
-        if (loggedIn.loggedIn) {
+        if (loggedIn.loggedIn) {            
             this.props.router.push('/');
         }
     },
-
+    //when user logs in it will display thier information throughout the website
     componentWillUpdate : function(nextProps, nextState) {
         var {loggedIn} = this.props;
         console.log("loggedin", loggedIn);
         if (loggedIn.loggedIn) {
+            //redirect to the dashboard
             this.props.router.push('/');
         }
     },
     render : function() {
         var {loggedIn} = this.props;
         if (loggedIn.loggedIn) {
+            //display welcome message
             var container = (<div>
-                <p>Welcome back, you have been logged in!</p>
+                <p>Welcome back, you have been logged in!</p>  
                                    <Link to="/">Please click here to continue</Link>
             </div> );
         } else {
@@ -106,6 +110,7 @@ var Login = React.createClass({
                         </form>
             </div>);
         }
+        //login page styling
         var mainContainer = {
             opacity: 0.75,
             backgroundSize: "100% 100%",
