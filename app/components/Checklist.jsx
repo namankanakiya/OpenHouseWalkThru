@@ -14,7 +14,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 var Checklist = React.createClass({
-    // Add a feature to a checklist for a house
+    //Function called to add a new feature to a specific house
     addFeature : function(e) {
         // prevent refresh
         e.preventDefault(); 
@@ -31,18 +31,21 @@ var Checklist = React.createClass({
             this.refs.newFeature.focus();
         }
     },
+    //authentication
     componentWillMount : function() {
         var {loggedIn} = this.props;
         if (!loggedIn.loggedIn) {
             this.props.router.push('/login');
         }
     },
+    //more authentication to check for login
     componentWillUpdate : function(nextProps, nextState) {
         var {loggedIn} = this.props;
         if (!loggedIn.loggedIn) {
             this.props.router.push('/login');
         }
     },
+    //render function
     render : function() {
         var key = 0;
         var {houses, dispatch} = this.props;
@@ -58,7 +61,12 @@ var Checklist = React.createClass({
                         stripedRows={false}
                         displayRowCheckbox = {false}>
                         {
+                            /*maps each feature of that is in the checklist of the specific house
+                            to its own table row*/
                             checklist.map((feature) => {
+                                /*callback function that is called after change in the SelectField,
+                                takes the provided parameters from the react component and calls the 
+                                redux action in order to update the store to the new priority value*/
                                 var priorityChanged = (event, index, value) => {
                                     dispatch(actions.startUpdatePriority(id, feature.id, value));
                                 };
@@ -77,7 +85,7 @@ var Checklist = React.createClass({
                                                 <MenuItem value={3} primaryText="High" />
                                             </SelectField>
                                         </TableRowColumn>
-
+                                        {/*Button with anonymous function called that will call the delete feature redux action*/}
                                         <TableRowColumn>
                                             <RaisedButton secondary={true} 
                                                 onClick={() => {dispatch(actions.deleteFeature(id, feature.id))}}>Delete

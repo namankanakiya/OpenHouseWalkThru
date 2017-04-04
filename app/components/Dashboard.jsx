@@ -10,21 +10,25 @@ import Divider from 'material-ui/Divider';
 import {GridList, GridTile} from 'material-ui/GridList';
 
 var Dashboard = React.createClass({
+    //Authentication to push login
     componentWillMount : function() {
         var {loggedIn} = this.props;
         if (!loggedIn.loggedIn) {
             this.props.router.push('/login');
         }
     },
+    //Additional auth check
     componentWillUpdate : function(nextProps, nextState) {
         var {loggedIn} = this.props;
         if (!loggedIn.loggedIn) {
             this.props.router.push('/login');
         }
     },
+    //function for setting whether the houses will be sorted based on score
     doSomething : function(isChecked) {
         this.setState({sort : !this.state.sort});
     },
+    //sets houses to not be sorted initially
     getInitialState : function() {
         return {sort : false};
     },
