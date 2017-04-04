@@ -2,11 +2,20 @@ import firebase, {firebaseRef} from 'app/firebase';
 var {connect} = require('react-redux'); // Redux
 var {Link} = require('react-router');
 var actions = require('actions');
-
 var React = require('react');
 
+/*
+ * This component manages the Registration page of the website. This page
+ * contains a form the user should fill in to register. If the user fills in the
+ * form and registers, this component will create an entry for the user in the
+ * Firebase database so they can save all of their account and house data.
+ */
 var Registration = React.createClass({
-
+    /*
+     * This method will verify all of the information given by the user and call
+     * a fuction from the actions.jsx component to create an entry for the user
+     * in the Firebase database and log the user into the website automatically.
+     */
     register : function(e) {
         e.preventDefault();
 
@@ -37,6 +46,9 @@ var Registration = React.createClass({
         });
     },
 
+    /*
+     * Loads the web scripts (HTML, CSS, JavaScript, etc.).
+     */
     render : function() {
         var mainContainer = {
             opacity: 0.75,

@@ -13,7 +13,14 @@ import Paper from 'material-ui/Paper';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
+/*
+ * This component represents the page that shows the points of interest of the
+ * user where you can add, edit, or remove points of interest.
+ */
 var POI = React.createClass({
+    /*
+     * Loads the web scripts (HTML, CSS, JavaScript, etc.).
+     */
     render : function() {
         return (
             <Paper zDepth={3}>

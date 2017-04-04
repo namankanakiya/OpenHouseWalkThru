@@ -14,7 +14,14 @@ componentDidUpdate : function() {
     );
 },*/}
 
+/*
+ * This component manages the top navigation bar that occurs throughout the
+ * website. Let's us use <Nav />.
+ */
 var Nav = React.createClass({
+    /*
+     * Manages the logout button on the navigation bar.
+     */
     logout : function(e) {
         var {dispatch} = this.props;
         firebase.auth().signOut().then(()=>{
@@ -22,6 +29,14 @@ var Nav = React.createClass({
         })
         console.log("Logout button clicked");
     },
+
+    /*
+     * This function renders the right side of the navigation bar differently
+     * depending on whether a user is logged in or not. If not logged in, only a
+     * link called "Login" will appear. If a user is logged in, the links to go
+     * to the user profile page, and the settings page appear, as well as a link
+     * to logout.
+     */
     renderLogoutLogin : function() {
         var {loggedIn} = this.props;
         if (loggedIn.loggedIn) {
@@ -46,6 +61,14 @@ var Nav = React.createClass({
                 )
         }
     },
+
+    /*
+     * This function will render the left side of the navigation bar differently
+     * depending on whether a user is logged in or not. If a user is not logged
+     * in, the navigation bar will only have the name of the website, Open House
+     * Walk Through along with its logo. If a user is logged in, a link to the
+     * Dashboard page will also show.
+     */
     renderLogoutLoginLeft : function() {
         var {loggedIn} = this.props;
         if (loggedIn.loggedIn) {
@@ -67,6 +90,10 @@ var Nav = React.createClass({
             );
         }
     },
+
+    /*
+     * Loads the web scripts (HTML, CSS, JavaScript, etc.).
+     */
     render : function() {
         {/*var menu = (true)?
             <ul className="dropdown menu" data-dropdown-menu>
