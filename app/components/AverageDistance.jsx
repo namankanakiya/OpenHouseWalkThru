@@ -1,7 +1,7 @@
 var React = require('react');
 
 // Simple component which renders the distance it is inputted with.
-// If distance doesn't exist, returns that
+// If distance doesn't exit, return that
 var AverageDistance = React.createClass({
     getDefaultProps : function() {
         return {
@@ -15,7 +15,7 @@ var AverageDistance = React.createClass({
         var {avgDistance} = this.props; 
         var renderDistance = () => {
             if (avgDistance >= 0) {
-                return <p>{avgDistance} Miles</p>
+                return <p>{avgDistance} Miles</p> // show the avgerage distance in miles
             } else {
                 return <p>Distance Not Known</p>
             }

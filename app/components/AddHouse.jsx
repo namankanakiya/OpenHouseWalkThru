@@ -31,15 +31,19 @@ var AddHouse = React.createClass({
         // redirect to dashboard
         this.props.router.push('/');
     },
+    //when user is logged in, they will be able to add house to thier profile
     componentWillMount : function() {
         var {loggedIn} = this.props;
         if (!loggedIn.loggedIn) {
+            //if not logged in, redirect to login page
             this.props.router.push('/login');
         }
     },
+    //this will preserve the houses user added while logged into his account
     componentWillUpdate : function(nextProps, nextState) {
         var {loggedIn} = this.props;
         if (!loggedIn.loggedIn) {
+            //if not logged in, redirect to login page
             this.props.router.push('/login');
         }
     },
