@@ -98,12 +98,30 @@ export var startAddChecklist = (houseId, feature, priority=1) => {
     };
 };
 
-export var startAddPOI = (name, address) => {
+export var startAddPOI = (name, address, userId) => {
     return (dispatch, getState) => {
-        var item = {
+        var object = {
             name : name,
             address : address
-        }
+        };
+        var poiRef = firebaseRef.child("POIs/").push(object);
+        return poiRef.then(() => {
+            var mapObject = {}
+            mapObject[poiRef.key] = true;
+            var userPOI = firebaseRef.child("userPOIs/" + userId).update(mapObject)
+            userPOI.then(() => {
+                dispatch(addPOI(name, address));
+            })
+        })
+
+    }
+}
+
+export var addPOI = (name, address) => {
+    return {
+        type : 'ADD_POI',
+        name,
+        address
     }
 }
 

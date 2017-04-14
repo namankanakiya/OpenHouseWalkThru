@@ -36,6 +36,16 @@ export var loggedInReducer = (state = {loggedIn : false, userId : null}, action)
     }
 }
 
+// Takes care of tracking all of the POI's the user has currently
+export var poiReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'ADD_POI':
+            return [...state, {name : action.name, address : action.address}];
+        default:
+            return state;
+    }
+}
+
 // Takes care of managing all of the houses (list) that the user owns
 // the spread operater (...) takes everything before it. Easy way
 // to append information. Names are self-explanatory.

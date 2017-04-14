@@ -1,4 +1,4 @@
-f// React imports
+// React imports
 var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
@@ -25,11 +25,12 @@ var POI = React.createClass({
         var poiAddr = this.refs.POIAddr.value;
 
         var {dispatch} = this.props;
-        dispatch(actions.startAddPOI(poiName, poiAddr));
+        var {loggedIn} = this.props;
+        dispatch(actions.startAddPOI(poiName, poiAddr, loggedIn.userId));
 
         console.log(poiName);
         console.log(poiAddr);
-    }
+    },
 
     /*
      * Loads the web scripts (HTML, CSS, JavaScript, etc.).
@@ -68,7 +69,7 @@ var POI = React.createClass({
 
                 <br/>
                 <div>
-                    <form>
+                    <form onSubmit={this.addPOI}>
                         <input type="text" ref="POIName" placeholder="Name of POI (ex. Work, Mall)" />
                         <input type="text" ref="POIAddr" placeholder="Address of POI"/>
                         <button className="button primary">Add POI</button>
@@ -82,4 +83,8 @@ var POI = React.createClass({
     }
 });
 
-export default POI;
+export default connect((state) => {
+    return {
+        loggedIn : state.loggedIn
+    }
+})(POI);
