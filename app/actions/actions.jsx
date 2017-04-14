@@ -98,6 +98,15 @@ export var startAddChecklist = (houseId, feature, priority=1) => {
     };
 };
 
+export var startAddPOI = (name, address) => {
+    return (dispatch, getState) => {
+        var item = {
+            name : name,
+            address : address
+        }
+    }
+}
+
 export var deleteFeature = (id, featureId) => {
     // delete feature from checklist from state
 	return {

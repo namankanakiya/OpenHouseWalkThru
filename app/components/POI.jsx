@@ -1,4 +1,4 @@
-// React imports
+f// React imports
 var React = require('react');
 var {connect} = require('react-redux');
 var actions = require('actions');
@@ -18,6 +18,19 @@ import MenuItem from 'material-ui/MenuItem';
  * user where you can add, edit, or remove points of interest.
  */
 var POI = React.createClass({
+    addPOI : function(e) {
+        e.preventDefault();
+
+        var poiName = this.refs.POIName.value;
+        var poiAddr = this.refs.POIAddr.value;
+
+        var {dispatch} = this.props;
+        dispatch(actions.startAddPOI(poiName, poiAddr));
+
+        console.log(poiName);
+        console.log(poiAddr);
+    }
+
     /*
      * Loads the web scripts (HTML, CSS, JavaScript, etc.).
      */
