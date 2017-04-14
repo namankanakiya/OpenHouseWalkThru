@@ -110,18 +110,19 @@ export var startAddPOI = (name, address, userId) => {
             mapObject[poiRef.key] = true;
             var userPOI = firebaseRef.child("userPOIs/" + userId).update(mapObject)
             userPOI.then(() => {
-                dispatch(addPOI(name, address));
+                dispatch(addPOI(name, address, poiRef.key));
             })
         })
 
     }
 }
 
-export var addPOI = (name, address) => {
+export var addPOI = (name, address, id) => {
     return {
         type : 'ADD_POI',
         name,
-        address
+        address,
+        id
     }
 }
 

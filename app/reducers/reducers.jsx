@@ -40,7 +40,7 @@ export var loggedInReducer = (state = {loggedIn : false, userId : null}, action)
 export var poiReducer = (state = [], action) => {
     switch (action.type) {
         case 'ADD_POI':
-            return [...state, {name : action.name, address : action.address}];
+            return [...state, {name : action.name, address : action.address, id : action.id}];
         default:
             return state;
     }
