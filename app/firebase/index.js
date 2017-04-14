@@ -4,11 +4,15 @@ import firebase from 'firebase';
 // Eventually move this to deployment website
 try {
     var config = {
-        apiKey: "AIzaSyD8vwcY3h8W6g-KmLGTQKC0RCflGzQt-x4",
-        authDomain: "openhousewalkthru.firebaseapp.com",
-        databaseURL: "https://openhousewalkthru.firebaseio.com",
-        storageBucket: "openhousewalkthru.appspot.com",
-        messagingSenderId: "264365099147"
+        apiKey: "YOUR_API_KEY",
+        authDomain: "YOUR_FIREBASE_DOMAIN", 
+        /*example: openhousewalkthru.firebaseapp.com*/
+        databaseURL: "YOUR_DATABASE_URL", 
+        /*example: https://openhousewalkthru.firebaseio.com*/
+        storageBucket: "YOUR_STORAGEBUCKET",
+        /*example: openhousewalkthru.appspot.com*/
+        messagingSenderId: "YOUR_MESSAGINGID"
+        /*example: 264365099147*/
     };
     firebase.initializeApp(config);
 } catch(e) {

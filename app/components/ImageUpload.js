@@ -6,7 +6,7 @@ var actions = require('actions');
 import Dropzone from 'react-dropzone';
 import request from 'superagent';
 
-const CLOUDINARY_UPLOAD_PRESET = 'w3ktvtk0';
+const CLOUDINARY_UPLOAD_PRESET = 'YOUR_API_KEY';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/open-house-walk-thru/upload';
 
 /*

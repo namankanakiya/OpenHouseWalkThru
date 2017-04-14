@@ -1,3 +1,4 @@
+// React/API/Route imports
 var React = require('react');
 var ReactDOM = require('react-dom');
 var {Route, Router, IndexRoute, hashHistory} = require('react-router');
@@ -29,6 +30,7 @@ var actions = require('actions');
 export var store = require('configureStore').configure();
 var {Provider} = require('react-redux');
 
+// Inject touch for Material UI
 try {
     injectTapEventPlugin();
 } catch (e) {
@@ -40,6 +42,7 @@ store.subscribe(() => {
     console.log('New State', store.getState());
 });
 
+// For Generating Fake houses
 /*
 var randomIntFromInterval = function(min, max) {
     return Math.floor(Math.random()*(max-min+1)+min);
@@ -58,6 +61,7 @@ for (var x = 0; x < num; x++) {
     store.dispatch(actions.startAddHouse(house, 1));
 }*/
 
+// On Authentication change, update Firbase and local state
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         console.log("Signed in!");
@@ -97,6 +101,7 @@ const checkHouse = (store) => {
         if ($.isArray(houses)) {
             if (houses.length > 0) {
                 var house = ohwtAPI.findHouseById(houses, id);
+                // if the house doesn't exist, redirect the user
                 if (house === null) {
                     replace({
                         pathname : '/notfound',
