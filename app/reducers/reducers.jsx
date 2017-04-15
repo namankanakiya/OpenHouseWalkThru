@@ -28,9 +28,23 @@ export var photoUploadReducer = (state = null, action) => {
 export var loggedInReducer = (state = {loggedIn : false, userId : null}, action) => {
     switch (action.type) {
         case 'LOGIN_USER' :
-            return {loggedIn : true, userId : action.userId};
+            return {loggedIn : true, userId : action.userId, username : action.username};
         case 'LOGOUT_USER' :
-            return {loggedIn : false, userId : null};
+            return {loggedIn : false, userId : null, username : null};
+        default:
+            return state;
+    }
+}
+
+// Takes care of tracking all of the POI's the user has currently
+export var poiReducer = (state = [], action) => {
+    switch (action.type) {
+        case 'ADD_POI':
+            return [...state, {name : action.name, address : action.address, id : action.id}];
+        case 'DELETE_POI':
+            return state.filter(poi => poi.id != action.id);
+        case 'LOGOUT_POI':
+            return [];
         default:
             return state;
     }

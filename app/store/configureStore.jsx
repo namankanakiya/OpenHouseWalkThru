@@ -3,7 +3,7 @@ import * as redux from 'redux';
 import thunk from 'redux-thunk';
 const { resolve } = require('path');
 // Import Reducers
-import {checklistReducer, housesReducer, curHouseReducer, photoUploadReducer, loggedInReducer} from 'reducers';
+import {checklistReducer, housesReducer, curHouseReducer, photoUploadReducer, loggedInReducer, poiReducer} from 'reducers';
 import { reducer as formReducer } from 'redux-form';
 
 export var configure = (initialState = {}) => {
@@ -13,7 +13,8 @@ export var configure = (initialState = {}) => {
 		houses : housesReducer,
 		house : curHouseReducer,
         photo : photoUploadReducer,
-        loggedIn : loggedInReducer
+        loggedIn : loggedInReducer,
+        poi : poiReducer
 	});
 
     // Thunk is for asynchronous actions. window.devToolExtension() line is

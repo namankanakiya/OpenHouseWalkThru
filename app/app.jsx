@@ -62,10 +62,10 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         console.log("Signed in!");
         var uid = user.uid;
-        store.dispatch(actions.loginUser(uid));
         store.dispatch(actions.startLoadHouse(uid));
     } else {
         store.dispatch(actions.logoutHouses());
+        store.dispatch(actions.logoutPOI());
         store.dispatch(actions.logoutUser());
         console.log("Logged out :(");
     }
@@ -129,10 +129,9 @@ const checkHouse = (store) => {
 // Defining the URL routes, and the components they map to
 const routes = (
     <Route path="/" component={Main}>
-        <Route path='/userprofile' component={UserProfile}></Route>
+        <Route path='/userprofile' component={POI}></Route>
         <Route path='/houseprofile/:id' component={HouseProfile} onEnter={checkHouse(store)}></Route>
         <Route path='/addhouse' component={AddHouse}></Route>
-        <Route path='/poi' component={POI}></Route>
         <Route path='/checklist/:id' component={Checklist} onEnter={checkHouse(store)}></Route>
         <Route path='/login' component={Login}></Route>
         <Route path='/register' component={Registration}></Route>

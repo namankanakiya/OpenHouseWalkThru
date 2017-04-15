@@ -13,11 +13,12 @@ export var startRegisterUser = (userId, name) => {
     }
 }
 
-export var loginUser = (userId) => {
+export var loginUser = (userId, username) => {
     // state login
     return {
         type : 'LOGIN_USER',
-        userId
+        userId,
+        username
     }
 }
 
@@ -35,8 +36,20 @@ export var logoutHouses = () => {
     }
 }
 
+export var logoutPOI = () => {
+    return {
+        type : 'LOGOUT_POI'
+    }
+}
+
 export var startLoadHouse = (userId) => {
     return (dispatch, getState) => {
+        // Get user info and login
+        var userInfoRef = firebaseRef.child("userInfo/" + userId);
+        userInfoRef.once("value", (snapshot) => {
+            var userInfo = snapshot.val();
+            dispatch(loginUser(userId, userInfo.name));
+        });
         // Figure out which houses belong to current user
         var userHousesRef = firebaseRef.child("userHouses/" + userId);
         userHousesRef.once("value", (snapshot) => {
@@ -63,6 +76,16 @@ export var startLoadHouse = (userId) => {
                 })
             })
         })
+        var userPOIs = firebaseRef.child("userPOIs/" + userId);
+        userPOIs.once("value", (snapshot) => {
+            snapshot.forEach((userPOI) => {
+                var POIRef = firebaseRef.child("POIs/" + userPOI.key);
+                POIRef.once("value", (snapshot) => {
+                    var POI = snapshot.val();
+                    dispatch(addPOI(POI.name, POI.address, snapshot.key))
+                });
+            });
+        });
     }
 };
 
@@ -98,6 +121,34 @@ export var startAddChecklist = (houseId, feature, priority=1) => {
     };
 };
 
+export var startAddPOI = (name, address, userId) => {
+    return (dispatch, getState) => {
+        var object = {
+            name : name,
+            address : address
+        };
+        var poiRef = firebaseRef.child("POIs/").push(object);
+        return poiRef.then(() => {
+            var mapObject = {}
+            mapObject[poiRef.key] = true;
+            var userPOI = firebaseRef.child("userPOIs/" + userId).update(mapObject)
+            userPOI.then(() => {
+                dispatch(addPOI(name, address, poiRef.key));
+            })
+        })
+
+    }
+}
+
+export var addPOI = (name, address, id) => {
+    return {
+        type : 'ADD_POI',
+        name,
+        address,
+        id
+    }
+}
+
 export var deleteFeature = (id, featureId) => {
     // delete feature from checklist from state
 	return {
@@ -122,6 +173,27 @@ export var startDeleteFeature = (houseId, featureId) => {
             });
         });
     }
+};
+
+export var startDeletePOI = (userId, poiId) => {
+    return (dispatch, getState) => {
+        var POIRef = firebaseRef.child("POIs/" + poiId).remove();
+        return POIRef.then(() => {
+            var mapObject = {};
+            mapObject[poiId] = null;
+            var userPOIRef = firebaseRef.child("userPOIs/" + userId).update(mapObject);
+            userPOIRef.then(() => {
+                dispatch(deletePOI(poiId));
+            });
+        });
+    }
+};
+
+export var deletePOI = (id) => {
+    return {
+        type : 'DELETE_POI',
+        id
+    };
 };
 
 export var startAddHouse = (house, userId) => {
