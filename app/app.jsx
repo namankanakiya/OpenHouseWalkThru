@@ -7,7 +7,6 @@ var ohwtAPI = require('ohwtAPI');
 
 //Components
 var Main = require('Main').default;
-var UserProfile = require('UserProfile').default;
 var Dashboard = require('Dashboard').default;
 var HouseProfile = require('HouseProfile').default;
 var AddHouse = require('AddHouse').default;
