@@ -75,7 +75,6 @@ export var startLoadHouse = (userId) => {
                 var POIRef = firebaseRef.child("POIs/" + userPOI.key);
                 POIRef.once("value", (snapshot) => {
                     var POI = snapshot.val();
-                    console.log(POI.name, POI.address, snapshot.key, userPOI.key)
                     dispatch(addPOI(POI.name, POI.address, snapshot.key))
                 });
             });

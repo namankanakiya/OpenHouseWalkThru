@@ -36,34 +36,30 @@ var POI = React.createClass({
      * Loads the web scripts (HTML, CSS, JavaScript, etc.).
      */
     render : function() {
+        var {POI} = this.props;
         return (
             <Paper zDepth={3}>
                 <Table>
                     <TableBody
                         stripedRows={false}
                         displayRowCheckbox = {false}>
-                        <TableRow>
-                            <TableRowColumn>
-                                <p>Work</p>
-                            </TableRowColumn>
-                            <TableRowColumn>
-                                <p>266 Ferst Dr NW, Atlanta, GA 30332</p>
-                            </TableRowColumn>
-                            <TableRowColumn>
-                                <RaisedButton>Delete</RaisedButton>
-                            </TableRowColumn>
-                        </TableRow>
-                        <TableRow>
-                            <TableRowColumn>
-                                <p>Walmart</p>
-                            </TableRowColumn>
-                            <TableRowColumn>
-                                <p>1801 Howell Mill Rd NW, Atlanta, GA 30318</p>
-                            </TableRowColumn>
-                            <TableRowColumn>
-                                <RaisedButton>Delete</RaisedButton>
-                            </TableRowColumn>
-                        </TableRow>
+                        {
+                            POI.map((poi) => {
+                                return (
+                                    <TableRow key={poi.id}>
+                                        <TableRowColumn>
+                                            <p>{poi.name}</p>
+                                        </TableRowColumn>
+                                        <TableRowColumn>
+                                            <p>{poi.address}</p>
+                                        </TableRowColumn>
+                                        <TableRowColumn>
+                                            <RaisedButton>Delete</RaisedButton>
+                                        </TableRowColumn>
+                                    </TableRow>
+                                )
+                            })
+                        }
                     </TableBody>
                 </Table>
 
@@ -85,6 +81,7 @@ var POI = React.createClass({
 
 export default connect((state) => {
     return {
-        loggedIn : state.loggedIn
+        loggedIn : state.loggedIn,
+        POI : state.poi
     }
 })(POI);
