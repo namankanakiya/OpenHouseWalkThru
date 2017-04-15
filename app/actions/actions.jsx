@@ -35,6 +35,12 @@ export var logoutHouses = () => {
     }
 }
 
+export var logoutPOI = () => {
+    return {
+        type : 'LOGOUT_POI'
+    }
+}
+
 export var startLoadHouse = (userId) => {
     return (dispatch, getState) => {
         // Figure out which houses belong to current user
@@ -63,6 +69,17 @@ export var startLoadHouse = (userId) => {
                 })
             })
         })
+        var userPOIs = firebaseRef.child("userPOIs/" + userId);
+        userPOIs.once("value", (snapshot) => {
+            snapshot.forEach((userPOI) => {
+                var POIRef = firebaseRef.child("POIs/" + userPOI.key);
+                POIRef.once("value", (snapshot) => {
+                    var POI = snapshot.val();
+                    console.log(POI.name, POI.address, snapshot.key, userPOI.key)
+                    dispatch(addPOI(POI.name, POI.address, snapshot.key))
+                });
+            });
+        });
     }
 };
 

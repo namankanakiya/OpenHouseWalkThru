@@ -66,6 +66,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         store.dispatch(actions.startLoadHouse(uid));
     } else {
         store.dispatch(actions.logoutHouses());
+        store.dispatch(actions.logoutPOI());
         store.dispatch(actions.logoutUser());
         console.log("Logged out :(");
     }

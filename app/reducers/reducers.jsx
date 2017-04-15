@@ -41,6 +41,8 @@ export var poiReducer = (state = [], action) => {
     switch (action.type) {
         case 'ADD_POI':
             return [...state, {name : action.name, address : action.address, id : action.id}];
+        case 'LOGOUT_POI':
+            return [];
         default:
             return state;
     }
