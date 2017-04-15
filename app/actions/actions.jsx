@@ -13,11 +13,12 @@ export var startRegisterUser = (userId, name) => {
     }
 }
 
-export var loginUser = (userId) => {
+export var loginUser = (userId, username) => {
     // state login
     return {
         type : 'LOGIN_USER',
-        userId
+        userId,
+        username
     }
 }
 
@@ -43,6 +44,12 @@ export var logoutPOI = () => {
 
 export var startLoadHouse = (userId) => {
     return (dispatch, getState) => {
+        // Get user info and login
+        var userInfoRef = firebaseRef.child("userInfo/" + userId);
+        userInfoRef.once("value", (snapshot) => {
+            var userInfo = snapshot.val();
+            dispatch(loginUser(userId, userInfo.name));
+        });
         // Figure out which houses belong to current user
         var userHousesRef = firebaseRef.child("userHouses/" + userId);
         userHousesRef.once("value", (snapshot) => {

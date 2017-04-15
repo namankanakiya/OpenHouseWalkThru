@@ -18,6 +18,27 @@ import MenuItem from 'material-ui/MenuItem';
  * user where you can add, edit, or remove points of interest.
  */
 var POI = React.createClass({
+    /*
+     * This function verifies that a user is logged in, and if no user is logged
+     * in, then the website will redirect to the login page.
+     */
+    componentWillMount : function() {
+        var {loggedIn} = this.props;
+        if (!loggedIn.loggedIn) {
+            this.props.router.push('/login');
+        }
+    },
+
+    /*
+     * This function verifies that a user is logged in, and if no user is logged
+     * in, then the website will redirect to the login page.
+     */
+    componentWillUpdate : function(nextProps, nextState) {
+        var {loggedIn} = this.props;
+        if (!loggedIn.loggedIn) {
+            this.props.router.push('/login');
+        }
+    },
     addPOI : function(e) {
         e.preventDefault();
 
@@ -27,9 +48,6 @@ var POI = React.createClass({
         var {dispatch} = this.props;
         var {loggedIn} = this.props;
         dispatch(actions.startAddPOI(poiName, poiAddr, loggedIn.userId));
-
-        console.log(poiName);
-        console.log(poiAddr);
     },
 
     /*
@@ -43,8 +61,13 @@ var POI = React.createClass({
                 <h1>Add your first Point of Interest!</h1>
             )
         }
+        var {loggedIn} = this.props;
+        var username = loggedIn.username;
         return (
             <Paper zDepth={3}>
+                <div>
+                    <p>Hello, "{username}"</p>
+                </div>
                 {renderStuff}
                 <Table>
                     <TableBody
