@@ -168,6 +168,27 @@ export var startDeleteFeature = (houseId, featureId) => {
     }
 };
 
+export var startDeletePOI = (userId, poiId) => {
+    return (dispatch, getState) => {
+        var POIRef = firebaseRef.child("POIs/" + poiId).remove();
+        return POIRef.then(() => {
+            var mapObject = {};
+            mapObject[poiId] = null;
+            var userPOIRef = firebaseRef.child("userPOIs/" + userId).update(mapObject);
+            userPOIRef.then(() => {
+                dispatch(deletePOI(poiId));
+            });
+        });
+    }
+};
+
+export var deletePOI = (id) => {
+    return {
+        type : 'DELETE_POI',
+        id
+    };
+};
+
 export var startAddHouse = (house, userId) => {
     return (dispatch, getState) => {
         //add house to houses Firebase object

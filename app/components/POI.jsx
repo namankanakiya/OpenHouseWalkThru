@@ -36,9 +36,16 @@ var POI = React.createClass({
      * Loads the web scripts (HTML, CSS, JavaScript, etc.).
      */
     render : function() {
-        var {POI} = this.props;
+        var {POI, loggedIn, dispatch} = this.props;
+        var renderStuff = ""
+        if (POI.length == 0) {
+            renderStuff = (
+                <h1>Add your first Point of Interest!</h1>
+            )
+        }
         return (
             <Paper zDepth={3}>
+                {renderStuff}
                 <Table>
                     <TableBody
                         stripedRows={false}
@@ -54,7 +61,10 @@ var POI = React.createClass({
                                             <p>{poi.address}</p>
                                         </TableRowColumn>
                                         <TableRowColumn>
-                                            <RaisedButton>Delete</RaisedButton>
+                                            <RaisedButton onClick={() => 
+                                            {dispatch(actions.startDeletePOI(loggedIn.userId, poi.id))}}>
+                                                Delete
+                                            </RaisedButton>
                                         </TableRowColumn>
                                     </TableRow>
                                 )
