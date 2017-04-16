@@ -27,7 +27,7 @@ var ATLANTIC_OCEAN = {
 var Maps = React.createClass({
 
     // set initial address to Atlanta
-    getInitialState: function () {
+    getInitialState : function () {
         return {
             isGeocodingError: false,
             foundAddress: INITIAL_LOCATION.address
@@ -36,14 +36,11 @@ var Maps = React.createClass({
 
     // this method translates the address into coordinates that can be uses to mark locations
     // on the map. It also checks if the provided address is valid
-    geocodeAddress: function (address) {
-
+    geocodeAddress : function (location) {
         // call method geocode from Google API
-        this.geocoder.geocode({ 'address': address }, function handleResults(results, status) {
-
+        this.geocoder.geocode({ 'address': location[1]}, function (results, status) {
             // check if the passes address is valid
             if (status === google.maps.GeocoderStatus.OK) {
-
                 // store the address in the state in foundAddress
                 this.setState({
                     foundAddress: results[0].formatted_address,
@@ -52,10 +49,8 @@ var Maps = React.createClass({
 
                 // set the marker to the found address
                 this.map.setCenter(results[0].geometry.location);
-                this.marker.setPosition(results[0].geometry.location);
-
+                this.marker.setPosition(results[0].geometry.location, location[0]+"<br>"+location[1]);                        
                 
-
                 return;
             }
 
@@ -74,19 +69,16 @@ var Maps = React.createClass({
             this.marker.setPosition({
                 lat: INITIAL_LOCATION.position.latitude,
                 lng: INITIAL_LOCATION.position.longitude
-            });
+            });            
         }.bind(this));
     },
 
     // Handles form submission. Useful when the user enters a location to look up on the map
-    handleFormSubmit: function (submitEvent) {
-        submitEvent.preventDefault();
-        var address = this.searchInputElement.value;
-        this.geocodeAddress(address);
-    },
+    
+    
 
     // creates the map 
-    componentDidMount: function () {
+    componentDidMount : function () {
         var mapElement = this.mapElement;
 
         // initial map setup
@@ -98,7 +90,7 @@ var Maps = React.createClass({
             }
         });
 
-        // sets the marker for the map
+        // sets the marker for the map    
         this.marker = new google.maps.Marker({
             map: this.map,
             position: {
@@ -107,26 +99,28 @@ var Maps = React.createClass({
             }
         });
 
+        
         // calls the geocodeAddress() method with the property address as an input
         this.geocoder = new google.maps.Geocoder();
-        var address = this.props.address;
-        var city = this.props.city;
-        var state = this.props.state;
-        if (address && city && state) {
-            var fullAddress = address + ", " + city + ", " + state;
-            this.geocodeAddress(fullAddress);
+        var locations = [
+            ['h1', '2763 Drew Valley RD, Atlanta, GA'],
+            ['poi1', '871 Burns Estates Dr, Lilburn, GA']
+        ];
+
+        for (var i = 0; i < locations.length; i++) {
+            this.geocodeAddress(locations[i]);
         }
     },
     
-    setSearchInputElementReference: function (inputReference) {
+    setSearchInputElementReference : function (inputReference) {
         this.searchInputElement = inputReference;
     },
 
-    setMapElementReference: function (mapElementReference) {
+    setMapElementReference : function (mapElementReference) {
         this.mapElement = mapElementReference;
     },
 
-    render: function () {
+    render : function () {
         return (
             <div className="container">
                 <div className="row">
