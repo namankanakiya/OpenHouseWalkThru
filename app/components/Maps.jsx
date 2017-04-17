@@ -30,8 +30,37 @@ var Maps = React.createClass({
     getInitialState: function () {
         return {
             isGeocodingError: false,
-            foundAddress: INITIAL_LOCATION.address
+            foundAddress: INITIAL_LOCATION.address,
+            poiMarkers : []
         };
+    },
+
+    addMarker : function(address, name) {
+        this.geocoder.geocode({ 'address': address }, function handleResults(results, status) {
+            if (status === google.maps.GeocoderStatus.OK) {
+                this.newMarker = new google.maps.Marker({
+                    map: this.map,
+                    position: results[0].geometry.location
+                });
+                var newMarker2 = this.newMarker;
+                this.setState({poiMarkers : [...this.state.poiMarkers, this.newMarker]})
+                this.bounds.extend(this.newMarker.getPosition());
+                this.map.fitBounds(this.bounds);
+                google.maps.event.addListener(this.newMarker, 'click', function() {
+                    var html = "<div> <h4>" + name + "</h4>" + "<p>" + address + "</p> </div>"
+                    console.log(this.oldIw);
+                    if (this.oldIw) {
+                        this.oldIw.close();
+                    }
+                    var iw = new google.maps.InfoWindow({
+                        content : html
+                    });
+                    iw.open(this.map, newMarker2);
+                    this.oldIw = iw;
+                    //console.log(this.oldIw);
+                })
+            }
+        }.bind(this));
     },
 
     // this method translates the address into coordinates that can be uses to mark locations
@@ -47,15 +76,15 @@ var Maps = React.createClass({
                 // store the address in the state in foundAddress
                 this.setState({
                     foundAddress: results[0].formatted_address,
-                    isGeocodingError: false
+                    isGeocodingError: false,
+                    title : "hello"
                 });
 
                 // set the marker to the found address
                 this.map.setCenter(results[0].geometry.location);
                 this.marker.setPosition(results[0].geometry.location);
-
-                
-
+                this.bounds.extend(this.marker.getPosition());
+                this.map.fitBounds(this.bounds)
                 return;
             }
 
@@ -88,7 +117,7 @@ var Maps = React.createClass({
     // creates the map 
     componentDidMount: function () {
         var mapElement = this.mapElement;
-
+        this.oldIw = false;
         // initial map setup
         this.map = new google.maps.Map(mapElement, {
             zoom: INITIAL_MAP_ZOOM_LEVEL,
@@ -101,6 +130,7 @@ var Maps = React.createClass({
         // sets the marker for the map
         this.marker = new google.maps.Marker({
             map: this.map,
+            icon : "https://maps.google.com/mapfiles/ms/icons/blue.png",
             position: {
                 lat: INITIAL_LOCATION.position.latitude,
                 lng: INITIAL_LOCATION.position.longitude
@@ -112,10 +142,20 @@ var Maps = React.createClass({
         var address = this.props.address;
         var city = this.props.city;
         var state = this.props.state;
+        this.bounds = new google.maps.LatLngBounds()
+        var {poi} = this.props;
+        poi.map((poi) => {
+            this.addMarker(poi.address, poi.name);
+        });
         if (address && city && state) {
             var fullAddress = address + ", " + city + ", " + state;
             this.geocodeAddress(fullAddress);
         }
+        this.map.fitBounds(this.bounds);
+    },
+
+    componentWillUnmount : function () {
+
     },
     
     setSearchInputElementReference: function (inputReference) {
@@ -164,4 +204,8 @@ var Maps = React.createClass({
     }
 });
 
-export default connect()(Maps);
+export default connect((state) => {
+        return {
+            poi : state.poi
+        }
+    })(Maps);
