@@ -31,7 +31,8 @@ var Maps = React.createClass({
         return {
             isGeocodingError: false,
             foundAddress: INITIAL_LOCATION.address,
-            poiMarkers : []
+            poiMarkers : [],
+            addressLoc : false
         };
     },
 
@@ -44,10 +45,39 @@ var Maps = React.createClass({
                 });
                 var newMarker2 = this.newMarker;
                 this.setState({poiMarkers : [...this.state.poiMarkers, this.newMarker]})
+                var homeLoc = this.state.addressLoc;
+                console.log(homeLoc);
+                console.log(this.state);
+                var newDist = false;
+                if (homeLoc) {
+                    var rad = function(x) {
+                      return x * Math.PI / 180;
+                    };
+
+                    var getDistance = function(p1, p2) {
+                      var R = 6378137; // Earth’s mean radius in meter
+                      var dLat = rad(p2.lat() - p1.lat());
+                      var dLong = rad(p2.lng() - p1.lng());
+                      var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+                        Math.cos(rad(p1.lat())) * Math.cos(rad(p2.lat())) *
+                        Math.sin(dLong / 2) * Math.sin(dLong / 2);
+                      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+                      var d = (R * c) / 1609.34;
+                      return d.toFixed(2); // returns the distance in miles
+                    };
+                    console.log("LOOK HEREER", homeLoc, results[0].geometry.location)
+                    newDist = getDistance(homeLoc, results[0].geometry.location);
+                }
+                
+
                 this.bounds.extend(this.newMarker.getPosition());
                 this.map.fitBounds(this.bounds);
                 google.maps.event.addListener(this.newMarker, 'click', function() {
-                    var html = "<div> <h4>" + name + "</h4>" + "<p>" + address + "</p> </div>"
+                    if (newDist) {
+                        var html = "<div> <h4>" + name + "</h4>" + "<p>" + address + "</p> <p>" + newDist + " miles away from house </p></div>"
+                    } else {
+                        var html = "<div> <h4>" + name + "</h4>" + "<p>" + address + "</p> </div>"
+                    }
                     console.log(this.oldIw);
                     if (this.oldIw) {
                         this.oldIw.close();
@@ -83,6 +113,7 @@ var Maps = React.createClass({
                 // set the marker to the found address
                 this.map.setCenter(results[0].geometry.location);
                 this.marker.setPosition(results[0].geometry.location);
+                this.setState({addressLoc : results[0].geometry.location});
                 this.bounds.extend(this.marker.getPosition());
                 this.map.fitBounds(this.bounds)
                 return;
@@ -144,13 +175,13 @@ var Maps = React.createClass({
         var state = this.props.state;
         this.bounds = new google.maps.LatLngBounds()
         var {poi} = this.props;
-        poi.map((poi) => {
-            this.addMarker(poi.address, poi.name);
-        });
         if (address && city && state) {
             var fullAddress = address + ", " + city + ", " + state;
             this.geocodeAddress(fullAddress);
         }
+        poi.map((poi) => {
+            this.addMarker(poi.address, poi.name);
+        });
         this.map.fitBounds(this.bounds);
     },
 
