@@ -93,6 +93,7 @@ const checkHouse = (store) => {
         // otherLoc to determine where they were going (house or checklist)
         var otherLoc = splitArray.slice(-2)[0];
         var houses = store.getState().houses;
+        console.log(houses);
         if ($.isArray(houses)) {
             if (houses.length > 0) {
                 var house = ohwtAPI.findHouseById(houses, id);

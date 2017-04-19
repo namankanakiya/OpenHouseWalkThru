@@ -52,10 +52,10 @@ var HouseInfo = React.createClass({
                         <img src={picture} />
                     </div>
                     <div>
-                        <img src="http://lorempixel.com/900/500/sports/2/" />
+                        <img src="https://s-media-cache-ak0.pinimg.com/736x/47/b9/7e/47b97e62ef6f28ea4ae2861e01def86c.jpg" />
                     </div>
                     <div>
-                        <img src="http://lorempixel.com/900/500/sports/3/" />
+                        <img src="https://i.ytimg.com/vi/qeIdhCGQcog/hqdefault.jpg" />
                     </div>
                     <div>
                         <img src="http://lorempixel.com/900/500/sports/4/" />
@@ -68,7 +68,6 @@ var HouseInfo = React.createClass({
                     </div>
                 </Carousel>
                 <h4>{streetAddress}, {city}, {state}</h4>
-                <p>{description}</p>
             </div>
         )
     }

@@ -23,7 +23,6 @@ var Registration = React.createClass({
         var email = this.refs.email.value;
         var password = this.refs.password.value;
 
-        console.log(name, email, password);
 
         firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
             // Handle Errors here.

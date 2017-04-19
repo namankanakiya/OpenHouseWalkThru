@@ -46,8 +46,6 @@ var Maps = React.createClass({
                 var newMarker2 = this.newMarker;
                 this.setState({poiMarkers : [...this.state.poiMarkers, this.newMarker]})
                 var homeLoc = this.state.addressLoc;
-                console.log(homeLoc);
-                console.log(this.state);
                 var newDist = false;
                 if (homeLoc) {
                     var rad = function(x) {
@@ -65,7 +63,6 @@ var Maps = React.createClass({
                       var d = (R * c) / 1609.34;
                       return d.toFixed(2); // returns the distance in miles
                     };
-                    console.log("LOOK HEREER", homeLoc, results[0].geometry.location)
                     newDist = getDistance(homeLoc, results[0].geometry.location);
                 }
                 
@@ -78,7 +75,6 @@ var Maps = React.createClass({
                     } else {
                         var html = "<div> <h4>" + name + "</h4>" + "<p>" + address + "</p> </div>"
                     }
-                    console.log(this.oldIw);
                     if (this.oldIw) {
                         this.oldIw.close();
                     }
@@ -87,7 +83,6 @@ var Maps = React.createClass({
                     });
                     iw.open(this.map, newMarker2);
                     this.oldIw = iw;
-                    //console.log(this.oldIw);
                 })
             }
         }.bind(this));
