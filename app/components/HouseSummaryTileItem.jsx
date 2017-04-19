@@ -35,7 +35,7 @@ var HouseSummaryTileItem = React.createClass({
             width: 20
         };
         return (
-            <GridTile title={<span>{address},{city}, {state}</span>} subtitle={<b><Score score={score}/></b>} actionIcon={<IconButton><StarBorder color="white" /></IconButton>}>                
+            <GridTile title={<span>{address}, {city}, {state}</span>} subtitle={<b><Score score={score}/></b>} actionIcon={<IconButton><StarBorder color="white" /></IconButton>}>                
                 
                 <Link to={HOUSE_URL} activeClassName="active-link">
                 
