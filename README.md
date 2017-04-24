@@ -15,13 +15,13 @@ These instructions will get you a copy of the project up and running on your loc
 #### External Credentials
 
 Firebase Database: Please visit https://firebase.google.com/docs/web/setup to setup an account.
-Edit app/firebase/index.js and input your credentials.
+Edit ```app/firebase/index.js``` and input your credentials.
 
 Cloudinary Image Storage: Please visit http://cloudinary.com/documentation/node_integration to setup an account.
-Edit app/components/ImageUpload.js and input your cloudinary API key.
+Edit ```app/components/ImageUpload.js``` and input your cloudinary API key.
 
 Google Maps: Please visit https://developers.google.com/maps/documentation/javascript/get-api-key to setup an account.
-Edit public/index.html and input your Google Maps API key.
+Edit ```public/index.html``` and input your Google Maps API key.
 
 #### Local Development
 
@@ -42,6 +42,12 @@ sudo apt-get install -y nodejs
 ```
 Other Linux Distributions:
 Visit https://nodejs.org/en/download/package-manager/ for download and install instructions.
+
+To test for a succesful Node installation, run the following command in your terminal:
+```
+node -v
+```
+The version returned should be at least v6.10.2
 
 ### Installing
 
