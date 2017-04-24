@@ -4,7 +4,7 @@ Open House Walk Thru is a web app designed for potential homebuyers who can use 
 
 ## Technologies Used
 
-Open House Walk Thru is built using React+Redux, and uses Firebase for data storage. For image storage, Cloudinary is used and connected to Firebase. Google Maps is used to visualize map information of the houses and points of interests.
+OpenHouseWalkThru is built using React+Redux, and uses Firebase for data storage. For image storage, Cloudinary is used and connected to Firebase. Google Maps is used to visualize map information of the houses and points of interests.
 
 ## Getting Started (developers)
 
@@ -12,11 +12,36 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+#### External Credentials
 
+Firebase Database: Please visit https://firebase.google.com/docs/web/setup to setup an account.
+Edit app/firebase/index.js and input your credentials.
+
+Cloudinary Image Storage: Please visit http://cloudinary.com/documentation/node_integration to setup an account.
+Edit app/components/ImageUpload.js and input your cloudinary API key.
+
+Google Maps: Please visit https://developers.google.com/maps/documentation/javascript/get-api-key to setup an account.
+Edit public/index.html and input your Google Maps API key.
+
+#### Local Development
+
+Node.js must be installed.
+
+Windows / Mac:
+Visit https://nodejs.org/en/download/ for download and install instructions
+
+Debian / Ubuntu:
+Install curl if not installed using the terminal:
 ```
-Give examples
+sudo apt install curl
 ```
+Install Node using the terminal:
+```
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+```
+Other Linux Distributions:
+Visit https://nodejs.org/en/download/package-manager/ for download and install instructions.
 
 ### Installing
 
