@@ -51,65 +51,41 @@ The version returned should be at least v6.10.2
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running
-
-Say what the step will be
-
+1) Download or clone the GitHub Project.
+2) Install all development dependencies (Babel, JQuery, React, Webpack, etc.) by running the following command in a terminal opened to the project location:
 ```
-Give the example
+npm install
 ```
 
-And repeat
+This may take some time, as this downloads and installs all of the required dependencies. You will notice that npm creates a folder called “npm_modules” where these are placed.
 
+## Building / Running the Web Application
+
+Open House Walk Thru uses Webpack to compile the project. To build and run the project open up your Terminal / Command Prompt in the project folder and run:
 ```
-until finished
+npm run dev
 ```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
+This will ensure that any new changes made to the files in the project are automatically built upon saving. Open House Walk Thru will launch on http://localhost:3000/, which can be accessed from a browser, preferably Google Chrome.
 
 ## Deployment
 
-Add additional notes about how to deploy this on a live system
+Since webpack compiles everything into bundle.js, deployment to an external website becomes very trivial. We used Heroku for remote deployment, please visit https://devcenter.heroku.com/articles/git for further information on Heroku.
+
+## Demo
+
+A live demo of our application can be found at http://ohwt.herokuapp.com 
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+* [React](https://facebook.github.io/react/) - The web framework used
+* [Firebase](https://console.firebase.google.com) - The database used
+* [Cloudinary](cloudinary.com) - Image Storage
+* [Redux](http://redux.js.org/) - State Management 
 
 ## Authors
 
 * **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
 ## License
 
