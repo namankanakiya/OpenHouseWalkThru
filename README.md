@@ -109,3 +109,18 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 ```
 Version 1.0.0
 ```
+```
+New Features:
+* Add Houses with form validation
+* Implemented Dashboard view
+* Custom checklists for each house
+* Houses algorithmically scored
+* Houses sortable at dashboard
+* Points of interest for each account
+* Login integration with Firebase
+* Multiple images uploadable per feature
+
+Known Bugs and Defects:
+* Back button on Points of Interests is not linked
+* Only single images uploadable for overall house picture
+```
