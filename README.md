@@ -1,5 +1,5 @@
 # OpenHouseWalkThru
-[![React](https://img.shields.io/badge/React-15.4.2-blue.svg)](https://img.shields.io/badge/React-15.4.2-blue.svg) [![Redux](https://img.shields.io/badge/Redux-3.6.0-blue.svg)](https://img.shields.io/badge/Redux-3.6.0-blue.svg) [![Firebase](https://img.shields.io/badge/Firebase-3.6.10-blue.svg)](https://img.shields.io/badge/Firebase-3.6.10-blue.svg) [![Webpack](https://img.shields.io/badge/Webpack-2.2.1-blue.svg)](https://img.shields.io/badge/Webpack-2.2.1-blue.svg) [![MaterialUI](https://img.shields.io/badge/MaterialUI-0.17.0-42ebf4.svg)](https://img.shields.io/badge/MaterialUI-0.17.0-42ebf4.svg) [![Foundation](https://img.shields.io/badge/Foundation-6.2.0-42ebf4.svg)](https://img.shields.io/badge/Foundation-6.2.0-42ebf4.svg)
+[![React](https://img.shields.io/badge/React-15.4.2-blue.svg)](https://img.shields.io/badge/React-15.4.2-blue.svg)  [![Redux](https://img.shields.io/badge/Redux-3.6.0-blue.svg)](https://img.shields.io/badge/Redux-3.6.0-blue.svg)  [![Firebase](https://img.shields.io/badge/Firebase-3.6.10-blue.svg)](https://img.shields.io/badge/Firebase-3.6.10-blue.svg)  [![Webpack](https://img.shields.io/badge/Webpack-2.2.1-blue.svg)](https://img.shields.io/badge/Webpack-2.2.1-blue.svg)  [![MaterialUI](https://img.shields.io/badge/MaterialUI-0.17.0-42ebf4.svg)](https://img.shields.io/badge/MaterialUI-0.17.0-42ebf4.svg)  [![Foundation](https://img.shields.io/badge/Foundation-6.2.0-42ebf4.svg)](https://img.shields.io/badge/Foundation-6.2.0-42ebf4.svg)
 
 Open House Walk Thru is a web app designed for potential homebuyers who can use it to enhance their open house experiences while searching for a home. It allows the user to document different features of a home that they would like to evaluate. This includes rating features (such as garage, kitchen, etc.) based on a 1-5 point scale, uploading photos and writing comments about it. A large focus of the app is that it enables users to visualize the locations of their houses on a map relative to points of interest that they may frequent to, such as a local church, school, work or anything else. The app scores and ranks the houses accordingly based on the user’s ratings.
 
@@ -83,9 +83,17 @@ A live demo of our application can be found at http://ohwt.herokuapp.com
 * [Cloudinary](cloudinary.com) - Image Storage
 * [Redux](http://redux.js.org/) - State Management 
 
+## Troubleshooting
+
+Installation has been tested on a completely new OS, please forward questions to: naman.kanakiya@gatech.edu
+
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Naman Kanakiya** - [Github](https://github.com/namankanakiya)
+* **Neil Barooah** - [Github](https://github.com/neilbarooah)
+* **Wilson Gao** - [Github](https://github.com/Batou8)
+* **Nafiz Imtiaz Ali** - [Github](https://github.com/nafiz007)
+* **Anurag Sharma** - [Github](https://github.com/anuragsv)
 
 
 ## License
@@ -94,6 +102,10 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc
+* Professor Omojokun for the project inspiration and continued support.
+
+# Release Notes
+
+```
+Version 1.0.0
+```
